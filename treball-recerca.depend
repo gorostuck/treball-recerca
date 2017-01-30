@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1485814600 source:/home/joel/my-repos/treball-recerca/main.cpp
+	<iostream>
+
+1485815369 source:/home/joel/my-repos/treball-recerca/src/main.cpp
+	<iostream>
+
