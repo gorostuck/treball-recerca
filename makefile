@@ -4,11 +4,11 @@ OBJECTS := $(patsubst src%,obj%, $(patsubst %.cu,%.device.o, $(patsubst %.cpp,%.
 
 INCLUDE := -Ideps/include
 LIBPATH := -L/usr/local/lib64
-LIBS    := 
+LIBS    :=
 
-FLAGS    := -ffast-math -Wall 
-CCFLAGS  := $(FLAGS)
-CXXFLAGS := $(FLAGS) -std=c++11 
+FLAGS    := -ffast-math -Wall
+CCFLAGS  := $(FLAGS) -lSDL2
+CXXFLAGS := $(FLAGS) -std=c++11
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
 arch=compute_35,code=sm_35
@@ -19,7 +19,7 @@ CXX  := g++
 NVCC := /usr/local/cuda/bin/nvcc
 
 all: $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(OBJECTS) -o $(APPNAME) $(LIBPATH) $(LIBS)
+	$(CC) $(CCFLAGS) $(INCLUDE) $(OBJECTS) -o $(APPNAME) $(LIBPATH) $(LIBS)
 
 ojj/cmdline.o: src/cmdline.c
 	$(CC) -Wno-unused-but-set-variable -c $< -o $@
@@ -35,7 +35,7 @@ src/cmdline.c: src/cmdline.ggo
 
 %.device.o: ../src/%.cu
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
-              
+
 clean:
 	rm -rf obj/*
 	rm -f $(APPNAME)
