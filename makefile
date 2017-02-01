@@ -2,12 +2,12 @@ APPNAME := bin/app
 SOURCES := $(wildcard src/*.cpp src/*.cu src/*.c)
 OBJECTS := $(patsubst src%,obj%, $(patsubst %.cu,%.device.o, $(patsubst %.cpp,%.o, $(patsubst %.c,%.o, $(SOURCES)))))
 
-INCLUDE := -Ideps/include
-LIBPATH := -L/usr/local/lib64
+INCLUDE := 
+LIBPATH := 
 LIBS    :=
 
-FLAGS    := -ffast-math -Wall
-CCFLAGS  := $(FLAGS) -lSDL2
+FLAGS    := -Wall -lSDL2
+CCFLAGS  := $(FLAGS)
 CXXFLAGS := $(FLAGS) -std=c++11
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
