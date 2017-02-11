@@ -2,9 +2,9 @@ APPNAME := bin/app
 SOURCES := $(wildcard src/*.cpp src/*.cu src/*.c)
 OBJECTS := $(patsubst src%,obj%, $(patsubst %.cu,%.device.o, $(patsubst %.cpp,%.o, $(patsubst %.c,%.o, $(SOURCES)))))
 
-INCLUDE := 
-LIBPATH := 
-LIBS    :=
+INCLUDE := -Ideps/include
+LIBPATH := -Ldeps/lib
+LIBS    := 
 
 FLAGS    := -Wall -lSDL2
 CCFLAGS  := $(FLAGS)

@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
 
   // Open window
-  my_window = SDL_CreateWindow("Test window",
+  my_window = SDL_CreateWindow("TEST",
                                SDL_WINDOWPOS_UNDEFINED,
                                SDL_WINDOWPOS_UNDEFINED,
                                512,
