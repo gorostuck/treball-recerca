@@ -1,12 +1,12 @@
-APPNAME := bin/app
+APPNAME := bin/program.app
 SOURCES := $(wildcard src/*.cpp src/*.cu src/*.c)
 OBJECTS := $(patsubst src%,obj%, $(patsubst %.cu,%.device.o, $(patsubst %.cpp,%.o, $(patsubst %.c,%.o, $(SOURCES)))))
 
-INCLUDE := -Iinclude
-LIBPATH := -Llib
+INCLUDE := -I/usr/include
+LIBPATH := -L/usr/lib
 LIBS    := 
 
-FLAGS    := -Wall -lSDL2
+FLAGS    := -Wall -lSDL2main -lSDL2
 CCFLAGS  := $(FLAGS)
 CXXFLAGS := $(FLAGS) -std=c++11
 
@@ -19,7 +19,7 @@ CXX  := g++
 NVCC := /usr/local/cuda/bin/nvcc
 
 all: $(OBJECTS)
-	$(CC) $(CCFLAGS) $(INCLUDE) $(OBJECTS) -o $(APPNAME) $(LIBPATH) $(LIBS)
+	$(CC) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 ojj/cmdline.o: src/cmdline.c
 	$(CC) -Wno-unused-but-set-variable -c $< -o $@
