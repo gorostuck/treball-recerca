@@ -46,12 +46,8 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2" />
 			<Add directory="deps/windows/lib" />
 		</Linker>
-		<Unit filename="src/main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/window.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/window.cpp" />
 		<Unit filename="src/window.h" />
 		<Extensions>
 			<code_completion />

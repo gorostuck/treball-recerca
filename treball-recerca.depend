@@ -977,7 +977,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1486895601 c:\users\joel\desktop\my-repos\treball-recerca\src\window.h
+1487265183 c:\users\joel\desktop\my-repos\treball-recerca\src\window.h
 	<SDL2/SDL.h>
 	<stdio.h>
+
+1487265183 source:c:\users\joel\desktop\my-repos\treball-recerca\src\main.cpp
+	<stdio.h>
+	"window.h"
+
+1487265183 source:c:\users\joel\desktop\my-repos\treball-recerca\src\window.cpp
+	"window.h"
 
