@@ -4,12 +4,16 @@
 
 int main(int argc, char* argv[]) {
 
-  if (start_screen())
+  SDL_Window *main_window = NULL;
+
+  if (start_screen(main_window))
     return 1;
 
   wait_screen(3000);
 
-  end_screen();
+  end_screen(main_window);
+
+  SDL_Quit();
 
   return 0;
 }

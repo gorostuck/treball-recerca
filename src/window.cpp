@@ -2,7 +2,7 @@
    aspectos de la ventana y la gestion de eventos */
 #include "window.h"
 
-int start_screen()
+int start_screen(SDL_Window *window)
 {
   SDL_Init(SDL_INIT_VIDEO);
 
@@ -21,11 +21,9 @@ int start_screen()
   return 0;
 }
 
-int end_screen()
+int end_screen(SDL_Window *window)
 {
   SDL_DestroyWindow(window);
-
-  SDL_Quit();
 
   return 0;
 }

@@ -19,7 +19,7 @@ CXX  := g++
 NVCC := /usr/local/cuda/bin/nvcc
 
 all: $(OBJECTS)
-	$(CC) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+	$(CXX) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 ojj/cmdline.o: src/cmdline.c
 	$(CC) -Wno-unused-but-set-variable -c $< -o $@
