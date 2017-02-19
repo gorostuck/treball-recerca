@@ -46,9 +46,11 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2" />
 			<Add directory="deps/windows/lib" />
 		</Linker>
+		<Unit filename="src/logic.cpp" />
+		<Unit filename="src/logic.h" />
 		<Unit filename="src/main.cpp" />
-		<Unit filename="src/window.cpp" />
-		<Unit filename="src/window.h" />
+		<Unit filename="src/screen.cpp" />
+		<Unit filename="src/screen.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
