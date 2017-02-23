@@ -5,7 +5,7 @@
 1485815369 source:/home/joel/my-repos/treball-recerca/src/main.cpp
 	<iostream>
 
-1487840935 source:/home/joel/git-repos/treball-recerca/src/main.cpp
+1487850431 source:/home/joel/git-repos/treball-recerca/src/main.cpp
 	<stdio.h>
 	"logic.h"
 
@@ -1002,15 +1002,14 @@
 1487509801 source:c:\users\joel\desktop\my-repos\treball-recerca\src\screen.cpp
 	"screen.h"
 
-1487840935 source:/home/joel/git-repos/treball-recerca/src/logic.cpp
+1487877891 source:/home/joel/git-repos/treball-recerca/src/logic.cpp
 	"logic.h"
 	"screen.h"
 
-1487840935 /home/joel/git-repos/treball-recerca/src/logic.h
+1487850431 /home/joel/git-repos/treball-recerca/src/logic.h
 
-1487840935 /home/joel/git-repos/treball-recerca/src/screen.h
+1487852088 /home/joel/git-repos/treball-recerca/src/screen.h
 	<SDL2/SDL.h>
-	<stdio.h>
 
 1487840934 /home/joel/git-repos/treball-recerca/include/SDL2/SDL.h
 	"SDL_main.h"
@@ -1331,7 +1330,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487840935 source:/home/joel/git-repos/treball-recerca/src/screen.cpp
+1487852151 source:/home/joel/git-repos/treball-recerca/src/screen.cpp
 	"screen.h"
 
 1457647591 /usr/include/SDL2/SDL.h
@@ -1821,4 +1820,14 @@
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
+
+1487852403 source:/home/joel/git-repos/treball-recerca/src/cScreen.cpp
+	"cScreen.h"
+	<stdio.h>
+
+1487852088 /home/joel/git-repos/treball-recerca/include/cScreen.h
+	<SDL2/SDL.h>
+
+1487852088 /home/joel/git-repos/treball-recerca/src/cScreen.h
+	<SDL2/SDL.h>
 
