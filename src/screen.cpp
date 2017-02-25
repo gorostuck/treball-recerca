@@ -1,3 +1,5 @@
+/* Este archivo contiene las definiciones sobre diversos
+   aspectos de la ventana */
 #include "screen.h"
 
 #include <stdio.h>
@@ -19,7 +21,8 @@ int Screen::start_screen(void)
     return 1;
   }
 
-  if (SDL_CreateWindowAndRenderer(DEFAULT_MAX_SCREEN_X,DEFAULT_MAX_SCREEN_Y, SDL_WINDOW_RESIZABLE, &window, &renderer)){
+  if (SDL_CreateWindowAndRenderer(DEFAULT_MAX_SCREEN_X,DEFAULT_MAX_SCREEN_Y,
+				  SDL_WINDOW_RESIZABLE, &window, &renderer)){
     if (window == NULL){
         printf("La ventana no se ha creado con éxito: %s\n", SDL_GetError());
         return 1;
@@ -61,4 +64,29 @@ void Screen::draw_screen()
 void Screen::update_size()
 {
   SDL_GetWindowSize(window, &max_x, &max_y);
+}
+
+void Screen::change_color(int r, int g, int b, int a)
+{
+  SDL_SetRenderDrawColor(renderer, r, g, b, a);
+}
+
+void Screen::draw_full()
+{
+  SDL_RenderClear(renderer);
+}
+
+void Screen::draw_pixel(int x, int y)
+{
+  SDL_RenderDrawPoint(renderer, x, y);
+}
+
+void Screen::draw_line(int begin_x, int begin_y, int end_x, int end_y)
+{
+  SDL_RenderDrawLine(renderer, begin_x, begin_y, end_x, end_y);
+}
+
+void Screen::update()
+{
+  SDL_RenderPresent(renderer);
 }

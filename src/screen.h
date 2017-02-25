@@ -1,3 +1,5 @@
+/* Este archivo contiene las declaraciones sobre diversos
+   aspectos de la ventana */
 #ifndef SCREEN_H_INCLUDED
 #define SCREEN_H_INCLUDED
 
@@ -16,13 +18,22 @@ class Screen
         void wait_screen(int time);
 	void draw_screen();
 	void update_size();
+
+	void change_color(int r, int g, int b, int a);
+	void draw_full();
+	void draw_pixel(int x, int y);
+	void draw_line(int begin_x, int begin_y,
+		       int end_x, int end_y);
+	void update();
+
+	int max_x;
+	int max_y;
+
     protected:
     private:
         SDL_Window *window;
         SDL_Renderer *renderer;
 
-        int max_x;
-        int max_y;
 };
 
 #endif // SCREEN_H_INCLUDED
