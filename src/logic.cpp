@@ -5,15 +5,15 @@ de la simulación y la gestión de eventos */
 #include "screen.h"
 
 SDL_Event event;
+Screen screen;
 
-cScreen scr;
 int logic_start(void)
 {
-    if (scr.start_screen())
+    if (screen.start_screen())
         return 1;
 
     while (logic_loop());
-    scr.end_screen();
+    screen.end_screen();
 
     return 0;
 }
@@ -21,9 +21,16 @@ int logic_start(void)
 int logic_loop(void)
 {
     SDL_PollEvent(&event);
+    if (event.type == SDL_WINDOWEVENT){
+      switch (event.window.event){
+      case SDL_WINDOWEVENT_SIZE_CHANGED:
+	screen.update_size();
+	break;
+      }
+    }
     if (event.type == SDL_QUIT)
-        return 0;
-    scr.draw_screen();
-    scr.wait_screen(100);
+      return 0;
+    screen.draw_screen();
+    screen.wait_screen(10);
     return 1;
 }
