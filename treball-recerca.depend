@@ -660,7 +660,7 @@
 	<stdio.h>
 	"window.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -691,12 +691,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_main.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_stdinc.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -724,34 +724,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_config.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_platform.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\begin_code.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\begin_code.h
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\close_code.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\close_code.h
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_assert.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_atomic.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_audio.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -761,24 +761,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_error.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_endian.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_mutex.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_thread.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -787,18 +787,18 @@
 	<process.h>
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_rwops.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_clipboard.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_cpuinfo.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -810,7 +810,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_events.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -824,7 +824,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_video.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -832,13 +832,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_pixels.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_rect.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -846,7 +846,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_surface.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -855,11 +855,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_blendmode.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_keyboard.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -867,27 +867,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_keycode.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_scancode.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_mouse.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_joystick.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_gamecontroller.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -895,11 +895,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_quit.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_gesture.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -907,60 +907,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_touch.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_filesystem.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_haptic.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_hints.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_loadso.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_log.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_messagebox.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_power.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_render.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_system.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -968,13 +968,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_timer.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935894 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_version.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -983,25 +983,27 @@
 	<SDL2/SDL.h>
 	<stdio.h>
 
-1487509378 source:c:\users\joel\desktop\my-repos\treball-recerca\src\main.cpp
+1488038426 source:c:\users\joel\desktop\my-repos\treball-recerca\src\main.cpp
 	<stdio.h>
 	"logic.h"
 
 1487443534 source:c:\users\joel\desktop\my-repos\treball-recerca\src\window.cpp
 	"window.h"
 
-1487508791 c:\users\joel\desktop\my-repos\treball-recerca\src\screen.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\src\screen.h
 	<SDL2/SDL.h>
-	<stdio.h>
 
-1487510070 source:c:\users\joel\desktop\my-repos\treball-recerca\src\logic.cpp
+1488038472 source:c:\users\joel\desktop\my-repos\treball-recerca\src\logic.cpp
 	"logic.h"
+	<stdio.h>
 	"screen.h"
+	"brush.h"
 
-1487507900 c:\users\joel\desktop\my-repos\treball-recerca\src\logic.h
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\src\logic.h
 
-1487509801 source:c:\users\joel\desktop\my-repos\treball-recerca\src\screen.cpp
+1488038426 source:c:\users\joel\desktop\my-repos\treball-recerca\src\screen.cpp
 	"screen.h"
+	<stdio.h>
 
 1487877891 source:/home/joel/git-repos/treball-recerca/src/logic.cpp
 	"logic.h"
@@ -1850,5 +1852,11 @@
 	"brush.h"
 
 1488042072 /home/joel/my-repos/treball-recerca/src/brush.h
+	"screen.h"
+
+1488038426 source:c:\users\joel\desktop\my-repos\treball-recerca\src\brush.cpp
+	"brush.h"
+
+1488038426 c:\users\joel\desktop\my-repos\treball-recerca\src\brush.h
 	"screen.h"
 

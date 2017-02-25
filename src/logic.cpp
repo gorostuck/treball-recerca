@@ -2,6 +2,8 @@
 de la simulación y la gestión de eventos */
 #include "logic.h"
 
+#include <stdio.h>
+
 #include "screen.h"
 #include "brush.h"
 
@@ -56,7 +58,7 @@ int logic_loop(void)
     brush.draw_line(p2, p3);
     
     screen.update();
-    
+
     screen.wait_screen(10);
     return 1;
 }
