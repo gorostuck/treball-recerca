@@ -1,4 +1,4 @@
-APPNAME := bin/program.app
+APPNAME := bin/program
 SOURCES := $(wildcard src/*.cpp src/*.cu src/*.c)
 OBJECTS := $(patsubst src%,obj%, $(patsubst %.cu,%.device.o, $(patsubst %.cpp,%.o, $(patsubst %.c,%.o, $(SOURCES)))))
 
