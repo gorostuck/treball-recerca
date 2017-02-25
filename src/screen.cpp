@@ -76,7 +76,7 @@ void Screen::draw_full()
   SDL_RenderClear(renderer);
 }
 
-void Screen::draw_pixel(int x, int y)
+void Screen::draw_point(int x, int y)
 {
   SDL_RenderDrawPoint(renderer, x, y);
 }

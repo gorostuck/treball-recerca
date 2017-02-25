@@ -15,6 +15,13 @@ struct Point {
   int w;
 };
 
+struct Color {
+  int r;
+  int g;
+  int b;
+  int a;
+};
+
 #include "screen.h"
 
 class Brush
@@ -23,26 +30,32 @@ class Brush
   Brush();
   virtual ~Brush();
   void start_brush(Screen *_screen);
+
+  void draw_point(Point point);
+  void draw_full();
+  void draw_line(Point start_point, Point end_point);
+
+  void change_color(Color color);
+
   Point real_from_screen(Point point);
   Point screen_from_real(Point point);
 
-
-// Provisional 
-  int x_real_from_x_screen(int x_screen);
-  int x_screen_from_x_real(int x_real);
-  int y_real_from_y_screen(int y_screen);
-  int y_screen_from_y_real(int y_real);
-
- protected:
- private:
   int max_x;
   int min_x;
   int max_y;
   int min_y;
-
+  
+ private:
   Screen *screen;
 
+  int x_real_from_x_screen(int x_screen);
+  int y_real_from_y_screen(int y_screen);
 
+  int x_screen_from_x_real(int x_real);
+  int y_screen_from_y_real(int y_real);
 };
 
 #endif // BRUSH_H_INCLUDED
+
+
+

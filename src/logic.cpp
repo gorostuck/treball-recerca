@@ -11,14 +11,10 @@ Brush brush;
 
 int logic_start(void)
 {
+
     if (screen.start_screen())
         return 1;
     brush.start_brush(&screen);
-
-    printf("\nx| Pantalla: %d -> Real: %d", 512, brush.x_real_from_x_screen(512));
-    printf("\ny| Pantalla: %d -> Real: %d", 512, brush.y_real_from_y_screen(512));
-    printf("\nx| Real: %d -> Pantalla: %d", 10, brush.x_screen_from_x_real(10));
-    printf("\ny| Real: %d -> Pantalla: %d\n",10, brush.y_screen_from_y_real(10));
 
     while (logic_loop());
     screen.end_screen();
@@ -39,13 +35,26 @@ int logic_loop(void)
     if (event.type == SDL_QUIT)
       return 0;
 
-    // Draw time:
-    screen.change_color(0, 0, 0, 255);
-    screen.draw_full();
-    screen.change_color(255, 255, 255, 255);
-    screen.draw_line(0, 0, screen.max_x, screen.max_y);
-    screen.draw_line(screen.max_x, 0, 0, screen.max_y);
+// Draw time:
 
+    Color color_black = { 0, 0, 0, 255 };
+    Color color_white = { 255, 255, 255, 255};
+
+    brush.change_color(color_black);
+    brush.draw_full();
+
+    brush.change_color(color_white);
+
+    Point p1 = { -5, 5, 0, 0};
+    Point p4 = { 5, -5, 0, 0};
+
+    Point p2 = { 5, 5, 0, 0};
+    Point p3 = { -5, -5, 0, 0};
+ 
+    
+    brush.draw_line(p1, p4);
+    brush.draw_line(p2, p3);
+    
     screen.update();
     
     screen.wait_screen(10);

@@ -1834,21 +1834,21 @@
 
 1487946918 /home/joel/my-repos/treball-recerca/src/logic.h
 
-1488023192 source:/home/joel/my-repos/treball-recerca/src/screen.cpp
+1488039133 source:/home/joel/my-repos/treball-recerca/src/screen.cpp
 	"screen.h"
 	<stdio.h>
 
-1488023195 /home/joel/my-repos/treball-recerca/src/screen.h
+1488039090 /home/joel/my-repos/treball-recerca/src/screen.h
 	<SDL2/SDL.h>
 
-1488027013 source:/home/joel/my-repos/treball-recerca/src/logic.cpp
+1488042387 source:/home/joel/my-repos/treball-recerca/src/logic.cpp
 	"logic.h"
 	"screen.h"
 	"brush.h"
 
-1488026315 source:/home/joel/my-repos/treball-recerca/src/brush.cpp
+1488042504 source:/home/joel/my-repos/treball-recerca/src/brush.cpp
 	"brush.h"
 
-1488026437 /home/joel/my-repos/treball-recerca/src/brush.h
+1488042072 /home/joel/my-repos/treball-recerca/src/brush.h
 	"screen.h"
 
