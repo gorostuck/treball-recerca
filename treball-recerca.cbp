@@ -15,6 +15,7 @@
 				<Option use_console_runner="0" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Compiler>
+					<Add option="-g" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -30,6 +31,8 @@
 				<Option use_console_runner="0" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
 					<Add directory="/usr/include" />
 				</Compiler>
 				<Linker>
@@ -40,6 +43,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-g" />
 			<Add option="-fexceptions" />
 			<Add directory="deps/windows/include/SDL2" />
 			<Add directory="/usr/include" />
