@@ -30,8 +30,10 @@ void Brush::draw_line(Point start_real_point, Point end_real_point)
 {
   Point start_screen_point = screen_from_real(start_real_point);
   Point end_screen_point   = screen_from_real(end_real_point);
-  screen->draw_line(start_screen_point.x, start_screen_point.y,
-		    end_screen_point.x, end_screen_point.y);
+  // screen->draw_line(start_screen_point.x, start_screen_point.y,
+  //	    end_screen_point.x, end_screen_point.y);
+    screen->draw_my_line(start_screen_point.x, start_screen_point.y,
+            end_screen_point.x, end_screen_point.y);
 }
 
 void Brush::draw_full()

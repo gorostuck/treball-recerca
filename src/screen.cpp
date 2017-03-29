@@ -42,7 +42,7 @@ int Screen::end_screen(void)
   SDL_DestroyRenderer(renderer);
 
   SDL_Quit();
- 
+
   return 0;
 }
 
@@ -84,6 +84,24 @@ void Screen::draw_point(int x, int y)
 void Screen::draw_line(int begin_x, int begin_y, int end_x, int end_y)
 {
   SDL_RenderDrawLine(renderer, begin_x, begin_y, end_x, end_y);
+}
+
+void Screen::draw_my_line(int begin_x, int begin_y, int end_x, int end_y)
+{
+  float v_1 = end_x - begin_x;
+  float v_2 = end_y - begin_y;
+
+  float t = 1/(abs(v_1) + abs(v_2));
+  v_1 *= t;
+  v_2 *= t;
+
+  float point_x = begin_x;
+  float point_y = begin_y;
+
+  for (;(int)abs(point_x-end_x)>1 && (int)abs(point_y-end_y)>1;point_x +=v_1, point_y +=v_2)
+    {
+      SDL_RenderDrawPoint(renderer, (int)point_x, (int)point_y);
+    }
 }
 
 void Screen::update()
