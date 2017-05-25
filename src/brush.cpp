@@ -30,10 +30,8 @@ void Brush::draw_line(Point start_real_point, Point end_real_point)
 {
   Point start_screen_point = screen_from_real(start_real_point);
   Point end_screen_point   = screen_from_real(end_real_point);
-  // screen->draw_line(start_screen_point.x, start_screen_point.y,
-  //	    end_screen_point.x, end_screen_point.y);
-    screen->draw_my_line(start_screen_point.x, start_screen_point.y,
-            end_screen_point.x, end_screen_point.y);
+  screen->draw_line(start_screen_point.x, start_screen_point.y,
+		    end_screen_point.x, end_screen_point.y);
 }
 
 void Brush::draw_full()
@@ -47,16 +45,16 @@ void Brush::change_color(Color color)
 
 Point Brush::real_from_screen(Point point)
 {
-  Point new_point = { x_real_from_x_screen(point.x),
-		      y_real_from_y_screen(point.y),
+  Point new_point = { (float) x_real_from_x_screen(point.x),
+		      (float) y_real_from_y_screen(point.y),
 		      point.z, point.w };
   return new_point;
 }
 
 Point Brush::screen_from_real(Point point)
 {
-  Point new_point = { x_screen_from_x_real(point.x),
-		      y_screen_from_y_real(point.y),
+  Point new_point = { (float) x_screen_from_x_real(point.x),
+		      (float) y_screen_from_y_real(point.y),
 		      point.z, point.w };
   return new_point;
 }

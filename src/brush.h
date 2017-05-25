@@ -9,10 +9,10 @@
 #define DEFAULT_MIN_Y -10
 
 struct Point {
-  int x;
-  int y;
-  int z;
-  int w;
+  float x;
+  float y;
+  float z;
+  float w;
 };
 
 struct Color {
@@ -44,7 +44,7 @@ class Brush
   int min_x;
   int max_y;
   int min_y;
-  
+
  private:
   Screen *screen;
 
