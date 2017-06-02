@@ -11,6 +11,10 @@ de la simulación y la gestión de eventos */
 SDL_Event event;
 Screen screen;
 Brush brush;
+Point observer = {0., 0., 0., 0.};
+float k = 0;
+
+Cube *main_cube, *reset_cube;
 
 int logic_start(void)
 {
@@ -20,6 +24,7 @@ int logic_start(void)
     brush.start_brush(&screen);
 
     /* inits */
+    observer = { 0., 0., 0., 0.};
     main_cube = new Cube;
     reset_cube = new Cube;
     Point P[8]={{ -10, 10, 20, 0}, { 10, 10, 20, 0}, { 10, -10, 20, 0}, { -10, -10, 20, 0},

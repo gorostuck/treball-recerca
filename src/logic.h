@@ -12,13 +12,11 @@ struct Point {
   float y;
   float z;
   float w;
-} observer = { 0., 0., 0., 0. };
+};
 
 struct Cube {
   Point P[8];
-} *main_cube, *reset_cube;
-
-float k;
+};
 
 int logic_start(void);
 int logic_loop(void);
