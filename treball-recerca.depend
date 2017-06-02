@@ -2,7 +2,7 @@
 1485814600 source:/home/joel/my-repos/treball-recerca/main.cpp
 	<iostream>
 
-1490802544 source:/home/joel/my-repos/treball-recerca/src/main.cpp
+1495735450 source:/home/joel/my-repos/treball-recerca/src/main.cpp
 	<stdio.h>
 	"logic.h"
 
@@ -1336,7 +1336,7 @@
 1487852151 source:/home/joel/git-repos/treball-recerca/src/screen.cpp
 	"screen.h"
 
-1457647591 /usr/include/SDL2/SDL.h
+1486373277 /usr/include/SDL2/SDL.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -1367,12 +1367,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_main.h
+1486373277 /usr/include/SDL2/SDL_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_stdinc.h
+1486373277 /usr/include/SDL2/SDL_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -1391,7 +1391,6 @@
 	<ctype.h>
 	<math.h>
 	<float.h>
-	<iconv.h>
 	<sal.h>
 	"begin_code.h"
 	<alloca.h>
@@ -1401,22 +1400,22 @@
 	<stdlib.h>
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_config.h
+1486373277 /usr/include/SDL2/SDL_config.h
 	"SDL_platform.h"
 
-1457647592 /usr/include/SDL2/SDL_platform.h
+1486373277 /usr/include/SDL2/SDL_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/begin_code.h
+1486373277 /usr/include/SDL2/begin_code.h
 
-1457647592 /usr/include/SDL2/close_code.h
+1486373277 /usr/include/SDL2/close_code.h
 
-1490126448 /usr/include/stdio.h
-	<features.h>
+1488809166 /usr/include/stdio.h
+	<bits/libc-header-start.h>
 	<stddef.h>
 	<bits/types.h>
 	<libio.h>
@@ -1428,28 +1427,28 @@
 	<bits/stdio2.h>
 	<bits/stdio-ldbl.h>
 
-1490126430 /usr/include/features.h
+1488809163 /usr/include/features.h
 	<stdc-predef.h>
 	<sys/cdefs.h>
 	<gnu/stubs.h>
 
-1490126430 /usr/include/stdc-predef.h
+1488809163 /usr/include/stdc-predef.h
 
-1490126448 /usr/include/libio.h
+1488809166 /usr/include/libio.h
 	<_G_config.h>
 	<stdarg.h>
 	<sys/cdefs.h>
 	<shlib-compat.h>
 	<bits/libio-ldbl.h>
 
-1490126448 /usr/include/_G_config.h
+1488809166 /usr/include/_G_config.h
 	<bits/types.h>
 	<stddef.h>
 	<wchar.h>
 	<gconv.h>
 
-1490126450 /usr/include/wchar.h
-	<features.h>
+1488809167 /usr/include/wchar.h
+	<bits/libc-header-start.h>
 	<stdio.h>
 	<stdarg.h>
 	<bits/wchar.h>
@@ -1462,36 +1461,37 @@
 	<bits/wchar2.h>
 	<bits/wchar-ldbl.h>
 
-1490126455 /usr/include/wctype.h
+1488809168 /usr/include/wctype.h
 	<features.h>
 	<bits/types.h>
 	<wchar.h>
 	<endian.h>
 	<xlocale.h>
 
-1490126450 /usr/include/endian.h
+1488809167 /usr/include/endian.h
 	<features.h>
 	<bits/endian.h>
 	<bits/byteswap.h>
+	<bits/uintn-identity.h>
 
-1490126431 /usr/include/xlocale.h
+1488809163 /usr/include/xlocale.h
 
-1490126431 /usr/include/gconv.h
+1488809163 /usr/include/gconv.h
 	<features.h>
 	<wchar.h>
 	<stddef.h>
 
-1490126452 /usr/include/getopt.h
+1488809167 /usr/include/getopt.h
 	<ctype.h>
 
-1490126442 /usr/include/ctype.h
+1488809165 /usr/include/ctype.h
 	<features.h>
 	<bits/types.h>
 	<endian.h>
 	<xlocale.h>
 
-1490126447 /usr/include/stdlib.h
-	<features.h>
+1488809166 /usr/include/stdlib.h
+	<bits/libc-header-start.h>
 	<stddef.h>
 	<bits/waitflags.h>
 	<bits/waitstatus.h>
@@ -1503,54 +1503,60 @@
 	<bits/stdlib.h>
 	<bits/stdlib-ldbl.h>
 
-1490126447 /usr/include/alloca.h
+1488809166 /usr/include/alloca.h
 	<features.h>
 	<stddef.h>
 
-1490126449 /usr/include/malloc.h
+1488809167 /usr/include/malloc.h
 	<features.h>
 	<stddef.h>
 	<stdio.h>
 
-1490126450 /usr/include/memory.h
+1488809167 /usr/include/memory.h
 	<features.h>
 	<string.h>
 
-1490126450 /usr/include/string.h
-	<features.h>
+1488809167 /usr/include/string.h
+	<bits/libc-header-start.h>
 	<stddef.h>
 	<xlocale.h>
 	<bits/string.h>
 	<bits/string2.h>
 	<bits/string3.h>
 
-1490126450 /usr/include/strings.h
+1488809167 /usr/include/strings.h
 	<features.h>
 	<stddef.h>
 	<xlocale.h>
+	<bits/strings_fortified.h>
 
-1490126447 /usr/include/inttypes.h
+1488809166 /usr/include/inttypes.h
 	<features.h>
 	<stdint.h>
 	<stddef.h>
 
-1490126447 /usr/include/stdint.h
-	<features.h>
+1488809166 /usr/include/stdint.h
+	<bits/libc-header-start.h>
+	<bits/types.h>
 	<bits/wchar.h>
 	<bits/wordsize.h>
 
-1490126444 /usr/include/math.h
-	<features.h>
+1488809165 /usr/include/math.h
+	<bits/libc-header-start.h>
+	<bits/types.h>
 	<bits/math-vector.h>
 	<bits/huge_val.h>
 	<bits/huge_valf.h>
 	<bits/huge_vall.h>
 	<bits/inf.h>
 	<bits/nan.h>
-	<bits/mathdef.h>
+	<bits/flt-eval-method.h>
+	<bits/fp-logb.h>
+	<bits/fp-fast.h>
 	<bits/mathcalls.h>
 	<bits/mathcalls.h>
 	<bits/mathcalls.h>
+	<bits/iscanonical.h>
 	<bits/mathinline.h>
 	<bits/math-finite.h>
 
@@ -1558,18 +1564,18 @@
 	<features.h>
 	<stddef.h>
 
-1457647591 /usr/include/SDL2/SDL_assert.h
+1486373277 /usr/include/SDL2/SDL_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1490126447 /usr/include/signal.h
+1488809166 /usr/include/signal.h
 	<features.h>
 	<bits/sigset.h>
 	<bits/types.h>
 	<bits/signum.h>
-	<time.h>
+	<bits/types/struct_timespec.h>
 	<bits/siginfo.h>
 	<bits/sigaction.h>
 	<bits/sigcontext.h>
@@ -1590,14 +1596,14 @@
 	<bits/types.h>
 	<xlocale.h>
 
-1457647591 /usr/include/SDL2/SDL_atomic.h
+1486373277 /usr/include/SDL2/SDL_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_audio.h
+1486373277 /usr/include/SDL2/SDL_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -1607,24 +1613,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_error.h
+1486373277 /usr/include/SDL2/SDL_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_endian.h
+1486373277 /usr/include/SDL2/SDL_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_mutex.h
+1486373277 /usr/include/SDL2/SDL_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_thread.h
+1486373277 /usr/include/SDL2/SDL_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -1633,18 +1639,18 @@
 	<process.h>
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_rwops.h
+1486373277 /usr/include/SDL2/SDL_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_clipboard.h
+1486373277 /usr/include/SDL2/SDL_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_cpuinfo.h
+1486373277 /usr/include/SDL2/SDL_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -1656,7 +1662,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_events.h
+1486373277 /usr/include/SDL2/SDL_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1670,7 +1676,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_video.h
+1486373277 /usr/include/SDL2/SDL_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1678,12 +1684,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_pixels.h
+1486373277 /usr/include/SDL2/SDL_pixels.h
 	"SDL_stdinc.h"
+	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_rect.h
+1486373277 /usr/include/SDL2/SDL_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -1691,7 +1698,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_surface.h
+1486373277 /usr/include/SDL2/SDL_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1700,11 +1707,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_blendmode.h
+1486373277 /usr/include/SDL2/SDL_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_keyboard.h
+1486373277 /usr/include/SDL2/SDL_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -1712,27 +1719,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_keycode.h
+1486373277 /usr/include/SDL2/SDL_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1457647592 /usr/include/SDL2/SDL_scancode.h
+1486373277 /usr/include/SDL2/SDL_scancode.h
 	"SDL_stdinc.h"
 
-1457647592 /usr/include/SDL2/SDL_mouse.h
+1486373277 /usr/include/SDL2/SDL_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_joystick.h
+1486373277 /usr/include/SDL2/SDL_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_gamecontroller.h
+1486373277 /usr/include/SDL2/SDL_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -1740,11 +1747,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_quit.h
+1486373277 /usr/include/SDL2/SDL_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1457647591 /usr/include/SDL2/SDL_gesture.h
+1486373277 /usr/include/SDL2/SDL_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1752,60 +1759,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_touch.h
+1486373277 /usr/include/SDL2/SDL_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_filesystem.h
+1486373277 /usr/include/SDL2/SDL_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_haptic.h
+1486373277 /usr/include/SDL2/SDL_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647591 /usr/include/SDL2/SDL_hints.h
+1486373277 /usr/include/SDL2/SDL_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_loadso.h
+1486373277 /usr/include/SDL2/SDL_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_log.h
+1486373277 /usr/include/SDL2/SDL_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_messagebox.h
+1486373277 /usr/include/SDL2/SDL_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_power.h
+1486373277 /usr/include/SDL2/SDL_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_render.h
+1486373277 /usr/include/SDL2/SDL_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_system.h
+1486373277 /usr/include/SDL2/SDL_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -1813,13 +1820,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_timer.h
+1486373277 /usr/include/SDL2/SDL_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1457647592 /usr/include/SDL2/SDL_version.h
+1486373277 /usr/include/SDL2/SDL_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -1834,25 +1841,25 @@
 1487852088 /home/joel/git-repos/treball-recerca/src/cScreen.h
 	<SDL2/SDL.h>
 
-1490800134 /home/joel/my-repos/treball-recerca/src/logic.h
+1496416786 /home/joel/my-repos/treball-recerca/src/logic.h
 
-1490802343 source:/home/joel/my-repos/treball-recerca/src/screen.cpp
+1495735451 source:/home/joel/my-repos/treball-recerca/src/screen.cpp
 	"screen.h"
 	<stdio.h>
 
-1490802383 /home/joel/my-repos/treball-recerca/src/screen.h
+1495735451 /home/joel/my-repos/treball-recerca/src/screen.h
 	<SDL2/SDL.h>
 
-1490800134 source:/home/joel/my-repos/treball-recerca/src/logic.cpp
+1496418036 source:/home/joel/my-repos/treball-recerca/src/logic.cpp
 	"logic.h"
 	<stdio.h>
 	"screen.h"
 	"brush.h"
 
-1490802719 source:/home/joel/my-repos/treball-recerca/src/brush.cpp
+1495735801 source:/home/joel/my-repos/treball-recerca/src/brush.cpp
 	"brush.h"
 
-1490800134 /home/joel/my-repos/treball-recerca/src/brush.h
+1496416786 /home/joel/my-repos/treball-recerca/src/brush.h
 	"screen.h"
 
 1488038426 source:c:\users\joel\desktop\my-repos\treball-recerca\src\brush.cpp
@@ -1861,37 +1868,41 @@
 1488038426 c:\users\joel\desktop\my-repos\treball-recerca\src\brush.h
 	"screen.h"
 
-1470482224 /usr/include/sys/types.h
+1488809167 /usr/include/sys/types.h
 	<features.h>
 	<bits/types.h>
-	<time.h>
+	<bits/types/clock_t.h>
+	<bits/types/clockid_t.h>
+	<bits/types/time_t.h>
+	<bits/types/timer_t.h>
 	<stddef.h>
 	<endian.h>
 	<sys/select.h>
 	<sys/sysmacros.h>
 	<bits/pthreadtypes.h>
 
-1470482225 /usr/include/sys/cdefs.h
+1488809168 /usr/include/sys/cdefs.h
 	<features.h>
 	<bits/wordsize.h>
+	<bits/long-double.h>
 
-1470482221 /usr/include/bits/wordsize.h
+1488809166 /usr/include/bits/wordsize.h
 
-1470482212 /usr/include/gnu/stubs.h
+1488809163 /usr/include/gnu/stubs.h
 	<gnu/stubs-32.h>
 	<gnu/stubs-64.h>
 	<gnu/stubs-x32.h>
 
-1470508831 /usr/include/gnu/stubs-32.h
+1488985957 /usr/include/gnu/stubs-32.h
 
-1470482268 /usr/include/gnu/stubs-64.h
+1488809186 /usr/include/gnu/stubs-64.h
 
-1470482224 /usr/include/bits/types.h
+1488809167 /usr/include/bits/types.h
 	<features.h>
 	<bits/wordsize.h>
 	<bits/typesizes.h>
 
-1470482224 /usr/include/bits/typesizes.h
+1488809167 /usr/include/bits/typesizes.h
 
 1470482223 /usr/include/bits/time.h
 	<bits/types.h>
@@ -1901,117 +1912,123 @@
 1470482223 /usr/include/bits/timex.h
 	<bits/types.h>
 
-1470482223 /usr/include/bits/endian.h
+1488809167 /usr/include/bits/endian.h
 
-1470482223 /usr/include/bits/byteswap.h
+1488809167 /usr/include/bits/byteswap.h
 	<features.h>
 	<bits/types.h>
 	<bits/wordsize.h>
 	<bits/byteswap-16.h>
 
-1470482223 /usr/include/bits/byteswap-16.h
+1488809167 /usr/include/bits/byteswap-16.h
 
-1470482225 /usr/include/sys/select.h
+1488809168 /usr/include/sys/select.h
 	<features.h>
 	<bits/types.h>
 	<bits/select.h>
 	<bits/sigset.h>
-	<time.h>
-	<bits/time.h>
+	<bits/types/time_t.h>
+	<bits/types/struct_timeval.h>
+	<bits/types/struct_timespec.h>
 	<bits/select2.h>
 
-1470482225 /usr/include/bits/select.h
+1488809168 /usr/include/bits/select.h
 	<bits/wordsize.h>
 
-1470482220 /usr/include/bits/sigset.h
+1488809166 /usr/include/bits/sigset.h
 
-1470482225 /usr/include/bits/select2.h
+1488809168 /usr/include/bits/select2.h
 
-1470482224 /usr/include/sys/sysmacros.h
+1488809168 /usr/include/sys/sysmacros.h
 	<features.h>
+	<bits/types.h>
+	<bits/sysmacros.h>
 
-1470482224 /usr/include/bits/pthreadtypes.h
+1488809167 /usr/include/bits/pthreadtypes.h
 	<bits/wordsize.h>
 
-1470482223 /usr/include/bits/wchar.h
+1488809167 /usr/include/bits/wchar.h
 
-1470482223 /usr/include/bits/wchar2.h
+1488809167 /usr/include/bits/wchar2.h
 
-1470482223 /usr/include/bits/wchar-ldbl.h
+1488809167 /usr/include/bits/wchar-ldbl.h
 
-1470482222 /usr/include/bits/libio-ldbl.h
+1488809166 /usr/include/bits/libio-ldbl.h
 
-1470482221 /usr/include/bits/stdio_lim.h
+1488809166 /usr/include/bits/stdio_lim.h
 
-1470482222 /usr/include/bits/sys_errlist.h
+1488809166 /usr/include/bits/sys_errlist.h
 
-1470482222 /usr/include/bits/stdio.h
+1488809166 /usr/include/bits/stdio.h
 
-1470482222 /usr/include/bits/stdio2.h
+1488809166 /usr/include/bits/stdio2.h
 
-1470482222 /usr/include/bits/stdio-ldbl.h
+1488809166 /usr/include/bits/stdio-ldbl.h
 
-1470482224 /usr/include/bits/waitflags.h
+1488809167 /usr/include/bits/waitflags.h
 
-1470482224 /usr/include/bits/waitstatus.h
+1488809167 /usr/include/bits/waitstatus.h
 
-1470482221 /usr/include/bits/stdlib-bsearch.h
+1488809166 /usr/include/bits/stdlib-bsearch.h
 
-1470482221 /usr/include/bits/stdlib-float.h
+1488809166 /usr/include/bits/stdlib-float.h
 
-1470482221 /usr/include/bits/stdlib.h
+1488809166 /usr/include/bits/stdlib.h
 
-1470482221 /usr/include/bits/stdlib-ldbl.h
+1488809166 /usr/include/bits/stdlib-ldbl.h
 
-1470482223 /usr/include/bits/string.h
+1488809167 /usr/include/bits/string.h
 
-1470482223 /usr/include/bits/string2.h
+1488809167 /usr/include/bits/string2.h
 	<stdlib.h>
 
-1470482223 /usr/include/bits/string3.h
+1488809167 /usr/include/bits/string3.h
+	<bits/strings_fortified.h>
 
-1470482219 /usr/include/bits/math-vector.h
+1488809165 /usr/include/bits/math-vector.h
 	<bits/libm-simd-decl-stubs.h>
 
-1470482219 /usr/include/bits/libm-simd-decl-stubs.h
+1488809165 /usr/include/bits/libm-simd-decl-stubs.h
 
-1470482219 /usr/include/bits/huge_val.h
+1488809165 /usr/include/bits/huge_val.h
 	<endian.h>
 
-1470482219 /usr/include/bits/huge_valf.h
+1488809165 /usr/include/bits/huge_valf.h
 
-1470482219 /usr/include/bits/huge_vall.h
+1488809165 /usr/include/bits/huge_vall.h
 
-1470482219 /usr/include/bits/inf.h
+1488809165 /usr/include/bits/inf.h
 
-1470482219 /usr/include/bits/nan.h
+1488809165 /usr/include/bits/nan.h
 	<endian.h>
 
 1470482219 /usr/include/bits/mathdef.h
 
-1470482219 /usr/include/bits/mathcalls.h
+1488809165 /usr/include/bits/mathcalls.h
 
-1470482219 /usr/include/bits/mathinline.h
+1488809165 /usr/include/bits/mathinline.h
 
-1470482219 /usr/include/bits/math-finite.h
+1488809165 /usr/include/bits/math-finite.h
 
-1470482220 /usr/include/bits/signum.h
+1488809166 /usr/include/bits/signum.h
 
-1470482220 /usr/include/bits/siginfo.h
+1488809166 /usr/include/bits/siginfo.h
 	<bits/wordsize.h>
 
-1470482220 /usr/include/bits/sigaction.h
+1488809166 /usr/include/bits/sigaction.h
 
-1470482220 /usr/include/bits/sigcontext.h
+1488809166 /usr/include/bits/sigcontext.h
 
-1470482220 /usr/include/bits/sigstack.h
+1488809166 /usr/include/bits/sigstack.h
+	<stddef.h>
 
-1470482221 /usr/include/sys/ucontext.h
+1488809166 /usr/include/sys/ucontext.h
 	<features.h>
 	<signal.h>
 	<bits/sigcontext.h>
+	<bits/sigstack.h>
 
-1470482220 /usr/include/bits/sigthread.h
+1488809166 /usr/include/bits/sigthread.h
 
 1496389797 source:/home/joel/Desktop/treball-recerca/src/brush.cpp
 	"brush.h"
@@ -2037,4 +2054,42 @@
 1496389797 source:/home/joel/Desktop/treball-recerca/src/screen.cpp
 	"screen.h"
 	<stdio.h>
+
+1488809165 /usr/include/bits/long-double.h
+
+1488809167 /usr/include/bits/types/clock_t.h
+	<bits/types.h>
+
+1488809167 /usr/include/bits/types/clockid_t.h
+	<bits/types.h>
+
+1488809167 /usr/include/bits/types/time_t.h
+	<bits/types.h>
+
+1488809167 /usr/include/bits/types/timer_t.h
+	<bits/types.h>
+
+1488809167 /usr/include/bits/uintn-identity.h
+	<bits/types.h>
+
+1488809167 /usr/include/bits/types/struct_timeval.h
+	<bits/types.h>
+
+1488809167 /usr/include/bits/types/struct_timespec.h
+	<bits/types.h>
+
+1488809168 /usr/include/bits/sysmacros.h
+
+1488809163 /usr/include/bits/libc-header-start.h
+	<features.h>
+
+1488809167 /usr/include/bits/strings_fortified.h
+
+1488809165 /usr/include/bits/flt-eval-method.h
+
+1488809165 /usr/include/bits/fp-logb.h
+
+1488809165 /usr/include/bits/fp-fast.h
+
+1488809165 /usr/include/bits/iscanonical.h
 
