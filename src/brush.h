@@ -8,12 +8,16 @@
 #define DEFAULT_MAX_Y 10
 #define DEFAULT_MIN_Y -10
 
+#ifndef LOGIC_H_INCLUDED
+
 struct Point {
   float x;
   float y;
   float z;
   float w;
 };
+
+#endif /* LOGIC_H_INCLUDED */
 
 struct Color {
   int r;

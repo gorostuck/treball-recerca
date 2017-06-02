@@ -1336,7 +1336,7 @@
 1487852151 source:/home/joel/git-repos/treball-recerca/src/screen.cpp
 	"screen.h"
 
-1463662688 /usr/include/SDL2/SDL.h
+1457647591 /usr/include/SDL2/SDL.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -1367,12 +1367,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_main.h
+1457647592 /usr/include/SDL2/SDL_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_stdinc.h
+1457647592 /usr/include/SDL2/SDL_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -1401,21 +1401,21 @@
 	<stdlib.h>
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_config.h
+1457647592 /usr/include/SDL2/SDL_config.h
 	"SDL_platform.h"
 
-1463662689 /usr/include/SDL2/SDL_platform.h
+1457647592 /usr/include/SDL2/SDL_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/begin_code.h
+1457647592 /usr/include/SDL2/begin_code.h
 
-1463662689 /usr/include/SDL2/close_code.h
+1457647592 /usr/include/SDL2/close_code.h
 
-1479329630 /usr/include/stdio.h
+1490126448 /usr/include/stdio.h
 	<features.h>
 	<stddef.h>
 	<bits/types.h>
@@ -1428,27 +1428,27 @@
 	<bits/stdio2.h>
 	<bits/stdio-ldbl.h>
 
-1479329630 /usr/include/features.h
+1490126430 /usr/include/features.h
 	<stdc-predef.h>
 	<sys/cdefs.h>
 	<gnu/stubs.h>
 
-1479329630 /usr/include/stdc-predef.h
+1490126430 /usr/include/stdc-predef.h
 
-1479329630 /usr/include/libio.h
+1490126448 /usr/include/libio.h
 	<_G_config.h>
 	<stdarg.h>
 	<sys/cdefs.h>
 	<shlib-compat.h>
 	<bits/libio-ldbl.h>
 
-1479329630 /usr/include/_G_config.h
+1490126448 /usr/include/_G_config.h
 	<bits/types.h>
 	<stddef.h>
 	<wchar.h>
 	<gconv.h>
 
-1479329630 /usr/include/wchar.h
+1490126450 /usr/include/wchar.h
 	<features.h>
 	<stdio.h>
 	<stdarg.h>
@@ -1462,35 +1462,35 @@
 	<bits/wchar2.h>
 	<bits/wchar-ldbl.h>
 
-1479329630 /usr/include/wctype.h
+1490126455 /usr/include/wctype.h
 	<features.h>
 	<bits/types.h>
 	<wchar.h>
 	<endian.h>
 	<xlocale.h>
 
-1479329630 /usr/include/endian.h
+1490126450 /usr/include/endian.h
 	<features.h>
 	<bits/endian.h>
 	<bits/byteswap.h>
 
-1479329630 /usr/include/xlocale.h
+1490126431 /usr/include/xlocale.h
 
-1479329630 /usr/include/gconv.h
+1490126431 /usr/include/gconv.h
 	<features.h>
 	<wchar.h>
 	<stddef.h>
 
-1479329630 /usr/include/getopt.h
+1490126452 /usr/include/getopt.h
 	<ctype.h>
 
-1479329630 /usr/include/ctype.h
+1490126442 /usr/include/ctype.h
 	<features.h>
 	<bits/types.h>
 	<endian.h>
 	<xlocale.h>
 
-1479329630 /usr/include/stdlib.h
+1490126447 /usr/include/stdlib.h
 	<features.h>
 	<stddef.h>
 	<bits/waitflags.h>
@@ -1503,20 +1503,20 @@
 	<bits/stdlib.h>
 	<bits/stdlib-ldbl.h>
 
-1479329630 /usr/include/alloca.h
+1490126447 /usr/include/alloca.h
 	<features.h>
 	<stddef.h>
 
-1479329630 /usr/include/malloc.h
+1490126449 /usr/include/malloc.h
 	<features.h>
 	<stddef.h>
 	<stdio.h>
 
-1479329630 /usr/include/memory.h
+1490126450 /usr/include/memory.h
 	<features.h>
 	<string.h>
 
-1479329630 /usr/include/string.h
+1490126450 /usr/include/string.h
 	<features.h>
 	<stddef.h>
 	<xlocale.h>
@@ -1524,22 +1524,22 @@
 	<bits/string2.h>
 	<bits/string3.h>
 
-1479329630 /usr/include/strings.h
+1490126450 /usr/include/strings.h
 	<features.h>
 	<stddef.h>
 	<xlocale.h>
 
-1479329630 /usr/include/inttypes.h
+1490126447 /usr/include/inttypes.h
 	<features.h>
 	<stdint.h>
 	<stddef.h>
 
-1479329630 /usr/include/stdint.h
+1490126447 /usr/include/stdint.h
 	<features.h>
 	<bits/wchar.h>
 	<bits/wordsize.h>
 
-1479329630 /usr/include/math.h
+1490126444 /usr/include/math.h
 	<features.h>
 	<bits/math-vector.h>
 	<bits/huge_val.h>
@@ -1554,17 +1554,17 @@
 	<bits/mathinline.h>
 	<bits/math-finite.h>
 
-1479329630 /usr/include/iconv.h
+1490126431 /usr/include/iconv.h
 	<features.h>
 	<stddef.h>
 
-1463662688 /usr/include/SDL2/SDL_assert.h
+1457647591 /usr/include/SDL2/SDL_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1479329630 /usr/include/signal.h
+1490126447 /usr/include/signal.h
 	<features.h>
 	<bits/sigset.h>
 	<bits/types.h>
@@ -1579,7 +1579,7 @@
 	<bits/pthreadtypes.h>
 	<bits/sigthread.h>
 
-1479329630 /usr/include/time.h
+1490126451 /usr/include/time.h
 	<features.h>
 	<stddef.h>
 	<bits/time.h>
@@ -1590,14 +1590,14 @@
 	<bits/types.h>
 	<xlocale.h>
 
-1463662688 /usr/include/SDL2/SDL_atomic.h
+1457647591 /usr/include/SDL2/SDL_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1463662688 /usr/include/SDL2/SDL_audio.h
+1457647591 /usr/include/SDL2/SDL_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -1607,24 +1607,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_error.h
+1457647591 /usr/include/SDL2/SDL_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_endian.h
+1457647591 /usr/include/SDL2/SDL_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_mutex.h
+1457647592 /usr/include/SDL2/SDL_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_thread.h
+1457647592 /usr/include/SDL2/SDL_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -1633,18 +1633,18 @@
 	<process.h>
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_rwops.h
+1457647592 /usr/include/SDL2/SDL_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_clipboard.h
+1457647591 /usr/include/SDL2/SDL_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_cpuinfo.h
+1457647591 /usr/include/SDL2/SDL_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -1656,7 +1656,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_events.h
+1457647591 /usr/include/SDL2/SDL_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1670,7 +1670,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_video.h
+1457647592 /usr/include/SDL2/SDL_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1678,12 +1678,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_pixels.h
+1457647592 /usr/include/SDL2/SDL_pixels.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_rect.h
+1457647592 /usr/include/SDL2/SDL_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -1691,7 +1691,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_surface.h
+1457647592 /usr/include/SDL2/SDL_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1700,11 +1700,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_blendmode.h
+1457647591 /usr/include/SDL2/SDL_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_keyboard.h
+1457647591 /usr/include/SDL2/SDL_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -1712,27 +1712,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_keycode.h
+1457647592 /usr/include/SDL2/SDL_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1463662689 /usr/include/SDL2/SDL_scancode.h
+1457647592 /usr/include/SDL2/SDL_scancode.h
 	"SDL_stdinc.h"
 
-1463662689 /usr/include/SDL2/SDL_mouse.h
+1457647592 /usr/include/SDL2/SDL_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_joystick.h
+1457647591 /usr/include/SDL2/SDL_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_gamecontroller.h
+1457647591 /usr/include/SDL2/SDL_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -1740,11 +1740,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_quit.h
+1457647592 /usr/include/SDL2/SDL_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1463662689 /usr/include/SDL2/SDL_gesture.h
+1457647591 /usr/include/SDL2/SDL_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1752,60 +1752,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_touch.h
+1457647592 /usr/include/SDL2/SDL_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_filesystem.h
+1457647591 /usr/include/SDL2/SDL_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_haptic.h
+1457647591 /usr/include/SDL2/SDL_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_hints.h
+1457647591 /usr/include/SDL2/SDL_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_loadso.h
+1457647592 /usr/include/SDL2/SDL_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_log.h
+1457647592 /usr/include/SDL2/SDL_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_messagebox.h
+1457647592 /usr/include/SDL2/SDL_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_power.h
+1457647592 /usr/include/SDL2/SDL_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_render.h
+1457647592 /usr/include/SDL2/SDL_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_system.h
+1457647592 /usr/include/SDL2/SDL_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -1813,13 +1813,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_timer.h
+1457647592 /usr/include/SDL2/SDL_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1463662689 /usr/include/SDL2/SDL_version.h
+1457647592 /usr/include/SDL2/SDL_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -2012,4 +2012,29 @@
 	<bits/sigcontext.h>
 
 1470482220 /usr/include/bits/sigthread.h
+
+1496389797 source:/home/joel/Desktop/treball-recerca/src/brush.cpp
+	"brush.h"
+
+1496390611 /home/joel/Desktop/treball-recerca/src/brush.h
+	"screen.h"
+
+1496389797 /home/joel/Desktop/treball-recerca/src/screen.h
+	<SDL2/SDL.h>
+
+1496403837 source:/home/joel/Desktop/treball-recerca/src/logic.cpp
+	"logic.h"
+	<stdio.h>
+	"screen.h"
+	"brush.h"
+
+1496393096 /home/joel/Desktop/treball-recerca/src/logic.h
+
+1496389797 source:/home/joel/Desktop/treball-recerca/src/main.cpp
+	<stdio.h>
+	"logic.h"
+
+1496389797 source:/home/joel/Desktop/treball-recerca/src/screen.cpp
+	"screen.h"
+	<stdio.h>
 
