@@ -52,11 +52,11 @@ class Brush
  private:
   Screen *screen;
 
-  int x_real_from_x_screen(int x_screen);
-  int y_real_from_y_screen(int y_screen);
+  float x_real_from_x_screen(int x_screen);
+  float y_real_from_y_screen(int y_screen);
 
-  int x_screen_from_x_real(int x_real);
-  int y_screen_from_y_real(int y_real);
+  int x_screen_from_x_real(float x_real);
+  int y_screen_from_y_real(float y_real);
 };
 
 #endif // BRUSH_H_INCLUDED

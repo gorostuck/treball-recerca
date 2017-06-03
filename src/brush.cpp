@@ -59,22 +59,22 @@ Point Brush::screen_from_real(Point point)
   return new_point;
 }
 
-int Brush::x_real_from_x_screen(int x_screen)
+float Brush::x_real_from_x_screen(int x_screen)
 {
   return ((float) (x_screen / screen->max_x) * (max_x - min_x)) + min_x;
 }
 
-int Brush::x_screen_from_x_real(int x_real)
+int Brush::x_screen_from_x_real(float x_real)
 {
   return ((float) (x_real - min_x) / (max_x - min_x)) * screen->max_x;
 }
 
-int Brush::y_real_from_y_screen(int y_screen)
+float Brush::y_real_from_y_screen(int y_screen)
 {
   return (1 - (float) (y_screen / screen->max_y)) * (max_y - min_y) + min_y;
 }
 
-int Brush::y_screen_from_y_real(int y_real)
+int Brush::y_screen_from_y_real(float y_real)
 {
   return (1 - (float) (y_real - min_y) / (max_y - min_y)) * screen->max_y;
 }

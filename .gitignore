@@ -29,6 +29,7 @@
 *program
 
 # Exceptions
-
+docs/*
+!docs/esborrany.tex
 !lib/*
 
