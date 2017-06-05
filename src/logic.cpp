@@ -13,7 +13,6 @@ Screen screen;
 Brush brush;
 Point observer = {0., 0., 0., 0.};
 float k = 0;
-
 Cube *main_cube, *reset_cube;
 
 int logic_start(void)
@@ -27,14 +26,19 @@ int logic_start(void)
     observer = { 0., 0., 0., 0.};
     main_cube = new Cube;
     reset_cube = new Cube;
-    Point P[8]={{ -10, 10, 20, 0}, { 10, 10, 20, 0}, { 10, -10, 20, 0}, { -10, -10, 20, 0},
-                { -10, 10, 40, 0}, { 10, 10, 40, 0}, { 10, -10, 40, 0}, { -10, -10, 40, 0}};
+            
+    Point P[8]={{ -5, 5, 10, 0}, { 5, 5, 10, 0}, { 5, -5, 10, 0}, { -5, -5, 10, 0},
+                { -5, 5, 20, 0}, { 5, 5, 20, 0}, { 5, -5, 20, 0}, { -5, -5, 20, 0}};
     fill_cube(reset_cube, P);
     fill_cube(main_cube, reset_cube->P);
-    k = 10;
+    k = 5;
 
     while (logic_loop());
     screen.end_screen();
+
+    delete main_cube;
+    delete reset_cube;
+
 
     return 0;
 }
@@ -52,9 +56,10 @@ int logic_loop(void)
     if (event.type == SDL_QUIT)
       return 0;
 
-// Draw time:
+    
+    // Draw time
 
-    Color color_black = { 0, 0, 0, 255 };
+    Color color_black = { 0, 0, 122, 255 };
     Color color_white = { 255, 255, 255, 255};
 
     brush.change_color(color_black);
@@ -62,11 +67,14 @@ int logic_loop(void)
 
     brush.change_color(color_white);
 
-    rotate_cube(main_cube, AXIS_Z, 0.01);
+    rotate_cube_local(main_cube, AXIS_X, 0.01);
+
     render_cube(main_cube);
+
+    // Finish draw
     
     screen.update();
-
+    
     screen.wait_screen(10);
     return 1;
 }
@@ -158,3 +166,51 @@ void translate_cube(Cube *cube, int axis, float value)
   }
 }
 
+Point translate_cube(Cube *cube, Point point)
+{
+  Point t = vector(center_of_cube(cube), point);
+  for (int i = 0; i < 8; ++i)
+    {
+      cube->P[i].x += t.x;
+      cube->P[i].y += t.y;
+      cube->P[i].z += t.z;
+    }
+  return t;
+  
+}
+
+Point vector(Point p1, Point p2)
+{
+  Point result = { p2.x - p1.x,
+		   p2.y - p1.y,
+		   p2.z - p1.z,
+		   1 };
+  return result;
+}
+
+Point center_of_cube(Cube *cube)
+{
+  Point p1 = cube->P[1];
+  Point p2 = cube->P[7];
+
+  Point center = { p1.x + (p2.x - p1.x)/2,
+		   p1.y + (p2.y - p1.y)/2,
+		   p1.z + (p2.z - p1.z)/2,
+		   0 };
+  return center;
+
+}
+
+void rotate_cube_local(Cube *cube, int axis, float value)
+{
+  
+  Point origin = { 0., 0., 0., 0. };
+  Point t = translate_cube(cube, origin);
+  rotate_cube(cube, axis, value);
+  for (int i = 0; i < 8; ++i)
+    {
+      cube->P[i].x -= t.x;
+      cube->P[i].y -= t.y;
+      cube->P[i].z -= t.z;
+    }
+}

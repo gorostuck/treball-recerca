@@ -6,9 +6,9 @@ INCLUDE := -I/usr/include
 LIBPATH := -L/usr/lib
 LIBS    := 
 
-FLAGS    := -Wall -lSDL2main -lSDL2
-CCFLAGS  := $(FLAGS)
-CXXFLAGS := $(FLAGS) -std=c++11
+FLAGS    := -Wall 
+CCFLAGS  := $(FLAGS) -lSDL2main -lSDL2
+CXXFLAGS := $(FLAGS) -std=c++11 
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
 arch=compute_35,code=sm_35
