@@ -56,6 +56,59 @@ int logic_loop(void)
     if (event.type == SDL_QUIT)
       return 0;
 
+    if (event.type == SDL_KEYDOWN)
+      {
+        int keyPressed = event.key.keysym.sym;
+
+	switch (keyPressed)
+	  {
+	  case SDLK_q:
+	    translate_cube(main_cube, AXIS_X, 0.1);
+	    break;
+	  case SDLK_a:
+	    translate_cube(main_cube, AXIS_X, -0.1);
+	    break;
+	  case SDLK_w:
+	      translate_cube(main_cube, AXIS_Y, 0.1);
+	    break;
+	  case SDLK_s:
+	    translate_cube(main_cube, AXIS_Y, -0.1);
+	    break;
+	  case SDLK_e:
+	    translate_cube(main_cube, AXIS_Z, 0.1);
+	    break;
+	  case SDLK_d:
+	    translate_cube(main_cube, AXIS_Z, -0.1);
+	    break;
+	  case SDLK_r:
+	    rotate_cube_local(main_cube, AXIS_X,  0.1);
+	    break;
+	  case SDLK_f:
+	    rotate_cube_local(main_cube, AXIS_X, -0.1);
+	    break;
+	  case SDLK_t:
+	    rotate_cube_local(main_cube, AXIS_Y,  0.1);
+	    break;
+	  case SDLK_g:
+	    rotate_cube_local(main_cube, AXIS_Y, -0.1);
+	    break;
+	  case SDLK_y:
+	    rotate_cube_local(main_cube, AXIS_Z,  0.1);
+	    break;
+	  case SDLK_h:
+	    rotate_cube_local(main_cube, AXIS_Z, -0.1);
+	    break;
+
+	  case SDLK_SPACE:
+	    fill_cube(main_cube, reset_cube->P);
+	    break;
+
+	  case SDLK_ESCAPE:
+	    return 0;
+	  }
+	
+      }
+
     
     // Draw time
 
@@ -66,8 +119,6 @@ int logic_loop(void)
     brush.draw_full();
 
     brush.change_color(color_white);
-
-    rotate_cube_local(main_cube, AXIS_X, 0.01);
 
     render_cube(main_cube);
 
