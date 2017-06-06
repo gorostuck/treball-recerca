@@ -112,13 +112,13 @@ int logic_loop(void)
     
     // Draw time
 
-    Color color_black = { 0, 0, 122, 255 };
+    Color color_black = { 0, 0, 0, 255 };
     Color color_white = { 255, 255, 255, 255};
 
-    brush.change_color(color_black);
+    brush.change_color(color_white);
     brush.draw_full();
 
-    brush.change_color(color_white);
+    brush.change_color(color_black);
 
     render_cube(main_cube);
 
