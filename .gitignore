@@ -30,6 +30,7 @@
 
 # Exceptions
 docs/*
+!docs/img
 !docs/esborrany.tex
 !lib/*
 
