@@ -2,6 +2,8 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{listings}
+
 
 \renewcommand{\contentsname}{Contenidos}
 
@@ -11,7 +13,7 @@
 
 
 \begin{document}
-
+\lstset{language=C, basicstyle=\ttfamily}
 \pagenumbering{gobble}
 
 \maketitle
@@ -66,14 +68,53 @@ Tengo la hipótesis de que los equipos de desarrollo de software deberían de as
 \end{enumerate}
 
 \newpage
-\section{Ejemplo de la expressión del documento final}
+\section{Ejemplo de la expresión del documento final}
+\subsection{Definición de un punto}
+Un punto es una figura geométrica sin dimensión, tampoco tiene longitud, área, volumen, ni otro ángulo dimensional. No es un objeto físico. Describe una posición en el espacio, determinada respecto de un isstema de coordenadas preestablecidas.
+\subsection{Definición de un punto en el programa}
+\begin{lstlisting}[frame=single]
+  struct Point 
+  float x;          // Coordenada 'x'
+  float y;          // Coordenada 'y'
+  float z;          // Coordenada 'z'
+  float w;          // w = 1 si el punto es un vector
+  };
+  
+\end{lstlisting}
+
 \subsection{Definición de un cubo}
 Un cubo o hexaedro regular es un poliedro limitado por seis caras cuadradas congrugentes. El cubo tiene seis caras, ocho vertices y doce aristas.
-
 \begin{center}
   \includegraphics[scale=0.5]{img/cube.png}
 \end{center}
 \subsection{Definición de un cubo en el programa}
+\begin{lstlisting}[frame=single]
+  struct Cube {
+    Point P[8];
+  };
+\end{lstlisting}
+\subsubsection{Operación del cubo: Traslación}
+Una traslación desplaza cada punto de una figura o espacio a la misma cantidad en una determinada dirección. Actualmente en el programa sólo se puede desplazar un cubo en uno de los tres ejes con un valor determinado. Es posible desplazarlo en diferentes ejes utilizando una combinación de traslaciones de un solo eje. \newline
+La función acepta un puntero al cubo que se quiere trasladar, por lo que se modifican directamente las coordenadas de los puntos. También acepta un valor que determina el eje sobre el que se trasladará. Y finalmente acepta un valor por el que se trasladará.
+\begin{lstlisting}[frame=single]
+void translate_cube(Cube *cube, int axis, float value)
+{
+  for (int i = 0; i < 8; ++i){
+    switch (axis){
+    case AXIS_X:
+      cube->P[i].x += value;
+      break;
+    case AXIS_Y:
+      cube->P[i].y += value;
+      break;
+    case AXIS_Z:
+      cube->P[i].z += value;
+      break;
+    }
+  }
+}
+\end{lstlisting}
+
 
 \end{document}
 
