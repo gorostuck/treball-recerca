@@ -219,7 +219,9 @@ void translate_cube(Cube *cube, int axis, float value)
 
 Point translate_cube(Cube *cube, Point point)
 {
-  Point t = vector(center_of_cube(cube), point);
+  Point t;
+  if (point.w == 1) t = point;
+  else t = vector(center_of_cube(cube), point);
   for (int i = 0; i < 8; ++i)
     {
       cube->P[i].x += t.x;
@@ -243,13 +245,13 @@ Point center_of_cube(Cube *cube)
 {
   Point p1 = cube->P[1];
   Point p2 = cube->P[7];
+  Point t  = vector(p1, p2);
 
-  Point center = { p1.x + (p2.x - p1.x)/2,
-		   p1.y + (p2.y - p1.y)/2,
-		   p1.z + (p2.z - p1.z)/2,
+  Point center = { p1.x + t.x/2,
+		   p1.y + t.y/2,
+		   p1.z + t.z/2,
 		   0 };
   return center;
-
 }
 
 void rotate_cube_local(Cube *cube, int axis, float value)

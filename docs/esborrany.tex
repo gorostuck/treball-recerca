@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{mathtools}
 
 
 \renewcommand{\contentsname}{Contenidos}
@@ -79,13 +80,27 @@ Un punto es una figura geométrica sin dimensión, tampoco tiene longitud, área
   float z;          // Coordenada 'z'
   float w;          // w = 1 si el punto es un vector
   };
-  
 \end{lstlisting}
+\subsubsection{Operación del punto: vector entre dos puntos}
+Dados dos puntos, se devuelve el vector formado del primer punto al segundo.
+\begin{lstlisting}[frame=single]
+  Point vector(Point p1, Point p2)
+  {
+    Point result = { p2.x - p1.x,
+                     p2.y - p1.y,
+                     p2.z - p1.z,
+                     1 };
+    return result;
+  }
+\end{lstlisting}
+
+\newpage
+
 
 \subsection{Definición de un cubo}
 Un cubo o hexaedro regular es un poliedro limitado por seis caras cuadradas congrugentes. El cubo tiene seis caras, ocho vertices y doce aristas.
 \begin{center}
-  \includegraphics[scale=0.5]{img/cube.png}
+  \includegraphics[scale=0.25]{img/cube.png}
 \end{center}
 \subsection{Definición de un cubo en el programa}
 \begin{lstlisting}[frame=single]
@@ -93,8 +108,32 @@ Un cubo o hexaedro regular es un poliedro limitado por seis caras cuadradas cong
     Point P[8];
   };
 \end{lstlisting}
+\subsubsection{Operación del cubo: Calcular centro del cubo}
+Dado el puntero a un cubo se devuelve el centro de ese cubo.
+
+\begin{equation}
+  centro = p_1 + \frac{\overrightarrow{p_1p_2}}{2}
+\end{equation}
+
+\begin{lstlisting}[frame=single]
+Point center_of_cube(Cube *cube)
+{
+  Point p1 = cube->P[1];
+  Point p2 = cube->P[7];
+  Point t  = vector(p1, p2);
+
+  Point center = { p1.x + t.x/2,
+		   p1.y + t.y/2,
+		   p1.z + t.z/2,
+		   0 };
+  return center;
+}
+\end{lstlisting}
+
+\newpage
+
 \subsubsection{Operación del cubo: Traslación}
-Una traslación desplaza cada punto de una figura o espacio a la misma cantidad en una determinada dirección. Actualmente en el programa sólo se puede desplazar un cubo en uno de los tres ejes con un valor determinado. Es posible desplazarlo en diferentes ejes utilizando una combinación de traslaciones de un solo eje. \newline
+Una traslación desplaza cada punto de una figura o espacio a la misma cantidad en una determinada dirección. Existen dos formas de llamar a esta función. \newline
 La función acepta un puntero al cubo que se quiere trasladar, por lo que se modifican directamente las coordenadas de los puntos. También acepta un valor que determina el eje sobre el que se trasladará. Y finalmente acepta un valor por el que se trasladará.
 \begin{lstlisting}[frame=single]
 void translate_cube(Cube *cube, int axis, float value)
@@ -112,6 +151,22 @@ void translate_cube(Cube *cube, int axis, float value)
       break;
     }
   }
+}
+\end{lstlisting}
+La función acepta un puntero de un cubo. También acepta un punto. En caso de que el punto sea un vector, mueve todos los puntos según los valores de las distintas coordenadas de ese vector. En caso de que el punto no sea un vector, calculará el vector entre el centro del cubo hasta ese punto para trasladar al cubo de forma que el centro del cubo quede justo sobre el pasado a la función. Se devuelve el vector con el objetivo de poder volverlo a usar para revertir la operación.
+\begin{lstlisting}[frame=single]
+Point translate_cube(Cube *cube, Point point)
+{
+  Point t;
+  if (point.w == 1) t = point;
+  else t = vector(center_of_cube(cube), point);
+  for (int i = 0; i < 8; ++i)
+    {
+      cube->P[i].x += t.x;
+      cube->P[i].y += t.y;
+      cube->P[i].z += t.z;
+    }
+    return t;
 }
 \end{lstlisting}
 
