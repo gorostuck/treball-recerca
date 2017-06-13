@@ -126,7 +126,7 @@ int logic_loop(void)
     
     screen.update();
     
-    screen.wait_screen(10);
+    screen.wait_screen(5);
     return 1;
 }
 
@@ -143,6 +143,7 @@ void render_cube(Cube *cube)
 
   }
 
+  /* SE VEN TODAS LAS ARITAS DEL CUBO 
   brush.draw_line(Q[0], Q[1]);
   brush.draw_line(Q[1], Q[2]);
   brush.draw_line(Q[2], Q[3]);
@@ -157,7 +158,101 @@ void render_cube(Cube *cube)
   brush.draw_line(Q[1], Q[5]);
   brush.draw_line(Q[2], Q[6]);
   brush.draw_line(Q[3], Q[7]);
-  
+  */
+
+  /* SE VEN TODAS LAS ARISTAS DEL CUBO PERO SE PINTAN TODOS LOS LADOS */
+
+  int f;
+  Point u, v;
+  { /* Cara 1 P1P2 x P2P3 */
+
+    u = vector(cube->P[0], cube->P[1]);
+    v = vector(cube->P[1], cube->P[2]);
+
+    f = (u.x * v.y - u.y * v.x);
+
+    if (f > 0) {
+      brush.draw_line(Q[0], Q[1]);
+      brush.draw_line(Q[1], Q[2]);
+      brush.draw_line(Q[2], Q[3]);
+      brush.draw_line(Q[3], Q[0]);
+    }
+  }
+
+  { /* Cara 2 P8P7 x P7P6 */
+
+    u = vector(cube->P[7], cube->P[6]);
+    v = vector(cube->P[6], cube->P[5]);
+
+    f = (u.x * v.y - u.y * v.x);
+
+    if (f > 0) {
+      brush.draw_line(Q[4], Q[5]);
+      brush.draw_line(Q[5], Q[6]);
+      brush.draw_line(Q[6], Q[7]);
+      brush.draw_line(Q[7], Q[4]);
+    }
+  }
+
+  { /* Cara 3 P2P6 x P5P6 */
+
+    u = vector(cube->P[1], cube->P[5]);
+    v = vector(cube->P[5], cube->P[6]);
+
+    f = (u.x * v.y - u.y * v.x);
+
+    if (f > 0) {
+      brush.draw_line(Q[4], Q[5]);
+      brush.draw_line(Q[5], Q[6]);
+      brush.draw_line(Q[6], Q[7]);
+      brush.draw_line(Q[7], Q[4]);
+    }
+  }
+
+  { /* Cara 4 P1P4 x P4P6 */
+
+    u = vector(cube->P[0], cube->P[3]);
+    v = vector(cube->P[3], cube->P[5]);
+
+    f = (u.x * v.y - u.y * v.x);
+
+    if (f > 0) {
+      brush.draw_line(Q[0], Q[3]);
+      brush.draw_line(Q[3], Q[7]);
+      brush.draw_line(Q[7], Q[4]);
+      brush.draw_line(Q[4], Q[0]);
+    }
+  }
+
+  { /* Cara 5 P4P3 x P3P7 */
+
+    u = vector(cube->P[3], cube->P[2]);
+    v = vector(cube->P[2], cube->P[6]);
+
+    f = (u.x * v.y - u.y * v.x);
+
+    if (f > 0) {
+      brush.draw_line(Q[3], Q[2]);
+      brush.draw_line(Q[2], Q[6]);
+      brush.draw_line(Q[6], Q[7]);
+      brush.draw_line(Q[7], Q[3]);
+    }
+  }
+
+  { /* Cara 6 P1P5 x P5P6 */
+
+    u = vector(cube->P[0], cube->P[4]);
+    v = vector(cube->P[4], cube->P[5]);
+
+    f = (u.x * v.y - u.y * v.x);
+
+    if (f > 0) {
+      brush.draw_line(Q[0], Q[4]);
+      brush.draw_line(Q[4], Q[5]);
+      brush.draw_line(Q[5], Q[1]);
+      brush.draw_line(Q[1], Q[0]);
+    }
+  }
 }
 
 void fill_cube(Cube *cube, Point point[8])
@@ -184,16 +279,16 @@ void rotate_cube(Cube *cube, int axis, float value)
        for(int i = 0; i < 8; ++i)
 	 {
 	   tmp = cube->P[i].x;
-	   cube->P[i].x = cos(value)*cube->P[i].x+sin(value)*cube->P[i].z;
-	   cube->P[i].z = -sin(value)*tmp+cos(value)*cube->P[i].z;
+	   cube->P[i].x = cos(value)*cube->P[i].x-sin(value)*cube->P[i].z;
+	   cube->P[i].z = sin(value)*tmp+cos(value)*cube->P[i].z;
 	 }
        break;
     case AXIS_X:
        for(int i = 0; i < 8; ++i)
 	 {
 	   tmp = cube->P[i].y;
-	   cube->P[i].y = cos(value)*cube->P[i].y+sin(value)*cube->P[i].z;
-	   cube->P[i].z = -sin(value)*tmp+cos(value)*cube->P[i].z;
+	   cube->P[i].y = cos(value)*cube->P[i].y-sin(value)*cube->P[i].z;
+	   cube->P[i].z = sin(value)*tmp+cos(value)*cube->P[i].z;
 	 }
        break;
     }
@@ -267,3 +362,17 @@ void rotate_cube_local(Cube *cube, int axis, float value)
       cube->P[i].z -= t.z;
     }
 }
+
+
+/* C1 -> P1P2P3P4 -> P1P2 P2P3
+   C2 -> P8P7P6P5 -> P8P7 P7P6
+   C3 -> P2P6P7P3 -> P2P6 P6P7
+   C4 -> P1P4P8P5 -> P1P4 P4P8
+   C5 -> P4P3P7P8 -> P4P3 P3P7
+   C6 -> P1P5P6P2 -> P1P5 P5P6
+
+Producto vectorial: solo importa k
+
+Producto vectorial = k(u1*v2-u2*v1)
+
+Si el factor por k es mayor a 0, la cara no se dibuja. */ 
