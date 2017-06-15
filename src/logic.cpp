@@ -8,6 +8,8 @@ de la simulación y la gestión de eventos */
 #include "screen.h"
 #include "brush.h"
 
+#include "math.h"
+
 SDL_Event event;
 Screen screen;
 Brush brush;
@@ -26,7 +28,7 @@ int logic_start(void)
     observer = { 0., 0., 0., 0.};
     main_cube = new Cube;
     reset_cube = new Cube;
-            
+
     Point P[8]={{ -5, 5, 10, 0}, { 5, 5, 10, 0}, { 5, -5, 10, 0}, { -5, -5, 10, 0},
                 { -5, 5, 20, 0}, { 5, 5, 20, 0}, { 5, -5, 20, 0}, { -5, -5, 20, 0}};
     fill_cube(reset_cube, P);
@@ -106,10 +108,10 @@ int logic_loop(void)
 	  case SDLK_ESCAPE:
 	    return 0;
 	  }
-	
+
       }
 
-    
+
     // Draw time
 
     Color color_black = { 0, 0, 0, 255 };
@@ -123,9 +125,9 @@ int logic_loop(void)
     render_cube(main_cube);
 
     // Finish draw
-    
+
     screen.update();
-    
+
     screen.wait_screen(5);
     return 1;
 }
@@ -143,7 +145,7 @@ void render_cube(Cube *cube)
 
   }
 
-  /* SE VEN TODAS LAS ARITAS DEL CUBO 
+  /* SE VEN TODAS LAS ARITAS DEL CUBO
   brush.draw_line(Q[0], Q[1]);
   brush.draw_line(Q[1], Q[2]);
   brush.draw_line(Q[2], Q[3]);
@@ -196,23 +198,23 @@ void render_cube(Cube *cube)
 
   { /* Cara 3 P2P6 x P5P6 */
 
-    u = vector(cube->P[1], cube->P[5]);
-    v = vector(cube->P[5], cube->P[6]);
+    u = vector(cube->P[1], cube->P[4]);
+    v = vector(cube->P[4], cube->P[5]);
 
     f = (u.x * v.y - u.y * v.x);
 
     if (f > 0) {
+      brush.draw_line(Q[0], Q[4]);
       brush.draw_line(Q[4], Q[5]);
-      brush.draw_line(Q[5], Q[6]);
-      brush.draw_line(Q[6], Q[7]);
-      brush.draw_line(Q[7], Q[4]);
+      brush.draw_line(Q[5], Q[1]);
+      brush.draw_line(Q[1], Q[0]);
     }
   }
 
-  { /* Cara 4 P1P4 x P4P6 */
+  { /* Cara 4 P1P4 x P4P8 */
 
     u = vector(cube->P[0], cube->P[3]);
-    v = vector(cube->P[3], cube->P[5]);
+    v = vector(cube->P[3], cube->P[7]);
 
     f = (u.x * v.y - u.y * v.x);
 
@@ -239,18 +241,18 @@ void render_cube(Cube *cube)
     }
   }
 
-  { /* Cara 6 P1P5 x P5P6 */
+  { /* Cara 6 P2P6 x P6P7 */
 
-    u = vector(cube->P[0], cube->P[4]);
-    v = vector(cube->P[4], cube->P[5]);
+    u = vector(cube->P[1], cube->P[5]);
+    v = vector(cube->P[5], cube->P[6]);
 
     f = (u.x * v.y - u.y * v.x);
 
     if (f > 0) {
-      brush.draw_line(Q[0], Q[4]);
-      brush.draw_line(Q[4], Q[5]);
-      brush.draw_line(Q[5], Q[1]);
-      brush.draw_line(Q[1], Q[0]);
+      brush.draw_line(Q[1], Q[5]);
+      brush.draw_line(Q[5], Q[6]);
+      brush.draw_line(Q[6], Q[2]);
+      brush.draw_line(Q[2], Q[1]);
     }
   }
 }
@@ -324,7 +326,7 @@ Point translate_cube(Cube *cube, Point point)
       cube->P[i].z += t.z;
     }
   return t;
-  
+
 }
 
 Point vector(Point p1, Point p2)
@@ -351,7 +353,7 @@ Point center_of_cube(Cube *cube)
 
 void rotate_cube_local(Cube *cube, int axis, float value)
 {
-  
+
   Point origin = { 0., 0., 0., 0. };
   Point t = translate_cube(cube, origin);
   rotate_cube(cube, axis, value);
@@ -375,4 +377,4 @@ Producto vectorial: solo importa k
 
 Producto vectorial = k(u1*v2-u2*v1)
 
-Si el factor por k es mayor a 0, la cara no se dibuja. */ 
+Si el factor por k es mayor a 0, la cara no se dibuja. */
