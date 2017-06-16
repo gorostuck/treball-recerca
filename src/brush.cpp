@@ -34,6 +34,24 @@ void Brush::draw_line(Point start_real_point, Point end_real_point)
 		    end_screen_point.x, end_screen_point.y);
 }
 
+void Brush::draw_line_alt(Point start_real_point, Point end_real_point, int k)
+{
+  Point start_screen_point = screen_from_real(start_real_point);
+  Point end_screen_point   = screen_from_real(end_real_point);
+  Point start_end_vector   = vector(start_screen_point, end_screen_point);
+
+  Point points[k];
+  for (int i = 0; i <= k; ++i) {
+    points[i].x = start_screen_point.x + i * (start_end_vector.x/k);
+    points[i].y = start_screen_point.y + i * (start_end_vector.y/k);
+  }
+
+  for (int i = 0; (k - i) > 1; i+=2){
+    screen->draw_line(points[i].x, points[i].y,
+		      points[i+1].x, points[i+1].y);
+  }
+}
+
 void Brush::draw_full()
 {
   screen->draw_full();

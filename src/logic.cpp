@@ -145,21 +145,22 @@ void render_cube(Cube *cube)
 
   }
 
-  /* SE VEN TODAS LAS ARITAS DEL CUBO
-  brush.draw_line(Q[0], Q[1]);
-  brush.draw_line(Q[1], Q[2]);
-  brush.draw_line(Q[2], Q[3]);
-  brush.draw_line(Q[3], Q[0]);
+  /* SE VEN TODAS LAS ARITAS DEL CUBO 
+  brush.draw_line_alt(Q[0], Q[1], 4);
+  brush.draw_line_alt(Q[1], Q[2], 4);
+  brush.draw_line_alt(Q[2], Q[3], 4);
+  brush.draw_line_alt(Q[3], Q[0], 4);
 
-  brush.draw_line(Q[4], Q[5]);
-  brush.draw_line(Q[5], Q[6]);
-  brush.draw_line(Q[6], Q[7]);
-  brush.draw_line(Q[7], Q[4]);
+  brush.draw_line_alt(Q[4], Q[5], 4);
+  brush.draw_line_alt(Q[5], Q[6], 4);
+  brush.draw_line_alt(Q[6], Q[7], 4);
+  brush.draw_line_alt(Q[7], Q[4], 4);
 
-  brush.draw_line(Q[0], Q[4]);
-  brush.draw_line(Q[1], Q[5]);
-  brush.draw_line(Q[2], Q[6]);
-  brush.draw_line(Q[3], Q[7]);
+  brush.draw_line_alt(Q[0], Q[4], 4);
+  brush.draw_line_alt(Q[1], Q[5], 4);
+  brush.draw_line_alt(Q[2], Q[6], 4);
+  brush.draw_line_alt(Q[3], Q[7], 4);
+  
   */
 
   /* SE VEN TODAS LAS ARISTAS DEL CUBO PERO SE PINTAN TODOS LOS LADOS */
@@ -178,6 +179,11 @@ void render_cube(Cube *cube)
       brush.draw_line(Q[1], Q[2]);
       brush.draw_line(Q[2], Q[3]);
       brush.draw_line(Q[3], Q[0]);
+    } else { 
+      brush.draw_line_alt(Q[0], Q[1], 4);
+      brush.draw_line_alt(Q[1], Q[2], 4);
+      brush.draw_line_alt(Q[2], Q[3], 4);
+      brush.draw_line_alt(Q[3], Q[0], 4); 
     }
   }
 
@@ -193,6 +199,11 @@ void render_cube(Cube *cube)
       brush.draw_line(Q[5], Q[6]);
       brush.draw_line(Q[6], Q[7]);
       brush.draw_line(Q[7], Q[4]);
+    } else { 
+      brush.draw_line_alt(Q[4], Q[5], 4);
+      brush.draw_line_alt(Q[5], Q[6], 4);
+      brush.draw_line_alt(Q[6], Q[7], 4);
+      brush.draw_line_alt(Q[7], Q[4], 4); 
     }
   }
 
@@ -208,6 +219,12 @@ void render_cube(Cube *cube)
       brush.draw_line(Q[4], Q[5]);
       brush.draw_line(Q[5], Q[1]);
       brush.draw_line(Q[1], Q[0]);
+    } else { 
+      brush.draw_line_alt(Q[0], Q[4], 4);
+      brush.draw_line_alt(Q[4], Q[5], 4);
+      brush.draw_line_alt(Q[5], Q[1], 4);
+      brush.draw_line_alt(Q[1], Q[0], 4); 
+
     }
   }
 
@@ -223,6 +240,11 @@ void render_cube(Cube *cube)
       brush.draw_line(Q[3], Q[7]);
       brush.draw_line(Q[7], Q[4]);
       brush.draw_line(Q[4], Q[0]);
+    } else { 
+      brush.draw_line_alt(Q[0], Q[3], 4);
+      brush.draw_line_alt(Q[3], Q[7], 4);
+      brush.draw_line_alt(Q[7], Q[4], 4);
+      brush.draw_line_alt(Q[4], Q[0], 4); 
     }
   }
 
@@ -238,6 +260,11 @@ void render_cube(Cube *cube)
       brush.draw_line(Q[2], Q[6]);
       brush.draw_line(Q[6], Q[7]);
       brush.draw_line(Q[7], Q[3]);
+    } else { 
+      brush.draw_line_alt(Q[3], Q[2], 4);
+      brush.draw_line_alt(Q[2], Q[6], 4);
+      brush.draw_line_alt(Q[6], Q[7], 4);
+      brush.draw_line_alt(Q[7], Q[3], 4); 
     }
   }
 
@@ -253,8 +280,14 @@ void render_cube(Cube *cube)
       brush.draw_line(Q[5], Q[6]);
       brush.draw_line(Q[6], Q[2]);
       brush.draw_line(Q[2], Q[1]);
+    } else { 
+      brush.draw_line_alt(Q[1], Q[5], 4);
+      brush.draw_line_alt(Q[5], Q[6], 4);
+      brush.draw_line_alt(Q[6], Q[2], 4);
+      brush.draw_line_alt(Q[2], Q[1], 4);
     }
   }
+
 }
 
 void fill_cube(Cube *cube, Point point[8])

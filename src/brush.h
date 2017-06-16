@@ -17,6 +17,8 @@ struct Point {
   float w;
 };
 
+Point vector(Point p1, Point p2);
+
 #endif /* LOGIC_H_INCLUDED */
 
 struct Color {
@@ -38,6 +40,7 @@ class Brush
   void draw_point(Point point);
   void draw_full();
   void draw_line(Point start_point, Point end_point);
+  void draw_line_alt(Point start_point, Point end_point, int k);
 
   void change_color(Color color);
 
