@@ -2,6 +2,15 @@
 #include "geometry.h"
 #include "math.h"
 
+
+Point vector(Point p1, Point p2)
+{
+  Point result = { p2.x - p1.x,
+		   p2.y - p1.y,
+		   p2.z - p1.z,
+		   1 };
+  return result;
+}
 Cube::Cube()
 {
 }
@@ -46,7 +55,7 @@ void Cube::rotate_local(int axis, float value)
 {
   Point origin = { 0., 0., 0., 0. };
   Point t = translate(origin);
-  this->rotate(axis, value);
+  rotate(axis, value);
   for (int i = 0; i < 8; ++i)
     {
       P[i].x -= t.x;
