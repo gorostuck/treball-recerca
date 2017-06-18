@@ -54,6 +54,7 @@
 		</Linker>
 		<Unit filename="src/brush.cpp" />
 		<Unit filename="src/brush.h" />
+		<Unit filename="src/geometry.cpp" />
 		<Unit filename="src/logic.cpp" />
 		<Unit filename="src/logic.h" />
 		<Unit filename="src/main.cpp" />
