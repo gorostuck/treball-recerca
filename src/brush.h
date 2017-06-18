@@ -8,18 +8,6 @@
 #define DEFAULT_MAX_Y 10
 #define DEFAULT_MIN_Y -10
 
-#ifndef LOGIC_H_INCLUDED
-
-struct Point {
-  float x;
-  float y;
-  float z;
-  float w;
-};
-
-Point vector(Point p1, Point p2);
-
-#endif /* LOGIC_H_INCLUDED */
 
 struct Color {
   int r;
@@ -29,6 +17,8 @@ struct Color {
 };
 
 #include "screen.h"
+#include "geometry.h"
+
 
 class Brush
 {
