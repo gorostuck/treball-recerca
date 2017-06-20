@@ -28,6 +28,8 @@
 *.app
 *program
 
+*.DS_Store
+
 # Exceptions
 docs/*
 !docs/img
