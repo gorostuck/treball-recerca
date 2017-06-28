@@ -7,7 +7,7 @@ LIBPATH := -L/usr/lib
 LIBS    := 
 
 FLAGS    := -Wall 
-CCFLAGS  := $(FLAGS) -lSDL2main -lSDL2
+CCFLAGS  := $(FLAGS) -lSDL2main -lSDL2 
 CXXFLAGS := $(FLAGS) -std=c++11 
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
@@ -19,7 +19,7 @@ CXX  := g++
 NVCC := /usr/local/cuda/bin/nvcc
 
 all: $(OBJECTS)
-	$(CXX) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+	$(CC) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 ojj/cmdline.o: src/cmdline.c
 	$(CC) -Wno-unused-but-set-variable -c $< -o $@
