@@ -7,7 +7,7 @@ LIBPATH := -L/usr/lib
 LIBS    := 
 
 FLAGS    := -Wall 
-CCFLAGS  := $(FLAGS) -lSDL2main -lSDL2 
+CCFLAGS  := $(FLAGS) -lSDL2main -lSDL2 -lGL -lGLU
 CXXFLAGS := $(FLAGS) -std=c++11 
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
