@@ -23,7 +23,6 @@ int logic_loop()
       switch (event.window.event){
       case SDL_WINDOWEVENT_SIZE_CHANGED:
 	screen_update_size();
-	screen_display_render();
 	break;
       }
     }

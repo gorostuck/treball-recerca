@@ -51,16 +51,11 @@ int screen_end(void)
   return 0;
 }
 
-void screen_wait(int time)
-{
-  SDL_Delay(time);
-}
-
-
 void screen_update_size()
 {
   SDL_GetWindowSize(window, &max_x, &max_y);
   screen_set_viewport(max_x, max_y);
+  screen_update();
 }
 
 void screen_change_color(int r, int g, int b, int a)
@@ -86,11 +81,6 @@ void screen_draw_line(int begin_x, int begin_y, int end_x, int end_y)
 void screen_update()
 {
   screen_display_render();
-}
-
-void screen_start_gl()
-{
-    
 }
 
 int screen_set_viewport(int width, int height)

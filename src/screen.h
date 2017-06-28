@@ -8,7 +8,7 @@ int  screen_start(void);
 int  screen_end(void);
 
 void screen_update_size(void);
-void screen_wait(int time);
+void screen_update(void);
 
 void screen_change_color(int r, int g, int b, int a);
 
