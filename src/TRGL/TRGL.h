@@ -2,7 +2,6 @@
 #include "trgl.h"
 
 #define TRGL_MODE
-#ifdef TRGL_MODE
 
 #include <SDL2/SDL.h>
 
@@ -15,4 +14,3 @@ typedef struct {
 
 GLAPI void GLAPIENTRY glSetRender(SDL_Renderer *_renderer);
 
-#endif /*TRGL_MODE */

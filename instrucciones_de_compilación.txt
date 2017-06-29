@@ -1,0 +1,14 @@
+Para compilar, dependiendo de si se quiere utilizar OpenGL o la librería gráfica propia, se tienen que hacer dos 
+cosas.
+
+1. Ir a 'logic.c' y descomentar una de estas dos líneas dependiendo de lo que se quiera hacer:
+
+#include "TRGL/TRGL.h" para compilar con la librería gráfica propia.
+#include <SDL2/SDL_opengl.h> para compilar con OpenGL.
+
+Es importante comentar la otra línea.
+
+2. Dependiendo de lo que se ha escogido se han de usar uno de los siguientes comandos:
+
+"make trgl" si se ha dejado sin comentar la inclusión de la librería gráfica propia.
+"make opengl" si se ha dejado sin comentar la inclusión de OpenGL.

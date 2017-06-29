@@ -18,6 +18,7 @@ CC   := gcc
 CXX  := g++
 NVCC := /usr/local/cuda/bin/nvcc
 
+
 all: $(OBJECTS)
 	$(CC) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
@@ -36,7 +37,12 @@ src/cmdline.c: src/cmdline.ggo
 %.device.o: ../src/%.cu
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
+opengl: $(OBJECTS)
+	$(CC) $(OBJECTS) $(CCFLAGS) -lGL -lGLU $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+
+trgl:   $(OBJECTS)
+	$(CC) $(CCFLAGS) $(INCLUDE) -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
+	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 clean:
 	rm -rf obj/*
 	rm -f $(APPNAME)
-

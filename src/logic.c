@@ -2,9 +2,13 @@
 #include "logic.h"
 
 #include <SDL2/SDL.h>
-#include "trgl_add.h"
+
+/* Sólo hay que incluir uno de los dos */
+//#include "TRGL/TRGL.h"         /* Compilar con `makefile trgl`   */
+#include <SDL2/SDL_opengl.h>   /* Compilar con `makefile opengl` */
 
 SDL_Event event;
+
 
 int max_x, max_y;
 SDL_Window *window;
@@ -52,8 +56,9 @@ int logic_loop()
   if (event.type == SDL_QUIT)
     return 0;
 
-
-
+#ifndef TRGL_MODE
+  glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+#endif /* TRGL_MODE */
   
   SDL_RenderPresent(renderer);
   return 1;

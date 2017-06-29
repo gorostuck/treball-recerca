@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#define TRGL_MODE
-
 #include "logic.h"
 int main(int argc, char *argv[])
 {

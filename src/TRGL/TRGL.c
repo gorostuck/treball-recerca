@@ -1,5 +1,5 @@
 /* Este archivo se debería de terminar por separar con el tiempo */
-#include "trgl_add.h"
+#include "TRGL.h"
 
 #include <stdio.h>
 
