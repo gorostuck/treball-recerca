@@ -8,7 +8,8 @@ LIBS    :=
 
 FLAGS    := -Wall 
 CCFLAGS  := $(FLAGS)
-CXXFLAGS := $(FLAGS) -std=c++11 
+CXXFLAGS := $(FLAGS) -std=c++11
+FFLAGS   := -lSDL2main -lSDL2
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
 arch=compute_35,code=sm_35
@@ -18,6 +19,14 @@ CC   := gcc
 CXX  := g++
 NVCC := /usr/local/cuda/bin/nvcc
 
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	$(CCFLAGS) += -framework OpenGL
+endif
+
+ifeq ($(UNAME_S),Darwin)
+        FFLAGS += -framework OpenGL
+    endif
 
 all: $(OBJECTS)
 	$(CC) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
@@ -37,8 +46,8 @@ src/cmdline.c: src/cmdline.ggo
 %.device.o: ../src/%.cu
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
-opengl: $(OBJECTS)
-	$(CC) $(OBJECTS) $(CCFLAGS) -framework OpenGL -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+opengl:	$(OBJECTS)
+	$(CC) $(OBJECTS) $(CCFLAGS) $(FFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 trgl:
 	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
@@ -48,3 +57,5 @@ trgl:
 clean:
 	rm -rf obj/*
 	rm -f $(APPNAME)
+run:
+	./bin/program
