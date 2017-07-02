@@ -1,8 +1,6 @@
 // Esto es muy sucio //
 #include "SDL2/SDL_opengl.h"
 
-#define TRGL_MODE
-
 #include <SDL2/SDL.h>
 
 typedef struct {

@@ -7,7 +7,7 @@ LIBPATH := -L/usr/lib
 LIBS    := 
 
 FLAGS    := -Wall 
-CCFLAGS  := $(FLAGS) -lSDL2main -lSDL2 
+CCFLAGS  := $(FLAGS)
 CXXFLAGS := $(FLAGS) -std=c++11 
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
@@ -38,11 +38,13 @@ src/cmdline.c: src/cmdline.ggo
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
 opengl: $(OBJECTS)
-	$(CC) $(OBJECTS) $(CCFLAGS) -lGL -lGLU $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+	$(CC) $(OBJECTS) $(CCFLAGS) -framework OpenGL -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
-trgl:   $(OBJECTS)
-	$(CC) $(CCFLAGS) $(INCLUDE) -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
-	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+trgl:
+	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
+	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
+	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/main.c  -o obj/main.o
+	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 clean:
 	rm -rf obj/*
 	rm -f $(APPNAME)

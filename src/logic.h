@@ -8,6 +8,11 @@
 int logic_start(void);
 int logic_loop(void);
 
+#ifndef TRGL_MODE
+#include <SDL2/SDL_opengl.h>
+#else
+#include "TRGL/TRGL.h"
+#endif
 
 /* Esto solía ser screen.h, pero ahora ya no es relevante ya que necesito comunicación con SDL en logic */
 
