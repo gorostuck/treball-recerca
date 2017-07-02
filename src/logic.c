@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 
 /* Sólo hay que incluir uno de los dos */
-//#include "TRGL/TRGL.h"         /* Compilar con `makefile trgl`   */
-#include <SDL2/SDL_opengl.h>   /* Compilar con `makefile opengl` */
+#include "TRGL/TRGL.h"         /* Compilar con `makefile trgl`   */
+//#include <SDL2/SDL_opengl.h>   /* Compilar con `makefile opengl` */
 
 SDL_Event event;
 

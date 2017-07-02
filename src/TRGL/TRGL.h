@@ -1,5 +1,5 @@
 // Esto es muy sucio //
-#include "trgl.h"
+#include "SDL2/SDL_opengl.h"
 
 #define TRGL_MODE
 
