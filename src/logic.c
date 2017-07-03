@@ -2,7 +2,7 @@
 #include "logic.h"
 
 #include <SDL2/SDL.h>
-
+#include <stdio.h>
 
 SDL_Event event;
 
@@ -10,7 +10,7 @@ SDL_Event event;
 int max_x, max_y;
 SDL_Window *window;
 SDL_Renderer *renderer;
-
+SDL_RendererInfo displayRendererInfo;
 
 int logic_start()
 {
@@ -19,7 +19,7 @@ int logic_start()
   while (logic_loop());
   window_end();
   return 0;
-  
+
 }
 
 int logic_loop()
@@ -56,7 +56,7 @@ int logic_loop()
   #ifndef TRGL_MODE
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   #endif
-  
+
   SDL_RenderPresent(renderer);
   SDL_Delay(5);
   return 1;
@@ -69,28 +69,35 @@ int window_start()
     return 1;
   }
   if (SDL_CreateWindowAndRenderer(DEFAULT_MAX_SCREEN_X,DEFAULT_MAX_SCREEN_Y,
-				  SDL_WINDOW_RESIZABLE, &window, &renderer)){
+				  SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL, &window, &renderer)){
+    SDL_GetRendererInfo(renderer, &displayRendererInfo);
     if (window == NULL){
         printf("La ventana no se ha creado con éxito: %s\n", SDL_GetError());
         return 1;
     } if (renderer == NULL) {
         printf("El renderer no se ha creado con éxito: %s\n", SDL_GetError());
+	return 1;
+    }
+    if ((displayRendererInfo.flags & SDL_RENDERER_ACCELERATED) == 0 || 
+        (displayRendererInfo.flags & SDL_RENDERER_TARGETTEXTURE) == 0) {
+     
+      printf("Algo no funciona");
     }
   }
 
   /* START INIT GL */
-  
+
 #ifdef TRGL_MODE
   glSetRender(renderer);
 #endif
 
-  //glShadeModel( GL_SMOOTH );                         // Enable smooth shading 
-  glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );              // Set the background black
+  //glShadeModel( GL_SMOOTH );                         // Enable smooth shading
+  glClearColor( 1.0f, 0.0f, 0.0f, 0.0f );              // Set the background black
   //glClearDepth( 1.0f );                                // Depth buffer setup
-  //glEnable( GL_DEPTH_TEST );                           // Enables Depth Testing 
+  //glEnable( GL_DEPTH_TEST );                           // Enables Depth Testing
   //glDepthFunc( GL_LEQUAL );                          // The Type of Depth Test To Do
   /* END INIT GL */
-    
+
   set_viewport(512, 512);
 
   max_x = DEFAULT_MAX_SCREEN_X;
@@ -139,5 +146,5 @@ void set_viewport(int width, int height)
 
     /* Reset The View */
     //glLoadIdentity( );
-  
+
 }

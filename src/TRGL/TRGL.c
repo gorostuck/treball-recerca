@@ -2,6 +2,7 @@
 #include "TRGL.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 Node *first, *current, *temp;
 SDL_Renderer *renderer;
@@ -26,7 +27,6 @@ GLAPI void GLAPIENTRY glSetRender(SDL_Renderer *_renderer)
   first = (Node *)malloc(sizeof(Node));
   first->next = NULL;
   first->inf  = NULL;
-  printf("Correcto");
 }
 
 

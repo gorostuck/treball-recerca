@@ -1,4 +1,0 @@
-Existen dos opciones de compilación:
-
-"make trgl" -> utiliza la librería gráfica propia
-"make opengl" -> utiliza la liberería gráfica OpenGL
