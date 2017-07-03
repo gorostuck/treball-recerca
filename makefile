@@ -21,21 +21,14 @@ NVCC := /usr/local/cuda/bin/nvcc
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
-	$(CCFLAGS) += -framework OpenGL
-endif
-
-ifeq ($(UNAME_S),Darwin)
         FFLAGS += -framework OpenGL
     endif
 
-all: $(OBJECTS)
-	$(CC) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
-
-ojj/cmdline.o: src/cmdline.c
-	$(CC) -Wno-unused-but-set-variable -c $< -o $@
-
-src/cmdline.c: src/cmdline.ggo
-	gengetopt --input=src/cmdline.ggo --output-dir=src --include-getopt
+trgl:
+	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
+	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
+	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/main.c  -o obj/main.o
+	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 %.o: ../src/%.c
 	$(CC) $(CCFLAGS) $(INCLUDE) -c $< -o $@
@@ -49,11 +42,7 @@ src/cmdline.c: src/cmdline.ggo
 opengl:	$(OBJECTS)
 	$(CC) $(OBJECTS) $(CCFLAGS) $(FFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
-trgl:
-	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
-	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
-	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/main.c  -o obj/main.o
-	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+
 clean:
 	rm -rf obj/*
 	rm -f $(APPNAME)
