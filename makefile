@@ -7,7 +7,8 @@ LIBPATH :=
 LIBS    := 
 
 FLAGS    := -Wall 
-CCFLAGS  := $(FLAGS) -lSDL2main -lSDL2
+CCFLAGS  := $(FLAGS)
+GLFLAGS  := 
 CXXFLAGS := $(FLAGS) -std=c++11
 
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode
@@ -18,6 +19,7 @@ CC   := gcc
 CXX  := g++
 NVCC := /usr/local/cuda/bin/nvcc
 
+UNAME_S := $(shell uname -s)
 ifeq ($(OS),Windows_NT)
 	CCFLAGS += -D WIN32 -lopengl32 -lmingw32 -lSDL2main -lSDL2
 	INCLUDE += -Iinclude/
@@ -37,10 +39,12 @@ ifeq ($(OS),Windows_NT)
     endif
 else
     ifeq ($(UNAME_S),Linux)
-        CCFLAGS += -D LINUX -lGL -lGLU
+        CCFLAGS += -D LINUX
+	GLFLAGS += -lGL -lGLU
     endif
     ifeq ($(UNAME_S),Darwin)
-        CCFLAGS += -D OSX -framework OpenGL
+        CCFLAGS += -D OSX -lSDL2 -lSDL2main
+	GLFLAGS += -framework OpenGL
     endif
     UNAME_P := $(shell uname -p)
     ifeq ($(UNAME_P),x86_64)
@@ -56,9 +60,9 @@ endif
 
 
 trgl:
-	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
-	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
-	$(CC) $(CCFLAGS) $(INCLUDE) -D TRGL_MODE -c src/main.c  -o obj/main.o
+	$(CC) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
+	$(CC) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
+	$(CC) $(INCLUDE) -D TRGL_MODE -c src/main.c  -o obj/main.o
 	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 %.o: ../src/%.c
@@ -71,9 +75,9 @@ trgl:
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
 opengl:
-	$(CC) $(CCFLAGS) $(INCLUDE) -c src/logic.c -o obj/logic.o
-	$(CC) $(CCFLAGS) $(INCLUDE) -c src/main.c  -o obj/main.o
-	$(CC) $(OBJECTS) $(CCFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+	$(CC) $(INCLUDE) -c src/logic.c -o obj/logic.o
+	$(CC) $(INCLUDE) -c src/main.c  -o obj/main.o
+	$(CC) $(OBJECTS) $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 clean:
 	rm -rf obj/*
