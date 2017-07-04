@@ -41,6 +41,8 @@ else
     ifeq ($(UNAME_S),Linux)
         CCFLAGS += -D LINUX
 	GLFLAGS += -lGL -lGLU
+	INCLUDE += -I/usr/include
+	LIBPATH += -L/usr/share
     endif
     ifeq ($(UNAME_S),Darwin)
         CCFLAGS += -D OSX -lSDL2 -lSDL2main
