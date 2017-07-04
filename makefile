@@ -63,7 +63,7 @@ endif
 
 trgl:
 	$(CC) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
-	$(CC) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
+	#$(CC) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
 	$(CC) $(INCLUDE) -D TRGL_MODE -c src/main.c  -o obj/main.o
 	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
@@ -77,7 +77,7 @@ trgl:
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
 opengl:
-	$(CC) $(INCLUDE) -c src/logic.c -o obj/logic.o
+#	$(CC) $(INCLUDE) -c src/logic.c -o obj/logic.o
 	$(CC) $(INCLUDE) -c src/main.c  -o obj/main.o
 	$(CC) $(OBJECTS) $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
