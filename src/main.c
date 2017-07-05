@@ -42,7 +42,7 @@ int quit = false;
 
 
 //Starts up SDL, creates window, and initializes OpenGL
-int init();
+int init_window();
 
 //Initializes matrices and clear color
 int initGL();
@@ -57,7 +57,7 @@ void update();
 void render();
 
 //Frees media and shuts down SDL
-void close();
+void close_window();
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -68,7 +68,7 @@ SDL_GLContext gContext;
 //Render flag
 int gRenderQuad = true;
 
-int init()
+int init_window()
 {
     //Initialization flag
     int success = true;
@@ -196,7 +196,7 @@ void render()
     }
 }
 
-void close()
+void close_window()
 {
     //Destroy window
     SDL_DestroyWindow( gWindow );
@@ -206,10 +206,10 @@ void close()
     SDL_Quit();
 }
 
-int main( int argc, char* args[] )
+int main( int argc, char* argv[] )
 {
     //Start up SDL and create window
-    if( !init() )
+    if( !init_window() )
     {
         printf( "Failed to initialize!\n" );
     }
@@ -254,7 +254,7 @@ int main( int argc, char* args[] )
     }
 
     //Free resources and close SDL
-    close();
+    close_window();
 
     return 0;
 }

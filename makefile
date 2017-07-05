@@ -40,7 +40,7 @@ ifeq ($(OS),Windows_NT)
 else
     ifeq ($(UNAME_S),Linux)
         CCFLAGS += -D LINUX
-	GLFLAGS += -lGL -lGLU
+	GLFLAGS += -lGL -lGLU -lSDL2main -lSDL2
 	INCLUDE += -I/usr/include
 	LIBPATH += -L/usr/share
     endif
@@ -62,10 +62,10 @@ endif
 
 
 trgl:
-	$(CC) $(INCLUDE) -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
-	#$(CC) $(INCLUDE) -D TRGL_MODE -c src/logic.c -o obj/logic.o
-	$(CC) $(INCLUDE) -D TRGL_MODE -c src/main.c  -o obj/main.o
-	$(CC) $(OBJECTS) src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
+	#$(CC) $(INCLUDE)-D TRGL_MODE -c src/logic.c -o obj/logic.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/main.c  -o obj/main.o
+	$(CC) $(OBJECTS) -g src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 %.o: ../src/%.c
 	$(CC) $(CCFLAGS) $(INCLUDE) -c $< -o $@
@@ -77,9 +77,9 @@ trgl:
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
 opengl:
-#	$(CC) $(INCLUDE) -c src/logic.c -o obj/logic.o
-	$(CC) $(INCLUDE) -c src/main.c  -o obj/main.o
-	$(CC) $(OBJECTS) $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+#	$(CC) $(INCLUDE) -g -c src/logic.c -o obj/logic.o
+	$(CC) $(INCLUDE) -g -c src/main.c  -o obj/main.o
+	$(CC) $(OBJECTS) -g $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 clean:
 	rm -rf obj/*
