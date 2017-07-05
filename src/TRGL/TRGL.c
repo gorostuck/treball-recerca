@@ -29,7 +29,46 @@ GLAPI void GLAPIENTRY glSetRender(SDL_Renderer *_renderer)
   first->inf  = NULL;
 }
 
+GLAPI void GLAPIENTRY glMatrixMode(GLenum flags)
+{
+  /*
+  if ((flags & GL_PROJECTION) == GL_PROJECTION) {
+  }
+  if ((flags & GL_MODELVIEW) == GL_MODELVIEW) {
+    first = (Node *)malloc(sizeof(Node));
+    first->next = NULL;
+    first->inf  = NULL;
+  }
+  */
+}
 
+GLAPI void GLAPIENTRY glLoadIdentity()
+{
+  empty_matrixf(first->M);
+}
 
-
+GLAPI void GLAPIENTRY glClear(GLenum flags)
+{
   
+}
+
+void SDL_TR_CreateRenderer(SDL_Window *gWindow)
+{
+  renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_SOFTWARE); // También podría poner SDL_RENDERER_HARDWARE
+}
+
+void SDL_TR_SwapWindow(SDL_Window *gWindow)
+{
+  SDL_RenderPresent(renderer);
+}
+
+void empty_matrixf(GLfloat M[16])
+{
+  /* 
+  for (int i = 0; i < 16; ++i)
+    M[i] = 0.0f;
+  */
+}
+
+
+
