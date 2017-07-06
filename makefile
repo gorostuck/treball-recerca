@@ -63,7 +63,6 @@ endif
 
 trgl:
 	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
-	#$(CC) $(INCLUDE)-D TRGL_MODE -c src/logic.c -o obj/logic.o
 	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/main.c  -o obj/main.o
 	$(CC) $(OBJECTS) -g src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 

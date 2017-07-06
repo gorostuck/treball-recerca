@@ -34,7 +34,7 @@
 
 //Screen dimension constants
 #define SCREEN_WIDTH   640
-#define SCREEN_HEIGHT  480
+#define SCREEN_HEIGHT  640
 
 
 //Main loop flag
@@ -136,7 +136,7 @@ int initGL()
   glLoadIdentity();
 
   //Initialize clear color
-  glClearColor( 1.0f, 0.f, 0.f, 0.f );
+  glClearColor( 0.f, 0.f, 0.f, 0.f );
   glClear(GL_COLOR_BUFFER_BIT);
 
 
@@ -163,18 +163,17 @@ void render()
     
   //Render quad
   if( gRenderQuad ) {
-#ifndef TRGL_MODE
-    glRotatef(0.14f,0.0f,1.0f,0.0f);    // Rotate The cube around the Y axis
-    glRotatef(0.2f,1.0f,1.0f,1.0f);
+    //    glRotatef(0.14f,0.0f,1.0f,0.0f);    // Rotate The cube around the Y axis
+    //glRotatef(0.2f,1.0f,1.0f,1.0f);
     glColor3f(0.0f,1.0f,0.0f);
 
     glBegin( GL_QUADS );
-    glVertex2f( -0.5f, -0.5f );
-    glVertex2f( 0.5f, -0.5f );
-    glVertex2f( 0.5f, 0.5f );
-    glVertex2f( -0.5f, 0.5f );
+    glVertex2f( -0.75f, -0.75f );
+    glVertex2f( 0.75f, -0.75f );
+    glVertex2f( 0.75f, 0.75f );
+    glVertex2f( -0.75f, 0.75f );
     glEnd();
-#endif  /* TRGL_MODE */
+
   }
 }
 
@@ -225,7 +224,7 @@ void close_window()
             }
 
             //Render quad
-            //render();
+            render();
 
             //Update screen
 #ifdef TRGL_MODE
@@ -233,6 +232,10 @@ void close_window()
 #else
             SDL_GL_SwapWindow( gWindow );
 #endif
+	    SDL_Delay(5000);
+
+	    SDL_StopTextInput();
+	    close_window();
 	    
         }
         //Disable text input
