@@ -127,7 +127,20 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
       printf("x: %f, y: %f, z: %f\n", temp->M[R_X], temp->M[R_Y], current->M[R_Z]);
     }
   }
-  
+  struct Node *t1, *t2;
+
+  for(current=first->next;current!=NULL;){
+    for(temp=current->inf;temp!=NULL;){
+      t2 = temp;
+      temp = temp->inf;
+      free(t2);
+    }
+    t1 = current;
+    current = current->next;
+    free(t1);
+  }
+  current = first;
+  temp = NULL;
   SDL_RenderPresent(renderer);
 }
 

@@ -232,11 +232,7 @@ void close_window()
 #else
             SDL_GL_SwapWindow( gWindow );
 #endif
-	    SDL_Delay(5000);
-
-	    SDL_StopTextInput();
-	    close_window();
-	    
+	    SDL_Delay(500);
         }
         //Disable text input
         SDL_StopTextInput();
