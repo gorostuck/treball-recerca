@@ -34,5 +34,6 @@
 docs/*
 !docs/img
 !docs/esborrany.tex
+!docs/treballr.tex
 !lib/*
 
