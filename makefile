@@ -78,7 +78,7 @@ trgl:
 opengl:
 #	$(CC) $(INCLUDE) -g -c src/logic.c -o obj/logic.o
 	$(CC) $(INCLUDE) -g -c src/main.c  -o obj/main.o
-	$(CC) $(OBJECTS) -g $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+	$(CC) $(OBJECTS) -g $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -lSDL2main -lSDL2 -o $(APPNAME)  $(LIBS)
 
 clean:
 	rm -rf obj/*

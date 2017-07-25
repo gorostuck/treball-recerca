@@ -86,8 +86,31 @@ Considero que cuando uno forma parte del proceso de creación de software, tiene
 \section{Entorno de desarrollo}
 En esta sección se comentarán los diversos entornos en los que he trabajado en el Treball de Recerca, tanto desde un punto de vista de desarrrollo de programación como del desarrollo del documento escrito y la presentación oral.
 \subsection{Programación}
-\subsubsection{Entorno 1: GNU Linux}
+Dependiendo del sistema operativo en el que se quiera trabajar es necesario tener una preparación concreta.
+\subsubsection{GNU Linux}
 GNU Linux es el entorno en el que más cómodo trabajo por diversos motivos. Uno de ellos es lo simple que es encontrar, descargar, instalar y configurar nuevos programas en el sistema, gracias al gestor de paquetes que normalmente viene incluido en la mayoría de distribuciones.
+\\\\
+Ubuntu es una de las distribuciones más comunes así que explicaré los requisitos previos para la compilación y ejecución del programa en Ubuntu.
+\\ Todos los paquetes necesarios se pueden obtener con este comando.
+\begin{lstlisting}[language=bash]
+  $ sudo apt-get install git libsdl2-dev gcc
+\end{lstlisting}
+\\ Se puede descargar el Treball de Recerca utilizando el siguiente comando en la carpeta deseada.
+\begin{lstlisting}[language=bash]
+  $ git clone https://github.com/gorostuck/treball-recerca
+\end{lstlisting}
+
+\subsubsection{macOS}
+Para compilar macOS es un poco más laborioso debido a que no tiene un gestor de paquetes por defecto.
+\\ Lo primero que hay que hacer es ir la página web de SDL y descargar las librerías de desarrollo.
+\\ Una vez descargado el fichero .dmg, abrirlo y copiar ``SDL2.framework'' a \textit{/Library/Frameworks}.
+\\ Después quizás es necesario volver a firmar el Framework, para hacer esto, hay que abrir una terminal en \textit{/Library/Frameworks/SDL2.framework/} y utilizar el siguiente comando:
+\begin{lstlisting}[language=bash]
+  $ codesign -f -s - SDL2
+\end{lstlisting}
+\\ Si las \textit{Command Line Tools} no han sido instaladas previamente, la primera vez que intentemos utilizar el comando \textit{make} nos saltará una ventana preguntando si deseamos instalar las herramientas, para poder compilar el programa será necesario utilizar esas herramientas.
+
+\subsubsection{Compilación}
 \\\\
 Para poder compilar y ejecutar la librería y el motor gráfico son necesarias las herramientas básicas de compilación.
 \begin{itemize}
@@ -118,9 +141,10 @@ Posteriormente se puede compilar yendo a la raíz de la carpeta y introduciendo 
 \end{lstlisting}
 \end{itemize}
 
-\subsubsection{Entorno 2: Microsoft Windows}
-\subsubsection{Entorno 3: macOS}
-\subsubsection{git y GitHub}
+\subsubsection{Compilación en Microsoft Windows}
+\subsubsection{Compilación en Code::Blocks}
+
+\subsubsection{Control de versión con git y GitHub}
 Git es un programa utilizado para controlar un repositorio de código. En concreto, he utilizado el servicio web \textit{GitHub}. Aunque uno de sus principales objetivos es la colaboración entre distintos desarrolladores yo lo he empleado en las siguientes situaciones:
 \begin{itemize}
 \item{Ser capaz de tener todo el código archivado en un repositorio en internet para poder acceder remotamente y descargarlo.}
@@ -130,7 +154,7 @@ Git es un programa utilizado para controlar un repositorio de código. En concre
 \end{itemize}
 \subsection{Documentación}
 \subsubsection{Documento escrito}
-Para la redacción de este mismo documento he utilizado las siguientes herramientas.
+Para redactar el documento escrito he utilizado \LaTeX, un lenguaje de programación orientado al procesamiento de texto. Esta herramienta me ha permitido organizar el Treball de Recerca de forma simple y efectiva, además de incluir trozos de código y comandos e incluso expresión matemática.
 \section{GNU Emacs}
 He decidido dar a GNU Emacs su propia sección debido a que lo he usado constantemente a lo largo de la elaboración de este Treball de Recerca. Lo he usado tanto para programar la librería gráfica y el motor como para documentar todo el proceso. Además también me ha permitido hacer \textit{version control}, compilar e incluso ejecutar el motor gráfico desde el mismo programa. Decidí utilizarlo porque así me permitiría aumentar en gran medida mi rendimiento. Puesto a que es un programa extremadamente complejo, no entraré en gran detalle, pero las principales ventajas que ofrece es la gran modularidad y customizabilidad, por lo que lo he ido adaptando a mis necesidades según he ido avanzando en el proyecto.
 
