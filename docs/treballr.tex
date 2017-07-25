@@ -87,6 +87,37 @@ Considero que cuando uno forma parte del proceso de creación de software, tiene
 En esta sección se comentarán los diversos entornos en los que he trabajado en el Treball de Recerca, tanto desde un punto de vista de desarrrollo de programación como del desarrollo del documento escrito y la presentación oral.
 \subsection{Programación}
 Dependiendo del sistema operativo en el que se quiera trabajar es necesario tener una preparación concreta.
+
+\subsubsection{Compilación}
+\\\\
+Para poder compilar y ejecutar la librería y el motor gráfico son necesarias las herramientas básicas de compilación.
+\begin{itemize}
+\item{\textbf{make}: necesario para automatizar la compilación}
+\item{\textbf{gcc}: programa utilizado como compilador y/o linker}
+\item{\textbf{sdl2}: librería utilizada para desarrollo multiplataforma fácilmente, sirve como abstracción para la ventana y comunicación entre el Sistema Operativo y el programa}
+\end{itemize}
+
+Posteriormente se puede compilar yendo a la raíz de la carpeta y introduciendo algunos de los siguientes comandos:
+
+\begin{itemize}
+\item{\textbf{compilar} la librería gráfica propia y posteriormente compilar el programa}
+\begin{lstlisting}[language=bash]
+  $ make trgl
+\end{lstlisting}
+\item{\textbf{compilar} el programa utilizando OpenGL}
+\begin{lstlisting}[language=bash]
+  $ make opengl
+\end{lstlisting}
+\item{\textbf{ejecutar} el programa una vez la compilación ha terminado satisfactoriamente}
+\begin{lstlisting}[language=bash]
+  $ ./bin/program
+\end{lstlisting}
+\item{\textbf{limpiar} todos los archivos creados durante procesos anteriores de compilación}
+\begin{lstlisting}[language=bash]
+  $ make clean
+\end{lstlisting}
+\end{itemize}
+
 \subsubsection{GNU Linux}
 GNU Linux es el entorno en el que más cómodo trabajo por diversos motivos. Uno de ellos es lo simple que es encontrar, descargar, instalar y configurar nuevos programas en el sistema, gracias al gestor de paquetes que normalmente viene incluido en la mayoría de distribuciones.
 \\\\
@@ -110,39 +141,13 @@ Para compilar macOS es un poco más laborioso debido a que no tiene un gestor de
 \end{lstlisting}
 \\ Si las \textit{Command Line Tools} no han sido instaladas previamente, la primera vez que intentemos utilizar el comando \textit{make} nos saltará una ventana preguntando si deseamos instalar las herramientas, para poder compilar el programa será necesario utilizar esas herramientas.
 
-\subsubsection{Compilación}
-\\\\
-Para poder compilar y ejecutar la librería y el motor gráfico son necesarias las herramientas básicas de compilación.
-\begin{itemize}
-\item{\textbf{make}: necesario para automatizar la compilación}
-\item{\textbf{gcc}: programa utilizado como compilador y/o linker}
-\item{\textbf{sdl2}: librería utilizada para desarrollo multiplataforma fácilmente, sirve como abstracción para la ventana y comunicación entre el Sistema Operativo y el programa}
-\end{itemize}
 
-\newpage
-Posteriormente se puede compilar yendo a la raíz de la carpeta y introduciendo algunos de los siguientes comandos:
 
-\begin{itemize}
-\item{\textbf{compilar} la librería gráfica propia y posteriormente compilar el programa}
-\begin{lstlisting}[language=bash]
-  $ make trgl
-\end{lstlisting}
-\item{\textbf{compilar} el programa utilizando OpenGL}
-\begin{lstlisting}[language=bash]
-  $ make opengl
-\end{lstlisting}
-\item{\textbf{ejecutar} el programa una vez la compilación ha terminado satisfactoriamente}
-\begin{lstlisting}[language=bash]
-  $ ./bin/program
-\end{lstlisting}
-\item{\textbf{limpiar} todos los archivos creados durante procesos anteriores de compilación}
-\begin{lstlisting}[language=bash]
-  $ make clean
-\end{lstlisting}
-\end{itemize}
+\subsubsection{Microsoft Windows}
+TODO: ¿Quiero entrar en profundidad sobre cómo compilar en Windows?
 
-\subsubsection{Compilación en Microsoft Windows}
-\subsubsection{Compilación en Code::Blocks}
+\subsubsection{Code::Blocks}
+Aunque no es mi entorno favorito, la verdad es que utilizar Code::Blocks es bastante conveniente y ha sido de utilidad para la depuración. Es tan sencillo como ir a la página y descargar Code::Blocks. Una vez descargado codeblocks, abrir el archivo .cbp dentro de la carpeta del proyecto y todo está listo para compilar y ejecutar. Otra ventaja que tiene es que es multiplataforma con lo que se puede usar en GNU Linux, macOS y en Windows. De hecho se recomienda usar Code::Blocks cuando se trabaje en Windows.
 
 \subsubsection{Control de versión con git y GitHub}
 Git es un programa utilizado para controlar un repositorio de código. En concreto, he utilizado el servicio web \textit{GitHub}. Aunque uno de sus principales objetivos es la colaboración entre distintos desarrolladores yo lo he empleado en las siguientes situaciones:
@@ -155,8 +160,8 @@ Git es un programa utilizado para controlar un repositorio de código. En concre
 \subsection{Documentación}
 \subsubsection{Documento escrito}
 Para redactar el documento escrito he utilizado \LaTeX, un lenguaje de programación orientado al procesamiento de texto. Esta herramienta me ha permitido organizar el Treball de Recerca de forma simple y efectiva, además de incluir trozos de código y comandos e incluso expresión matemática.
-\section{GNU Emacs}
-He decidido dar a GNU Emacs su propia sección debido a que lo he usado constantemente a lo largo de la elaboración de este Treball de Recerca. Lo he usado tanto para programar la librería gráfica y el motor como para documentar todo el proceso. Además también me ha permitido hacer \textit{version control}, compilar e incluso ejecutar el motor gráfico desde el mismo programa. Decidí utilizarlo porque así me permitiría aumentar en gran medida mi rendimiento. Puesto a que es un programa extremadamente complejo, no entraré en gran detalle, pero las principales ventajas que ofrece es la gran modularidad y customizabilidad, por lo que lo he ido adaptando a mis necesidades según he ido avanzando en el proyecto.
+\subsection{GNU Emacs}
+He decidido dar a GNU Emacs su propia subsección debido a que lo he usado constantemente a lo largo de la elaboración de este Treball de Recerca. Lo he usado tanto para programar la librería gráfica y el motor como para documentar todo el proceso. Además también me ha permitido hacer \textit{version control}, compilar e incluso ejecutar el motor gráfico desde el mismo programa. Decidí utilizarlo porque así me permitiría aumentar en gran medida mi rendimiento. Puesto a que es un programa extremadamente complejo, no entraré en gran detalle, pero las principales ventajas que ofrece es la gran modularidad y customizabilidad, por lo que lo he ido adaptando a mis necesidades según he ido avanzando en el proyecto.
 
 \newpage
 
