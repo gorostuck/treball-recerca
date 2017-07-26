@@ -1,19 +1,24 @@
 /* Este archivo se debería de terminar por separar con el tiempo */
 #include "TRGL.h"
+#include "TRGL_math.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define R_X 0
-#define R_Y 1
-#define R_Z 2
-#define R_W 3
-#define P_X 4
-#define P_Y 5
-#define P_Z 6
-#define P_W 7
-#define S_X 8
-#define S_Y 9
+
+#define REAL_W 12
+#define REAL_X 0                       /*    [ REAL_X  PROJECTED_X  SCREEN_X  COLOR_R ]   */
+#define REAL_Y 4                       /*    [ REAL_Y  PROJECTED_Y  SCREEN_X  COLOR_G ]   */
+#define REAL_Z 8                       /*    [ REAL_Z  PROJECTED_Z         0  COLOR_B ]   */
+#define PROJECTED_X 1                  /*    [      1            0         0  COLOR_A ]   */
+#define PROJECTED_Y 5
+#define PROJECTED_Z 9
+#define SCREEN_X 2
+#define SCREEN_Y 10
+#define COLOR_R 3
+#define COLOR_G 7
+#define COLOR_B 11
+#define COLOR_A 15
 
 
 struct Node *first, *current, *temp;
@@ -21,6 +26,11 @@ SDL_Renderer *renderer;
 
 GLAPI void GLAPIENTRY glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha)
 {
+  first->M[COLOR_R] = red;
+  first->M[COLOR_G] = green;
+  first->M[COLOR_B] = blue;
+  first->M[COLOR_A] = alpha;
+  
   SDL_SetRenderDrawColor(renderer,
 			 (int) red  * 255, (int) green * 255,
 			 (int) blue * 255, (int) alpha * 255);
@@ -29,8 +39,10 @@ GLAPI void GLAPIENTRY glClearColor(GLclampf red, GLclampf green, GLclampf blue, 
 
 GLAPI void GLAPIENTRY glColor3f(GLclampf red, GLclampf green, GLclampf blue)
 {
-  SDL_SetRenderDrawColor(renderer, (int) red * 255, (int) green * 255, (int) blue * 255, 0);
-}
+  first->M[COLOR_R] = red;
+  first->M[COLOR_G] = green;
+  first->M[COLOR_B] = blue;
+ }
 
 GLAPI void GLAPIENTRY glBegin(GLenum mode)
 {
@@ -50,11 +62,20 @@ GLAPI void GLAPIENTRY glVertex(GLfloat x, GLfloat y, GLfloat z)
     temp->inf = malloc(sizeof(struct Node));
     temp = temp->inf;
   }
-  if (first->next==NULL)
 
-  temp->M[R_X] = x;
-  temp->M[R_Y] = y;
-  temp->M[R_Z] = z;
+  /* Asignación de coordenadas reales */
+  temp->M[REAL_X] = x;
+  temp->M[REAL_Y] = y;
+  temp->M[REAL_Z] = z;
+  temp->M[REAL_W] = 1;
+
+  /* Ahora debería de calcular las proyecciones */
+  
+  /* Asignación de colores */
+  temp->M[COLOR_R] = first->M[COLOR_R];
+  temp->M[COLOR_G] = first->M[COLOR_G];
+  temp->M[COLOR_B] = first->M[COLOR_B];
+  temp->M[COLOR_A] = first->M[COLOR_A];
 
   temp->next = NULL;
   temp->inf  = NULL;
@@ -69,8 +90,19 @@ GLAPI void GLAPIENTRY glVertex2f(GLfloat x, GLfloat y)
     temp->inf = malloc(sizeof(struct Node));
     temp = temp->inf;
   }
-  temp->M[R_X] = x;
-  temp->M[R_Y] = y;
+
+  /* Asignación de coordenadas reales */
+  temp->M[REAL_X] = x;
+  temp->M[REAL_Y] = y;
+  temp->M[REAL_W] = 1;
+
+  /* Ahora debería de calcular las proyecciones */
+
+  /* Asignación de colores */
+  temp->M[COLOR_R] = first->M[COLOR_R];
+  temp->M[COLOR_G] = first->M[COLOR_G];
+  temp->M[COLOR_B] = first->M[COLOR_B];
+  temp->M[COLOR_A] = first->M[COLOR_A];
 
   temp->next = NULL;
   temp->inf  = NULL;
@@ -115,20 +147,67 @@ GLAPI void GLAPIENTRY glClear(GLenum flags)
 
 void SDL_TR_CreateRenderer(SDL_Window *gWindow)
 {
-  renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_SOFTWARE); // También podría poner SDL_RENDERER_HARDWARE
+renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_SOFTWARE); // También podría poner SDL_RENDERER_HARDWARE
 }
 
 void SDL_TR_SwapWindow(SDL_Window *gWindow)
 {
-  // printf("x: %f", first->next->inf->M[R_X]);
-  /* Testeo */
+  int width, height;
+  SDL_GetWindowSize(gWindow, &width, &height);
+  GLfloat screen_matrix[16];
+  /*
+     [ delta_x_d             0   x_d_m + 2*delta_x_d  0 ]
+     [         0   - delta_y_d   y_d_m + 2*delta_y_d  0 ]
+     [         0             0                     1  0 ]
+     [         0             0                     0  0 ] */
+
+  /* Hay que cambiar esto con el tiempo pero por el momento, se asume que el programa ocupa toda la ventana */
+  empty_matrixf(screen_matrix);
+  screen_matrix[0] = (float)(width/2);
+  screen_matrix[2] = (float)(width/2);
+  screen_matrix[5] = (float)(-height/2);
+  screen_matrix[6] = (float)(height/2);
+  screen_matrix[10] = 1;
+
+
+  /* Primero se calcula la posición en la pantalla de todos los puntos */
   for (current=first;current!=NULL;current=current->next){
-    for(temp=current->inf;temp!=NULL;temp=temp->inf){
-      printf("x: %f, y: %f, z: %f\n", temp->M[R_X], temp->M[R_Y], current->M[R_Z]);
+    for (temp=current->inf;temp!=NULL;temp=temp->inf){
+      simple_multiply_matrixf(temp->M, screen_matrix);
     }
   }
-  struct Node *t1, *t2;
 
+  /* Ahora se pintan en la pantalla */
+  int state=0;
+  struct Node *mem1;
+  for (current=first;current!=NULL;current=current->next){
+    for (temp=current->inf;temp!=NULL;temp=temp->inf){
+      if (current->Type==GL_QUADS) {
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	if (state==3) {
+	  SDL_RenderDrawLine(renderer,
+			     temp->M[SCREEN_X], temp->M[SCREEN_Y],
+			     mem1->M[SCREEN_X], mem1->M[SCREEN_Y]);
+	  state = 0;
+	  SDL_RenderPresent(renderer);
+	}
+	else {
+	  printf("%f, %f, %f, %f\n",temp->M[SCREEN_X], temp->M[SCREEN_Y],
+		 temp->inf->M[SCREEN_X], temp->inf->M[SCREEN_Y]);
+	  SDL_RenderDrawLine(renderer,
+			     temp->M[SCREEN_X], temp->M[SCREEN_Y],
+			     temp->inf->M[SCREEN_X], temp->inf->M[SCREEN_Y]);
+	  if (state==0)
+	    mem1 = temp;
+	  ++state;
+	  SDL_RenderPresent(renderer);
+	}
+      }
+    }
+  }
+
+  /* Liberar toda la estructura */
+  struct Node *t1, *t2;
   for(current=first->next;current!=NULL;){
     for(temp=current->inf;temp!=NULL;){
       t2 = temp;
@@ -142,14 +221,6 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   current = first;
   temp = NULL;
   SDL_RenderPresent(renderer);
-}
-
-void empty_matrixf(GLfloat M[16])
-{
-  /*
-     for (int i = 0; i < 16; ++i)
-     M[i] = 0.0f;
-  */
 }
 
 

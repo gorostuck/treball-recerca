@@ -16,5 +16,3 @@ GLAPI void GLAPIENTRY glSetRender(SDL_Renderer *_renderer);
 void SDL_TR_CreateRenderer(SDL_Window *gWindow);
 void SDL_TR_SwapWindow(SDL_Window *gWindow);
 
-// Apoyo matemático
-void empty_matrixf(GLfloat M[16]);

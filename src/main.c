@@ -136,7 +136,7 @@ int initGL()
   glLoadIdentity();
 
   //Initialize clear color
-  glClearColor( 0.f, 0.f, 0.f, 0.f );
+  glClearColor( 1.f, 1.f, 1.f, 0.f );
   glClear(GL_COLOR_BUFFER_BIT);
 
 
@@ -145,10 +145,11 @@ int initGL()
 
 void handleKeys( unsigned char key, int x, int y )
 {
-    if( key == 'q' )
-    {
-        quit = true;
-    }
+  if (key=='q') quit = true;
+  if (key=='r') glClearColor(1.f, 0.f, 0.f, 0.f);
+  if (key=='g') glClearColor(0.f, 1.f, 0.f, 0.f);
+  if (key=='b') glClearColor(0.f, 0.f, 1.f, 0.f);
+
 }
 
 void update()
@@ -163,7 +164,7 @@ void render()
     
   //Render quad
   if( gRenderQuad ) {
-    //    glRotatef(0.14f,0.0f,1.0f,0.0f);    // Rotate The cube around the Y axis
+    //glRotatef(0.14f,0.0f,1.0f,0.0f);    // Rotate The cube around the Y axis
     //glRotatef(0.2f,1.0f,1.0f,1.0f);
     glColor3f(0.0f,1.0f,0.0f);
 
@@ -232,7 +233,7 @@ void close_window()
 #else
             SDL_GL_SwapWindow( gWindow );
 #endif
-	    SDL_Delay(500);
+	    SDL_Delay(10);
         }
         //Disable text input
         SDL_StopTextInput();
