@@ -192,8 +192,6 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
 	  SDL_RenderPresent(renderer);
 	}
 	else {
-	  printf("%f, %f, %f, %f\n",temp->M[SCREEN_X], temp->M[SCREEN_Y],
-		 temp->inf->M[SCREEN_X], temp->inf->M[SCREEN_Y]);
 	  SDL_RenderDrawLine(renderer,
 			     temp->M[SCREEN_X], temp->M[SCREEN_Y],
 			     temp->inf->M[SCREEN_X], temp->inf->M[SCREEN_Y]);

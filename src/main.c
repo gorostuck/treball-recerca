@@ -40,7 +40,6 @@
 //Main loop flag
 int quit = false;
 
-
 //Starts up SDL, creates window, and initializes OpenGL
 int init_window();
 
@@ -173,6 +172,12 @@ void render()
     glVertex2f( 0.75f, -0.75f );
     glVertex2f( 0.75f, 0.75f );
     glVertex2f( -0.75f, 0.75f );
+
+    glVertex2f(-0.5f, -0.5f);
+    glVertex2f(0.5f, -0.5f);
+    glVertex2f(0.5f, 0.5f);
+    glVertex2f(-0.5f, 0.5f);
+    
     glEnd();
 
   }

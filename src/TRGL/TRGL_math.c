@@ -26,6 +26,9 @@ void multiply_matrixf(float M1[16], float M2[16], float R[16])
 /* Es muy específico, se utiliza sólo para pasar de coordenadas normalizadas a puntos en la pantalla */
 void simple_multiply_matrixf(float M1[16], float M2[16])
 {
-  M1[S_X] = M1[0]*M2[0] + M1[4]*M2[1] + M2[2]; 
-  M1[S_Y] = M1[4]*M2[0] + M1[5]*M2[5] + M2[6];
+  float result_x, result_y;
+  result_x = M1[0]*M2[0] + M1[4]*M2[1] + M2[2];
+  result_y = M1[0]*M2[4] + M1[4]*M2[5] + M2[6];
+  M1[S_X] = result_x;
+  M1[S_Y] = result_y;
 }
