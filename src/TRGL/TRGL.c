@@ -152,21 +152,34 @@ renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_SOFTWARE); // También p
 
 void SDL_TR_SwapWindow(SDL_Window *gWindow)
 {
+  SDL_SetRenderDrawColor(renderer,
+  			 255, 255, 255, 0);
+  SDL_RenderClear(renderer);
+  SDL_SetRenderDrawColor(renderer,
+			 0, 0, 0, 0);
   int width, height;
   SDL_GetWindowSize(gWindow, &width, &height);
   GLfloat screen_matrix[16];
   /*
-     [ delta_x_d             0   x_d_m + 2*delta_x_d  0 ]
-     [         0   - delta_y_d   y_d_m + 2*delta_y_d  0 ]
-     [         0             0                     1  0 ]
-     [         0             0                     0  0 ] */
+     [ delta_x/2             0   x_m + delta_x/2  0 ]
+     [         0   - delta_y/2   y_m + delta_y/2  0 ]
+     [         0             0                 1  0 ]
+     [         0             0                 0  0 ] */
 
   /* Hay que cambiar esto con el tiempo pero por el momento, se asume que el programa ocupa toda la ventana */
+
+  int x_M = width;
+  int x_m = 0;
+  int y_M = height;
+  int y_m = 0;
+  int delta_x = x_M - x_m;
+  int delta_y = y_M - y_m;
+  
   empty_matrixf(screen_matrix);
-  screen_matrix[0] = (float)(width/2);
-  screen_matrix[2] = (float)(width/2);
-  screen_matrix[5] = (float)(-height/2);
-  screen_matrix[6] = (float)(height/2);
+  screen_matrix[0] = (float)delta_x/2;
+  screen_matrix[2] = (float)delta_x/2 + x_m;
+  screen_matrix[5] = (float)-(delta_y/2);
+  screen_matrix[6] = (float)delta_y/2 + y_m;
   screen_matrix[10] = 1;
 
 
@@ -189,7 +202,6 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
 			     temp->M[SCREEN_X], temp->M[SCREEN_Y],
 			     mem1->M[SCREEN_X], mem1->M[SCREEN_Y]);
 	  state = 0;
-	  SDL_RenderPresent(renderer);
 	}
 	else {
 	  SDL_RenderDrawLine(renderer,
@@ -198,7 +210,6 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
 	  if (state==0)
 	    mem1 = temp;
 	  ++state;
-	  SDL_RenderPresent(renderer);
 	}
       }
     }

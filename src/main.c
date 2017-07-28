@@ -183,6 +183,16 @@ void render()
     glVertex2f(val/3, -val/3);
     glVertex2f(val/3, val/3);
     glVertex2f(-val/3, val/3);
+
+    glVertex2f( -val/3, -val/3 );
+    glVertex2f( val/2, -val/2 );
+    glVertex2f( val/3, val/3 );
+    glVertex2f( -val/2, val/2 );
+
+    glVertex2f( -val/2, -val/2 );
+    glVertex2f( val/3, -val/3 );
+    glVertex2f( val/2, val/2 );
+    glVertex2f( -val/3, val/3 );
     
     glEnd();
 
@@ -245,7 +255,7 @@ void close_window()
 #else
             SDL_GL_SwapWindow( gWindow );
 #endif
-	    SDL_Delay(0);
+	    SDL_Delay(10);
         }
         //Disable text input
         SDL_StopTextInput();
