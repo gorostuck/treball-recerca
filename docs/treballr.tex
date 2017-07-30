@@ -89,7 +89,6 @@ En esta sección se comentarán los diversos entornos en los que he trabajado en
 Dependiendo del sistema operativo en el que se quiera trabajar es necesario tener una preparación concreta.
 
 \subsubsection{Compilación}
-\\\\
 Para poder compilar y ejecutar la librería y el motor gráfico son necesarias las herramientas básicas de compilación.
 \begin{itemize}
 \item{\textbf{make}: necesario para automatizar la compilación}
@@ -126,7 +125,7 @@ Ubuntu es una de las distribuciones más comunes así que explicaré los requisi
 \begin{lstlisting}[language=bash]
   $ sudo apt-get install git libsdl2-dev gcc
 \end{lstlisting}
-\\ Se puede descargar el Treball de Recerca utilizando el siguiente comando en la carpeta deseada.
+Se puede descargar el Treball de Recerca utilizando el siguiente comando en la carpeta deseada.
 \begin{lstlisting}[language=bash]
   $ git clone https://github.com/gorostuck/treball-recerca
 \end{lstlisting}
@@ -139,7 +138,7 @@ Para compilar macOS es un poco más laborioso debido a que no tiene un gestor de
 \begin{lstlisting}[language=bash]
   $ codesign -f -s - SDL2
 \end{lstlisting}
-\\ Si las \textit{Command Line Tools} no han sido instaladas previamente, la primera vez que intentemos utilizar el comando \textit{make} nos saltará una ventana preguntando si deseamos instalar las herramientas, para poder compilar el programa será necesario utilizar esas herramientas.
+Si las \textit{Command Line Tools} no han sido instaladas previamente, la primera vez que intentemos utilizar el comando \textit{make} nos saltará una ventana preguntando si deseamos instalar las herramientas, para poder compilar el programa será necesario utilizar esas herramientas.
 
 
 
@@ -167,6 +166,114 @@ He decidido dar a GNU Emacs su propia subsección debido a que lo he usado const
 
 \chapter{Teoría e implementación de la librería gráfica}
 En este capítulo se comentarán todos los aspectos de las funciones creadas en la librería gráfica. Primero desde un punto de vista teórico y después se observará la implementación. Además se comparará con el funcionamiento de una librería gráfica popular, OpenGL.
+\section{Nodos y gestión de vértices}
+En esta sección comentaré como funciona el sistema de gestión dinámico de vértices y el dibujo de la estructura que forman.
+\subsection{Nodo}
+Un nodo es una estructura básica multiprósito que además de contener valores contiene punteros hacia otros nodos.
+\subsubsection{Nodo en el código}
+\begin{lstlisting}[language=C]
+  struct Node {
+    GLenum Type;        // Tipo de nodo
+    GLfloat M[16];      // Matriz 4x4
+    struct Node *next;  // Puntero hacia el nodo a la derecha de este
+    struct Node *inf;   // Punerto hacia el nodo debajo de este
+  };
+\end{lstlisting}
+\subsubsection{Tipos de nodos}
+Básicamente podemos distinguir entre los diferentes tipos de nodos dependiendo de como deben de ser interpretados.
+\begin{itemize}
+\item{\textbf{Inicio} : es el primer nodo, no tiene ninguna información excepto que señala al primer nodo con información útil.
+\item{\textbf{Encabezado} : en el tipo contiene la forma en la que se tienen que unir los vértices que se encuentran debajo de este nodo, a la derecha tiene otro encabezado o nada si es el último encabezado.
+  \item{\textbf{Vértice} : contiene información sobre las coordenadas reales, proyectadas y en la pantalla, además del color. Debajo tiene otro vértice excepto en caso de ser el último vértice de esa estructura.
+\end{itemize}
+
+\subsection{Organización de la información dentro de la matriz del nodo}
+En el nodo de un vértice se puede encontrar la información en la matriz dispuesta de la siguiente forma.
+\begin{equation}
+  \begin{bmatrix}
+    x_{real} && x_{proyectada} && x_{pantalla} && color_r \\
+    y_{real} && y_{proyectada} && y_{pantalla} && color_g \\
+    z_{real} && z_{proyectada} && 0 && color_b \\
+    1 && 0 && 0 && color_a
+  \end{bmatrix}
+\end{equation}
+\subsection{Sintaxis de la gestión de vértices}
+Para ir creando vértices se tiene que estructurar el código de forma similar a este ejemplo.
+\begin{lstlisting}[language=C]
+  glColor3f(0.0f, 0.0f, 0.0f);
+  glBegin(GL_QUADS);
+  glVertex3f(0.75f, 0.75f);
+  glVertex3f(0.75f, -0.75f);
+  glVertex3f(-0.75f, -0.75f);
+  glVertex3f(-0.75f, 0.75f);
+  glEnd();
+\end{lstlisting}
+Se explicará el funcionamiento de esas funciones en las siguientes subsecciones.
+\subsection{Colores en los vértices}
+Utilizando la función
+\begin{lstlisting}[language=C]
+  glColor3f(Glclampf red, GLclampf green, GLclampf blue)
+\end{lstlisting}
+se puede asignar un color a todos los vértices que se definan posteriormente hasta que se vuelva a llamar una función de color.
+\subsection{Sistemas de unión de vértices}
+Para notificar al programa de que queremos una nueva estructura gráfica llamamos a la función
+\begin{lstlisting}[language=C]
+  glBegin(GLEnum mode)
+\end{lstlisting}
+Y como único argumento introducimos el modo de dibujo que queremos utilizar. Los distintos modos que se ofrecen son los siguientes.
+\subsubsection{GL\_QUAD}
+El número de vértices para el uso correcto debe de ser divisor de 4. Se ejecutarán los siguientes pasos.
+\begin{itemize}
+  \item{Línea del vértice 0 al vértice 1}
+  \item{Línea del vértice 1 al vértice 2}
+  \item{Línea del vértice 2 al vértice 3}
+  \item{Línea del vértice 3 al vértice 0}
+    \item{Se tomarán los siguientes cuatro vértices en caso de que existan y se reinicia el proceso}
+\end{itemize}  
+\section{Conversiones de coordenadas}
+\subsection{Conversión de coorenadas normalizadas a coordenadas en la pantalla}
+Una vez se tienen las coordenadas de los puntos entre las coordenadas (-1, -1) y (1, 1) se busca encontrar la coordenada correspondiente en la pantalla.
+\begin{itemize}
+  \item{\(x_d\) es la coordenada en la pantalla}
+  \item{\(x_s\) es la coordenada real normalizada}  
+  \item{\(x_m\) es la coordenada donde comienza la superfície en la que queremos dibujar}
+  \item{\(x_M\) es la coordenada donde termina la superfície en la que queremos dibujar}  
+  \item{\(\Delta x = x_M - x_m\)}
+\end{itemize}
+\begin{equation}
+  \frac{x_s-(-1)}{1-(-1)} = \frac{x_d - x_m}{\Delta x}
+\end{equation}
+Si aislamos \(x_d\) obtenemos la siguiente ecuación:
+\begin{equation}
+  x_d = \frac{\Delta x \cdot x_s}{2}+\frac{\Delta x}{2}+x_m
+\end{equation}
+En el caso de la coordenada \(y\) funciona igual excepto que cambiamos el sentido así que tiene una pequeña variación.
+\begin{equation}
+  y_d = \frac{-(\Delta y) \cdot y_s}{2}+\frac{\Delta y}{2}+y_m
+\end{equation}
+Y en forma de matriz, la operación quedaría así.
+\\
+\begin{equation}
+  \begin{bmatrix}
+     \(\frac{\Delta x}{2}\) && 0 && \(\frac{\Delta x}{2} + x_m \\
+     0 && \(- \frac{\Delta y}{2} && \(\frac{\Delta y}{2} + y_m \\
+     0 && 0 && 1
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+    \(x_s\)\\
+    \(y_s\)\\
+    \(1\)
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \(x_d\)\\
+    \(y_d\)\\
+    \(1\)
+  \end{bmatrix}
+\end{equation}
+    
+  
 \newpage
 \chapter{Teoría e implementación de el motor gráfico}
 Este capítulo está dedicado a observar desde un punto de vista primero teórico y luego práctico el uso de la librería gráfica una vez aplicado en un motor gráfico.
