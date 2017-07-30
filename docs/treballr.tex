@@ -231,18 +231,18 @@ El número de vértices para el uso correcto debe de ser divisor de 4. Se ejecut
     \item{Se tomarán los siguientes cuatro vértices en caso de que existan y se reinicia el proceso}
 \end{itemize}
 \subsection{Creación de vértices}
-Existen diversas funciones para crear vértices, dependiendo de si se quieren utilizar números flotantes o enteros, y si se quieren utilizar tres dimensiones o sólo dos. Esas funciones son las siguientes.
+Existen diversas funciones para crear vertices, dependiendo de si quieren utilizar numeros flotantes o enteros, y si se quieren utilizar tres dimensiones o solo dos. Esas funciones son las siguientes.
 \begin{lstlisting}[language=C]
   glVertex2f(GLfloat x, GLfloat y);
   glVertex2i(GLint x, GLint y);
   glVertex3f(GLfloat x, GLfloat y, GLfloat z);
   glVertex3i(GLint x, GLint y, GLint z);
 \end{lstlisting}
-\subsection{Finalización de la estructura gráfica}
-Una vez que se han terminado de introducir los vértices, hace falta llamar a la siguiente función sin ningún argumento.
-\begin{lstlisting}[language=C]
+\subsection{Finalizacion de la estructura grafica}
+Una vez que se han terminado de introducir los vertices, hace falta llamar a la siguiente funcion sin ningun argumento.
+\begin{lstisting}[language=C]
   glEnd();
-\end{lstlsiting}
+\end{lstlisting}
 \section{Conversiones de coordenadas}
 \subsection{Conversión de coorenadas normalizadas a coordenadas en la pantalla}
 Una vez se tienen las coordenadas de los puntos entre las coordenadas (-1, -1) y (1, 1) se busca encontrar la coordenada correspondiente en la pantalla.
@@ -285,7 +285,6 @@ Y en forma de matriz, la operación quedaría así.
     \(1\)
   \end{bmatrix}
 \end{equation}
-
     
   
 \newpage
