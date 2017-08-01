@@ -4,11 +4,23 @@
 
 struct Node {
   GLenum Type;
-  GLfloat M[16];
+  GLfloat Real[4];
+  GLfloat Projected[4];
+  GLfloat Screen[4];
+  GLfloat Color[4];
   struct Node *next;
   struct Node *inf;
 };
 
+
+#define X 0
+#define Y 1
+#define Z 2
+#define W 3
+#define R 0
+#define G 1
+#define B 2
+#define A 3
 
 GLAPI void GLAPIENTRY glSetRender(SDL_Renderer *_renderer);
 

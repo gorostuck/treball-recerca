@@ -169,30 +169,30 @@ void render()
     glColor3f(0.0f,1.0f,0.0f);
 
     glBegin( GL_QUADS );
-    glVertex2f( -val, -val );
-    glVertex2f( val, -val );
-    glVertex2f( val, val );
-    glVertex2f( -val, val );
+    glVertex2f( -0.75f, -0.75f );
+    glVertex2f( 0.75f, -0.75f );
+    glVertex2f( 0.75f, 0.75f );
+    glVertex2f( -0.75f, 0.75f );
 
-    glVertex2f(-val/2, -val/2);
-    glVertex2f(val/2, -val/2);
-    glVertex2f(val/2, val/2);
-    glVertex2f(-val/2, val/2);
+    /* glVertex2f(-val/2, -val/2); */
+    /* glVertex2f(val/2, -val/2); */
+    /* glVertex2f(val/2, val/2); */
+    /* glVertex2f(-val/2, val/2); */
 
-    glVertex2f(-val/3, -val/3);
-    glVertex2f(val/3, -val/3);
-    glVertex2f(val/3, val/3);
-    glVertex2f(-val/3, val/3);
+    /* glVertex2f(-val/3, -val/3); */
+    /* glVertex2f(val/3, -val/3); */
+    /* glVertex2f(val/3, val/3); */
+    /* glVertex2f(-val/3, val/3); */
 
-    glVertex2f( -val/3, -val/3 );
-    glVertex2f( val/2, -val/2 );
-    glVertex2f( val/3, val/3 );
-    glVertex2f( -val/2, val/2 );
+    /* glVertex2f( -val/3, -val/3 ); */
+    /* glVertex2f( val/2, -val/2 ); */
+    /* glVertex2f( val/3, val/3 ); */
+    /* glVertex2f( -val/2, val/2 ); */
 
-    glVertex2f( -val/2, -val/2 );
-    glVertex2f( val/3, -val/3 );
-    glVertex2f( val/2, val/2 );
-    glVertex2f( -val/3, val/3 );
+    /* glVertex2f( -val/2, -val/2 ); */
+    /* glVertex2f( val/3, -val/3 ); */
+    /* glVertex2f( val/2, val/2 ); */
+    /* glVertex2f( -val/3, val/3 ); */
     
     glEnd();
 
