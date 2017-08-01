@@ -182,9 +182,9 @@ Un nodo es una estructura básica multiprósito que además de contener valores 
 \subsubsection{Tipos de nodos}
 Básicamente podemos distinguir entre los diferentes tipos de nodos dependiendo de como deben de ser interpretados.
 \begin{itemize}
-\item{\textbf{Inicio} : es el primer nodo, no tiene ninguna información excepto que señala al primer nodo con información útil.
-\item{\textbf{Encabezado} : en el tipo contiene la forma en la que se tienen que unir los vértices que se encuentran debajo de este nodo, a la derecha tiene otro encabezado o nada si es el último encabezado.
-  \item{\textbf{Vértice} : contiene información sobre las coordenadas reales, proyectadas y en la pantalla, además del color. Debajo tiene otro vértice excepto en caso de ser el último vértice de esa estructura.
+\item{\textbf{Inicio} : es el primer nodo, no tiene ninguna información excepto que señala al primer nodo con información útil.}
+\item{\textbf{Encabezado} : en el tipo contiene la forma en la que se tienen que unir los vértices que se encuentran debajo de este nodo, a la derecha tiene otro encabezado o nada si es el último encabezado.}
+  \item{\textbf{Vértice} : contiene información sobre las coordenadas reales, proyectadas y en la pantalla, además del color. Debajo tiene otro vértice excepto en caso de ser el último vértice de esa estructura.}
 \end{itemize}
 
 \subsection{Organización de la información dentro de la matriz del nodo}
@@ -240,7 +240,7 @@ Existen diversas funciones para crear vertices, dependiendo de si quieren utiliz
 \end{lstlisting}
 \subsection{Finalizacion de la estructura grafica}
 Una vez que se han terminado de introducir los vertices, hace falta llamar a la siguiente funcion sin ningun argumento.
-\begin{lstisting}[language=C]
+\begin{lstlisting}[language=C]
   glEnd();
 \end{lstlisting}
 \section{Conversiones de coordenadas}
@@ -268,8 +268,8 @@ Y en forma de matriz, la operación quedaría así.
 \\
 \begin{equation}
   \begin{bmatrix}
-     \(\frac{\Delta x}{2}\) && 0 && \(\frac{\Delta x}{2} + x_m \\
-     0 && \(- \frac{\Delta y}{2} && \(\frac{\Delta y}{2} + y_m \\
+     \(\frac{\Delta x}{2}\) && 0 && \(\frac{\Delta x}{2} + x_m\)\\
+     0 && \(- \frac{\Delta y}{2} && \(\frac{\Delta y}{2} + y_m$\) \\
      0 && 0 && 1
   \end{bmatrix}
   \cdot
