@@ -6,7 +6,7 @@ struct Node {
   GLenum Type;
   GLfloat Real[4];
   GLfloat Projected[4];
-  GLfloat Screen[4];
+  GLfloat Screen[3];
   GLfloat Color[4];
   struct Node *next;
   struct Node *inf;

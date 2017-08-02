@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define T_MAT first->Real
+
 
 struct Node *first, *current, *temp;
 SDL_Renderer *renderer;
@@ -79,9 +81,21 @@ GLAPI void GLAPIENTRY glVertex2f(GLfloat x, GLfloat y)
   /* Asignación de coordenadas reales */
   temp->Real[X] = x;
   temp->Real[Y] = y;
-  temp->Real[Z] = 1;
+  temp->Real[Z] = 0;
+  temp->Real[W] = 1;
+
+  const GLfloat m[16] = { 1, 0, 0, temp->Real[X],
+			  0, 1, 0, temp->Real[Y],
+			  0, 0, 1, temp->Real[Z],
+			  0, 0, 0, temp->Real[W] };
+
+  multiply_matrix_4x4_1x4(m, T_MAT, temp->Real);
+  //printf("%f, %f, %f, %f\n", temp->Real[X], temp->Real[Y], temp->Real[Z], temp->Real[W]);
 
   /* Ahora debería de calcular las proyecciones */
+  temp->Projected[X] = temp->Real[X];
+  temp->Projected[Y] = temp->Real[Y];
+  temp->Projected[Z] = 1;
 
   /* Asignación de colores */
   temp->Color[R] = first->Color[R];
@@ -117,6 +131,8 @@ GLAPI void GLAPIENTRY glMatrixMode(GLenum flags)
     first->next = NULL;
     first->inf  = NULL;
     current = first;
+    empty_matrix(T_MAT, 4);
+    T_MAT[W] = 1.f;
   }
 }
 
@@ -170,7 +186,7 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   for (current=first;current!=NULL;current=current->next){
     for (temp=current->inf;temp!=NULL;temp=temp->inf){
       // Aquí debería de ser projected
-      multiply_matrix_3x3_1x3(screen_matrix, temp->Real, temp->Screen);
+      multiply_matrix_3x3_1x3(screen_matrix, temp->Projected, temp->Screen);
     }
   }
 
@@ -216,5 +232,16 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   SDL_RenderPresent(renderer);
 }
 
+void glTranslatef(GLfloat x, GLfloat y, GLfloat z)
+{
+  const GLfloat m[16] = { 1, 0, 0, x,
+			  0, 1, 0, y,
+			  0, 0, 1, z,
+			  0, 0, 0, 1 };
+  glMultMatrixf(m);
+}
 
-
+void glMultMatrixf(const float *m)
+{
+  multiply_matrix_4x4_1x4(m, T_MAT, T_MAT);
+}
