@@ -309,9 +309,54 @@ Y en forma de matriz, la operación quedaría así.
     \(1\)
   \end{bmatrix}
 \end{equation}
-    
-  
 \newpage
+\section{Matriz de transformación}
+La matriz de transformación es aquella que se aplica a los diferentes vértices cuando son llamados y que acumula operaciones de \textbf{Translación}, \textbf{Rotación} y \textbf{Escalado}.
+\begin{figure}[ht]
+  \centering
+  \begin{bmatrix}
+    $x$\\$y$\\$z$\\1
+  \end{bmatrix}
+  \caption{Matriz almacenada en la memoria}
+\end{figure} \begin{figure}[ht]
+  \centering
+  \begin{bmatrix}
+    1 && 0 && 0 && x\\
+    0 && 1 && 0 && y\\
+    0 && 0 && 1 && z\\
+    0 && 0 && 0 && 1
+  \end{bmatrix}
+  \caption{Matriz generada para hacer operaciones}
+\end{figure}
+\subsection{Operación: Reseteo}
+Para restaurar la matriz a su estado original se hace uso de la función
+\begin{lstlisting}[language=C]
+  glLoadIdentity();
+\end{lstlisting}
+\subsection{Operación: Traslación}
+Con la operación de Traslación se desplaza la matriz de transformación por un vector llamando a la función
+\begin{lstlisting}[language=C]
+  glTransformf(GLfloat x, GLfloat y, GLfloat z);
+\end{lstlisting}
+En los argumentos ponemos los valores del vector deseado.
+\subsubsection{Operación matemática}
+\(\overrightarrow{V}}\) es el vector que hemos pasado como argumento, \(\mathbf{transf}\) es la matriz de transformación.
+\begin{equation}
+  \begin{bmatrix}
+    1 && 0 && 0 && \overrightarrow{V}_x\\
+    0 && 1 && 0 && \overrightarrow{V}_y\\
+    0 && 0 && 1 && \overrightarrow{V}_z\\
+    0 && 0 && 0 && 1
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+    \mathbf{transf}_x\\\mathbf{transf}_y\\\mathbf{transf}_z\\1
+  \end{bmatrix} =
+  \begin{bmatrix}
+    \mathbf{transf}_x'\\\mathbf{transf}_y'\\\mathbf{transf}_y'\\1
+  \end{bmatrix}
+\end{equation}
+
 \chapter{Teoría e implementación de el motor gráfico}
 Este capítulo está dedicado a observar desde un punto de vista primero teórico y luego práctico el uso de la librería gráfica una vez aplicado en un motor gráfico.
 \newpage
