@@ -5,30 +5,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define T_MAT first->Real
-
 
 struct Node *first, *current, *temp;
 SDL_Renderer *renderer;
 
+float *MAT, M_MAT[16], P_MAT[16], T_MAT[16], C_MAT[16];
+GLenum MAT_NAME;
+
 GLAPI void GLAPIENTRY glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha)
 {
-  first->Color[R] = red;
-  first->Color[G] = green;
-  first->Color[B] = blue;
-  first->Color[A] = alpha;
+  first->Color[0] = red;
+  //first->Color[1] = green;
+  //first->Color[2] = blue;
+  //first->Color[3] = alpha;
+
   
   SDL_SetRenderDrawColor(renderer,
 			 (int) red  * 255, (int) green * 255,
 			 (int) blue * 255, (int) alpha * 255);
   SDL_RenderClear(renderer);
+  
 }
 
 GLAPI void GLAPIENTRY glColor3f(GLclampf red, GLclampf green, GLclampf blue)
 {
-  first->Color[R] = red;
-  first->Color[G] = green;
-  first->Color[B] = blue;
+  first->Color[0] = red;
+  first->Color[1] = green;
+  first->Color[2] = blue;
  }
 
 GLAPI void GLAPIENTRY glBegin(GLenum mode)
@@ -40,7 +43,7 @@ GLAPI void GLAPIENTRY glBegin(GLenum mode)
   current->inf  = NULL;
 }
 
-GLAPI void GLAPIENTRY glVertex(GLfloat x, GLfloat y, GLfloat z)
+GLAPI void GLAPIENTRY glVertex(float x, float y, float z)
 {
   if (current->inf == NULL) {
     current->inf = malloc(sizeof(struct Node));
@@ -51,24 +54,24 @@ GLAPI void GLAPIENTRY glVertex(GLfloat x, GLfloat y, GLfloat z)
   }
 
   /* Asignación de coordenadas reales */
-  temp->Real[X] = x;
-  temp->Real[Y] = y;
-  temp->Real[Z] = z;
-  temp->Real[W] = 1;
+  temp->Real[0] = x;
+  temp->Real[1] = y;
+  temp->Real[2] = z;
+  temp->Real[3] = 1;
 
   /* Ahora debería de calcular las proyecciones */
   
   /* Asignación de colores */
-  temp->Color[R] = first->Color[R];
-  temp->Color[G] = first->Color[G];
-  temp->Color[B] = first->Color[B];
-  temp->Color[A] = first->Color[A];
+  temp->Color[0] = first->Color[0];
+  temp->Color[1] = first->Color[1];
+  temp->Color[2] = first->Color[2];
+  temp->Color[3] = first->Color[3];
 
   temp->next = NULL;
   temp->inf  = NULL;
 }
 
-GLAPI void GLAPIENTRY glVertex2f(GLfloat x, GLfloat y)
+GLAPI void GLAPIENTRY glVertex2f(float x, float y)
 {
   if (current->inf == NULL) {
     current->inf = malloc(sizeof(struct Node));
@@ -79,29 +82,35 @@ GLAPI void GLAPIENTRY glVertex2f(GLfloat x, GLfloat y)
   }
 
   /* Asignación de coordenadas reales */
-  temp->Real[X] = x;
-  temp->Real[Y] = y;
-  temp->Real[Z] = 0;
-  temp->Real[W] = 1;
+  temp->Real[0] = x;
+  temp->Real[1] = y;
+  temp->Real[2] = 0;
+  temp->Real[3] = 1;
 
-  const GLfloat m[16] = { 1, 0, 0, temp->Real[X],
-			  0, 1, 0, temp->Real[Y],
-			  0, 0, 1, temp->Real[Z],
-			  0, 0, 0, temp->Real[W] };
+  float REAL[16] = { 0, 0, 0, x,
+		     0, 0, 0, y,
+		     0, 0, 0, 0,
+		     0, 0, 0, 1};
 
-  multiply_matrix_4x4_1x4(m, T_MAT, temp->Real);
+  multiply_matrix_4x4_1x4(MAT, REAL);
+  
+  temp->Real[0]=REAL[3];
+  temp->Real[1]=REAL[7];
+  temp->Real[2]=REAL[11];
+  temp->Real[3]=REAL[15];
+  
   //printf("%f, %f, %f, %f\n", temp->Real[X], temp->Real[Y], temp->Real[Z], temp->Real[W]);
 
   /* Ahora debería de calcular las proyecciones */
-  temp->Projected[X] = temp->Real[X];
-  temp->Projected[Y] = temp->Real[Y];
-  temp->Projected[Z] = 1;
+  temp->Projected[0] = temp->Real[0];
+  temp->Projected[1] = temp->Real[1];
+  temp->Projected[2] = 1;
 
   /* Asignación de colores */
-  temp->Color[R] = first->Color[R];
-  temp->Color[G] = first->Color[G];
-  temp->Color[B] = first->Color[B];
-  temp->Color[A] = first->Color[A];
+  temp->Color[0] = first->Color[0];
+  temp->Color[1] = first->Color[1];
+  temp->Color[2] = first->Color[2];
+  temp->Color[3] = first->Color[3];
 
   temp->next = NULL;
   temp->inf  = NULL;
@@ -120,25 +129,41 @@ GLAPI void GLAPIENTRY glSetRender(SDL_Renderer *_renderer)
   first->next = NULL;
   first->inf  = NULL;
   current = first->next;
+  MAT = M_MAT;
+  first->Color[0] = 0;
 }
 
 GLAPI void GLAPIENTRY glMatrixMode(GLenum flags)
 {
-  if ((flags & GL_PROJECTION) == GL_PROJECTION) {
-  }
-  if ((flags & GL_MODELVIEW) == GL_MODELVIEW) {
-    first = malloc(sizeof(struct Node));
-    first->next = NULL;
-    first->inf  = NULL;
-    current = first;
-    empty_matrix(T_MAT, 4);
-    T_MAT[W] = 1.f;
-  }
+  MAT_NAME = flags;
+  if ((flags & GL_MODELVIEW) == GL_MODELVIEW)
+    MAT = M_MAT;
+  if ((flags & GL_PROJECTION) == GL_PROJECTION)
+    MAT = P_MAT;
+  if ((flags & GL_TEXTURE) == GL_TEXTURE)
+    MAT = T_MAT;
+  if ((flags & GL_COLOR) == GL_COLOR)
+    MAT = C_MAT;
 }
 
 GLAPI void GLAPIENTRY glLoadIdentity()
 {
-  empty_matrix(first->Real,3);
+  MAT[0] = 1;
+  MAT[1] = 0;
+  MAT[2] = 0;
+  MAT[3] = 0;
+  MAT[4] = 0;
+  MAT[5] = 1;
+  MAT[6] = 0;
+  MAT[7] = 0;
+  MAT[8] = 0;
+  MAT[9] = 0;
+  MAT[10] = 1;
+  MAT[11] = 0;
+  MAT[12] = 0;
+  MAT[13] = 0;
+  MAT[14] = 0;
+  MAT[15] = 1;
 }
 
 GLAPI void GLAPIENTRY glClear(GLenum flags)
@@ -160,7 +185,7 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
 			 0, 0, 0, 0);
   int width, height;
   SDL_GetWindowSize(gWindow, &width, &height);
-  GLfloat screen_matrix[9];
+  float screen_matrix[9];
   /*
      [ delta_x/2             0   x_m + delta_x/2  ]
      [         0   - delta_y/2   y_m + delta_y/2  ]
@@ -185,7 +210,6 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   /* Primero se calcula la posición en la pantalla de todos los puntos */
   for (current=first;current!=NULL;current=current->next){
     for (temp=current->inf;temp!=NULL;temp=temp->inf){
-      // Aquí debería de ser projected
       multiply_matrix_3x3_1x3(screen_matrix, temp->Projected, temp->Screen);
     }
   }
@@ -199,14 +223,14 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	if (state==3) {
 	  SDL_RenderDrawLine(renderer,
-			     temp->Screen[X], temp->Screen[Y],
-			     mem1->Screen[X], mem1->Screen[Y]);
+			     temp->Screen[0], temp->Screen[1],
+			     mem1->Screen[0], mem1->Screen[1]);
 	  state = 0;
 	}
 	else {
 	  SDL_RenderDrawLine(renderer,
-			     temp->Screen[X], temp->Screen[Y],
-			     temp->inf->Screen[X], temp->inf->Screen[Y]);
+			     temp->Screen[0], temp->Screen[1],
+			     temp->inf->Screen[0], temp->inf->Screen[1]);
 	  if (state==0)
 	    mem1 = temp;
 	  ++state;
@@ -232,16 +256,41 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   SDL_RenderPresent(renderer);
 }
 
-void glTranslatef(GLfloat x, GLfloat y, GLfloat z)
+void glTranslatef(float x, float y, float z)
 {
-  const GLfloat m[16] = { 1, 0, 0, x,
-			  0, 1, 0, y,
-			  0, 0, 1, z,
-			  0, 0, 0, 1 };
+  const float m[16] = { 1, 0, 0, x,
+			0, 1, 0, y,
+			0, 0, 1, z,
+			0, 0, 0, 1 };
   glMultMatrixf(m);
 }
 
 void glMultMatrixf(const float *m)
 {
-  multiply_matrix_4x4_1x4(m, T_MAT, T_MAT);
+  multiply_matrix_4x4_1x4(m, MAT);
+}
+
+void gluPerspective(GLdouble fovy,
+		    GLdouble aspect,
+		    GLdouble zNear,
+		    GLdouble zFar)
+{
+}
+
+void glFrustrum(GLdouble left,
+		GLdouble right,
+		GLdouble bottom,
+		GLdouble top,
+		GLdouble nearVal,
+		GLdouble farVal)
+{
+}
+
+void glOrtho(GLdouble left,
+	     GLdouble right,
+	     GLdouble bottom,
+	     GLdouble top,
+	     GLdouble nearVal,
+	     GLdouble farVal)
+{
 }

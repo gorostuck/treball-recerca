@@ -127,17 +127,21 @@ int init_window()
 
 int initGL()
 {
+  
   //Initialize Projection Matrix
   glMatrixMode( GL_PROJECTION );
   glLoadIdentity();
+  
 
   //Initialize Modelview Matrix
   glMatrixMode( GL_MODELVIEW );
   glLoadIdentity();
+  
 
   //Initialize clear color
   glClearColor( 1.f, 1.f, 1.f, 0.f );
   glClear(GL_COLOR_BUFFER_BIT);
+  
 
 
   return true;
@@ -212,6 +216,7 @@ void close_window()
 
  int main( int argc, char* argv[] )
 {
+  
     //Start up SDL and create window
     if( !init_window() )
     {
@@ -219,7 +224,7 @@ void close_window()
     }
     else
     {
-
+      
         //Event handler
         SDL_Event e;
 
@@ -259,11 +264,15 @@ void close_window()
         }
         //Disable text input
         SDL_StopTextInput();
+      
+      
     }
 
+      
     //Free resources and close SDL
     close_window();
 
+  
     return 0;
 }
 
