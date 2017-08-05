@@ -28,12 +28,19 @@
 *.app
 *program
 
+#LaTeX
+*.aux
+*.pdf
+*.log
+*.toc
+*.tex~
+
 *.DS_Store
 
 # Exceptions
-docs/*
 !docs/img
-!docs/esborrany.tex
 !docs/treballr.tex
+!docs/tex/*.tex
+
 !lib/*
 
