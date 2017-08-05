@@ -2,13 +2,15 @@
 \section{Matriz de transformación}
 La matriz de transformación es aquella que se aplica a los diferentes vértices cuando son llamados y que acumula operaciones de \textbf{Translación}, \textbf{Rotación} y \textbf{Escalado}.
  \begin{figure}[ht]
-  \centering
+   \centering
+   \[
   \begin{bmatrix}
     1 && 0 && 0 && x\\
     0 && 1 && 0 && y\\
     0 && 0 && 1 && z\\
     0 && 0 && 0 && 1
   \end{bmatrix}
+  \]
  \end{figure}
  \subsection{Operación: Reseteo}
 Para restaurar la matriz a su estado original se hace uso de la función
@@ -22,7 +24,7 @@ Con la operación de Traslación se desplaza la matriz de transformación por un
 \end{lstlisting}
 En los argumentos ponemos los valores del vector deseado.
 \subsubsection{Operación matemática}
-\(\overrightarrow{V}}\) es el vector que hemos pasado como argumento, \(\mathbf{transf}\) es la matriz de transformación.
+\(\overrightarrow{V}\) es el vector que hemos pasado como argumento, \(\mathbf{transf}\) es la matriz de transformación.
 \begin{equation}
   \begin{bmatrix}
     1 && 0 && 0 && \overrightarrow{V}_x\\

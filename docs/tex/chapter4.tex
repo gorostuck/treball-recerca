@@ -6,12 +6,12 @@ Un nodo es una estructura básica multiprósito que además de contener valores 
 \begin{lstlisting}[language=C]
   struct Node {
     GLenum Type;          // Tipo de nodo
-    GLfloat Real[4];      // Matriz de coordenadas reales
-    GLfloat Projected[4]; // Matriz de coordenadas proyectadas
-    GLfloat Screen[3];    // Matriz de coordenadas en la pantalla
+    GLfloat Real[4];      // Matriz coordenadas reales
+    GLfloat Projected[4]; // Matriz coordenadas proyectadas
+    GLfloat Screen[3];    // Matriz coordenadas pantalla
     GLfloat Color[4];     // Matriz con los colores
     struct Node *next;    // Puntero hacia el nodo a la derecha  
-    struct Node *inf;     // Punerto hacia el nodo debajo de este
+    struct Node *inf;     // Punerto hacia el nodo debajo
   };
 \end{lstlisting}
 \subsection{Tipos de nodos}
@@ -24,12 +24,13 @@ Básicamente podemos distinguir entre los diferentes tipos de nodos dependiendo 
 \section{Organización de la información dentro de las matrices del nodo}
 En el nodo de un vértice se puede encontrar la información del mismo en las siguientes matrices.
 \begin{figure}[ht]
+  \[
   \centering
   \begin{bmatrix}
     x_{real} \\
     y_{real} \\
     z_{real}  \\
-    1
+    1 
   \end{bmatrix}
   \begin{bmatrix}
     x_{proyectada} \\
@@ -48,6 +49,7 @@ En el nodo de un vértice se puede encontrar la información del mismo en las si
     color_b \\
     color_a
   \end{bmatrix}
+  \]
   \caption{Matriz de las coordenadas reales, las coordenads proyectadas, las coordenadas en la pantalla y el color.}
 \end{figure}
 \section{Sintaxis de la gestión de vértices}
