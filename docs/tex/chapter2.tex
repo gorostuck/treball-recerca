@@ -57,10 +57,8 @@ Para compilar macOS es un poco más laborioso debido a que no tiene un gestor de
 \end{lstlisting}
 Si las \textit{Command Line Tools} no han sido instaladas previamente, la primera vez que intentemos utilizar el comando \textit{make} nos saltará una ventana preguntando si deseamos instalar las herramientas, para poder compilar el programa será necesario utilizar esas herramientas.
 
-
-
 \subsubsection{Microsoft Windows}
-TODO: ¿Quiero entrar en profundidad sobre cómo compilar en Windows?
+Se recomienda fuertemente utilizar Code::Blocks para compilar en MS Windows, aunque es posible simular el compilador usado en los demás entornos (y de hecho es lo que ocurre en Code::Blocks).
 
 \subsubsection{Code::Blocks}
 Aunque no es mi entorno favorito, la verdad es que utilizar Code::Blocks es bastante conveniente y ha sido de utilidad para la depuración. Es tan sencillo como ir a la página y descargar Code::Blocks. Una vez descargado codeblocks, abrir el archivo .cbp dentro de la carpeta del proyecto y todo está listo para compilar y ejecutar. Otra ventaja que tiene es que es multiplataforma con lo que se puede usar en GNU Linux, macOS y en Windows. De hecho se recomienda usar Code::Blocks cuando se trabaje en Windows.
@@ -78,3 +76,47 @@ Git es un programa utilizado para controlar un repositorio de código. En concre
 Para redactar el documento escrito he utilizado \LaTeX, un lenguaje de programación orientado al procesamiento de texto. Esta herramienta me ha permitido organizar el Treball de Recerca de forma simple y efectiva, además de incluir trozos de código y comandos e incluso expresión matemática.
 \subsection{GNU Emacs}
 He decidido dar a GNU Emacs su propia subsección debido a que lo he usado constantemente a lo largo de la elaboración de este Treball de Recerca. Lo he usado tanto para programar la librería gráfica y el motor como para documentar todo el proceso. Además también me ha permitido hacer \textit{version control}, compilar e incluso ejecutar el motor gráfico desde el mismo programa. Decidí utilizarlo porque así me permitiría aumentar en gran medida mi rendimiento. Puesto a que es un programa extremadamente complejo, no entraré en gran detalle, pero las principales ventajas que ofrece es la gran modularidad y customizabilidad, por lo que lo he ido adaptando a mis necesidades según he ido avanzando en el proyecto.
+\newpage
+\section{Gestión de matrices}
+La librería hace uso de las siguientes matrices:
+\begin{itemize}
+\item{\textbf{GL\_MODELVIEW}: Se utiliza para hacer transformaciones en los objetos. Más en el capítulo 5.}
+\item{\textbf{GL\_PROJECTION}: Se utiliza para crear el volumen de visión, más en el capítulo 6.}
+\end{itemize}
+\subsection{Selección de la matriz}
+Para seleccionar la matriz en la que se quiere trabajar se usa la función
+\begin{lstlisting}[language=C]
+  glMatrixMode(GLEnum matriz_deseada);
+\end{lstlisting}
+Y como único argumento pasamos el nombre de la matriz que queremos seleccionar, \textbf{GL\_MODELVIEW} o \textbf{GL\_PROJECTION}.
+\subsection{Reseteo de la matriz}
+Al llamar a la función
+\begin{lstlisting}[language=C]
+  glLoadIdentity();
+\end{lstlisting}
+la matriz que esté seleccionada actualmente verá sus valores cambiados por los siguientes.
+\begin{figure}[ht]
+  \centering
+  \[
+  \begin{bmatrix}
+    1 && 0 && 0 && 0\\
+    0 && 1 && 0 && 0\\
+    0 && 0 && 1 && 0\\
+    0 && 0 && 0 && 1
+  \end{bmatrix}
+  \]
+\end{figure}
+\subsection{Multiplicación de la matriz}
+Multiplica la matriz selecionada por la matriz especificada.
+\begin{lstlisting}[language=C]
+  glMultMatrix(GLfloat *m);
+\end{lstlisting}
+m es un puntero hacia 16 floats consecutivos que representan una matriz 4x4.
+\subsection{Carga de la matriz}
+Se pueden sustituir los valores de la matriz seleccionada con la función
+\begin{lstlisting}[language=C]
+  glLoadMatrix(GLfloat *m)
+\end{lstlisting}
+m es un puntero hacia 16 floats consecutivos que representan una matriz 4x4.
+
+
