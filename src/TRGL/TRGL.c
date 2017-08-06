@@ -88,17 +88,18 @@ GLAPI void GLAPIENTRY glVertex2f(float x, float y)
   temp->Real[2] = 0;
   temp->Real[3] = 1;
 
-  float REAL[16] = { 0, 0, 0, x,
-		     0, 0, 0, y,
-		     0, 0, 0, 0,
+  float REAL[16] = { 1, 0, 0, x,
+		     0, 1, 0, y,
+		     0, 0, 1, 0,
 		     0, 0, 0, 1};
 
-  multiply_matrix_4x4_1x4(MAT, REAL);
-
-  temp->Real[0]=REAL[3];
-  temp->Real[1]=REAL[7];
-  temp->Real[2]=REAL[11];
-  temp->Real[3]=REAL[15];
+  float NEW_REAL[16];
+  multiply_matrix_4x4_1x4(MAT, REAL, NEW_REAL);
+  
+  temp->Real[0]=NEW_REAL[3];
+  temp->Real[1]=NEW_REAL[7];
+  temp->Real[2]=NEW_REAL[11];
+  temp->Real[3]=NEW_REAL[15];
 
   //printf("%f, %f, %f, %f\n", temp->Real[X], temp->Real[Y], temp->Real[Z], temp->Real[W]);
 
@@ -288,7 +289,9 @@ GLAPI void GLAPIENTRY glRotatef(GLfloat angle,
  
 GLAPI void GLAPIENTRY glMultMatrixf( const GLfloat *m )
 {
-  multiply_matrix_4x4_1x4(m, MAT);
+  float NEW_MAT[16];
+  multiply_matrix_4x4_1x4(MAT, m, NEW_MAT);
+  copy_matrix4x4f(NEW_MAT, MAT);
 }
 
 void gluPerspective(GLdouble fovy,
