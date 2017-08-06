@@ -1,6 +1,7 @@
 /* Este archivo se debería de terminar por separar con el tiempo */
 #include "TRGL.h"
 #include "TRGL_math.h"
+#include <math.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -261,7 +262,7 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   SDL_RenderPresent(renderer);
 }
 
-GLAPI void GLAPIENTRY glTranslatef( GLfloat x, GLfloat y, GLfloat z )
+GLAPI void GLAPIENTRY glTranslatef(GLfloat x, GLfloat y, GLfloat z )
 {
   const float m[16] = { 1, 0, 0, x,
 			0, 1, 0, y,
@@ -270,6 +271,21 @@ GLAPI void GLAPIENTRY glTranslatef( GLfloat x, GLfloat y, GLfloat z )
   glMultMatrixf(m);
 }
 
+GLAPI void GLAPIENTRY glRotatef(GLfloat angle,
+				GLfloat x,
+				GLfloat y,
+				GLfloat z)
+{
+  GLfloat c = cos(angle);
+  GLfloat s = sin(angle);
+
+  const float m[16] = {   pow(x,2)*(1-c)+c, x*y*(1-c)-z*s, x*z*(1-c)+y*s, 0,
+			  y*x*(1-c)+z*s,  pow(y,2)*(1-c)+c,  y*z*(1-c)-x*s, 0,
+			  x*z*(1-c)-y*s, y*z*(1-c)+x*s,   pow(z,2)*(1-c)+c, 0,
+			  0,             0,              0, 1 };
+  glMultMatrixf(m);
+}
+ 
 GLAPI void GLAPIENTRY glMultMatrixf( const GLfloat *m )
 {
   multiply_matrix_4x4_1x4(m, MAT);
