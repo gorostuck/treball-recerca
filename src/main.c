@@ -171,8 +171,8 @@ void render()
     //glRotatef(0.14f,0.0f,1.0f,0.0f);    // Rotate The cube around the Y axis
     //glRotatef(0.5f, 0.0f,0.0f,1.0f);
 
-    glTranslatef(0.01f, 0.0f, 0.0f);
-    glRotatef(1.0f, 0.0f, 0.0f, 1.0f);
+    // glTranslatef(0.1f, 0.0f, 0.0f);
+    glRotatef(0.01f, .0f, 0.0f, 1.0f);
    
     glColor3f(0.0f,1.0f,0.0f);
     
@@ -183,7 +183,7 @@ void render()
     glVertex2f( -0.75f, 0.75f );
     
 
-    /* glVertex2f(-val/2, -val/2); */
+    // glVertex2f(-val/2, -val/2); 
     /* glVertex2f(val/2, -val/2); */
     /* glVertex2f(val/2, val/2); */
     /* glVertex2f(-val/2, val/2); */

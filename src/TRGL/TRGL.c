@@ -94,7 +94,7 @@ GLAPI void GLAPIENTRY glVertex2f(float x, float y)
 		     0, 0, 0, 1};
 
   float NEW_REAL[16];
-  multiply_matrix_4x4_1x4(MAT, REAL, NEW_REAL);
+  multiply_matrix_4x4_1x4(REAL, MAT, NEW_REAL);
   
   temp->Real[0]=NEW_REAL[3];
   temp->Real[1]=NEW_REAL[7];
