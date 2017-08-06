@@ -1,3 +1,29 @@
 \chapter{Introducción a la librería gráfica}
-En este capítulo se hablará en general de lo que es una librería gráfica y su funcionamiento. También se observaran las diferencias entre la librería gráfica que estoy utilizando y OpenGL.
-\section{Pipeline}
+Una librería gráfica es una librería diseñada para ayudar a renderizar gráficos computados a un monitor. Esto típicamente involucra procurar de versiones optimizadas de funciones que llevan tareas de renderización comunes. Esto se puede hacer puramente con el software funcionando en la CPU, como es común en los sistemas enlazados o con hardware accelerado por una GPU, más común en los PCs. Utilizando estas funciones un programa puede ensablar una imagen para ser mostrada en un monitor. Eso le permite al programador saltarse el paso de crear y optimizar estas funciones, y le permite centrarse en construir el programa gráfico. Las librerías gráficas se usan principalmente en videojuegos y simulaciones.
+Algunos ejemplos de librerías gráficas son los siguientes:
+\begin{itemize}
+\item{Direct3D}
+\item{Mantle}
+\item{Metal}
+\item{OpenGL}
+\item{Vulkan}
+\end{itemize}
+Para este proyecto se ha tomado como referencia OpenGL.
+\section{Pipeline de geometría}
+Los siguientes capítulos siguen un orden explicando las diferentes fases de la \textit{pipeline} de los gráficos computados.
+\subsection{Espacio local del objeto}
+Es el espacio en el que se definen las coordenadas de los vértices, las normales y otros. Esto ocurre antes de que tome lugar cualquier transformación.
+\subsection{Espacio de vista y transformación de la vista del modelo}
+Es donde se calcula la iluminación por vértice. La camara está en (0,0,0) y la dirección de la vista es (0,1,0). La posición de la iluminación está guardada en este espacio después de ser multiplicada por la matriz de vista del modelo. Las normales de los vértices son consumidos por la \textit{pipeline} en este espacio para la ecuación de iluminación.
+\subsection{Espacio de clipping y transformación de proyección}
+Está después de la proyección y antes de la división de perspectiva. El \textit{clipping} contra el \textit{view frustum} se hace en este espacio.
+\begin{equation}
+  -w <= x <= w;
+  -w <= y <= w;
+  -w <= z <= w;
+  \end{equation}
+\subsection{Espacio NDC y división de perspectiva}
+El espcio NDC es aquel con coordenadas normalizadas, para llegar a este espacio se divide $(x,y,z,w)$ por $w$ donde $w = \frac{z}{-d}$ ($d=1$ en OpenGL así que $w= -z$).
+Resulta en un efecto escorzado.
+\subsection{Espacio de la pantalla y escalado y translación}
+Consiste en mapear las coordenadas NDC a la ventana. $X$ y $Y$ son íntegros, relativos a la esquina izquierda inferior de la ventana. Las $Z$ son escaladas y sesgadas a [0,1]. La rasterización se produce en este espacio.
