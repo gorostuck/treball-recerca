@@ -150,9 +150,9 @@ int initGL()
 void handleKeys( unsigned char key, int x, int y )
 {
   if (key=='q') quit = true;
-  if (key=='r') glClearColor(1.f, 0.f, 0.f, 0.f);
-  if (key=='g') glClearColor(0.f, 1.f, 0.f, 0.f);
-  if (key=='b') glClearColor(0.f, 0.f, 1.f, 0.f);
+  if (key=='r') glColor3f(1.f, 0.f, 0.f);
+  if (key=='g') glColor3f(0.f, 1.f, 0.f);
+  if (key=='b') glColor3f(0.f, 0.f, 1.f);
 
 }
 
@@ -172,10 +172,8 @@ void render()
     //glRotatef(0.5f, 0.0f,0.0f,1.0f);
 
     // glTranslatef(0.1f, 0.0f, 0.0f);
-    glRotatef(0.01f, .0f, 0.0f, 1.0f);
+    glRotatef(1.f, .0f, 0.0f, 1.0f);
    
-    glColor3f(0.0f,1.0f,0.0f);
-    
     glBegin( GL_QUADS );
     glVertex2f( -0.75f, -0.75f );
     glVertex2f( 0.75f, -0.75f );

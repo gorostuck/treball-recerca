@@ -1,4 +1,5 @@
 #include "TRGL_math.h"
+#include <stdio.h>
 
 
 void empty_matrix(float *M, int length)
@@ -15,21 +16,15 @@ void multiply_matrix_3x3_1x3(float M1[9], float M2[3], float RET[3])
   RET[2] = M1[6]*M2[0] + M1[7]*M2[1] + M1[8]*M2[2];
 }
 
-void multiply_matrix_4x4_1x4(const float M1[16], float M2[16], float MR[16])
+void multiply_matrix_4x4_1x4(const float M1[16], const float M2[16], float MR[16])
 {
 
-  printf("Matriz 1:\n");
-  print_matrix4x4(M1);
-  printf("Matriz 2:\n");
-  print_matrix4x4(M2);
   for (unsigned int i = 0; i < 16; i += 4)
     for (unsigned int j = 0; j < 4; ++j)
       MR[i + j] = (M2[i + 0] * M1[j +  0])
 	+ (M2[i + 1] * M1[j +  4])
 	+ (M2[i + 2] * M1[j +  8])
 	+ (M2[i + 3] * M1[j + 12]);
-  printf("Resultado:\n");
-  print_matrix4x4(MR);
 }
 
 void print_matrix4x4(float *m)

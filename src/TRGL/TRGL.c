@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define PI 3.14159265
 
 struct Node *first, *current, *temp;
 SDL_Renderer *renderer;
@@ -229,12 +230,22 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
       if (current->Type==GL_QUADS) {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	if (state==3) {
+	  SDL_SetRenderDrawColor(renderer,
+				 (int)temp->Color[0] * 255,
+				 (int)temp->Color[1] * 255,
+				 (int)temp->Color[2] * 255,
+				 (int)temp->Color[3] * 255);
 	  SDL_RenderDrawLine(renderer,
 			     temp->Screen[0], temp->Screen[1],
 			     mem1->Screen[0], mem1->Screen[1]);
 	  state = 0;
 	}
 	else {
+	  SDL_SetRenderDrawColor(renderer,
+				 (int)temp->Color[0] * 255,
+				 (int)temp->Color[1] * 255,
+				 (int)temp->Color[2] * 255,
+				 (int)temp->Color[3] * 255);
 	  SDL_RenderDrawLine(renderer,
 			     temp->Screen[0], temp->Screen[1],
 			     temp->inf->Screen[0], temp->inf->Screen[1]);
@@ -277,6 +288,7 @@ GLAPI void GLAPIENTRY glRotatef(GLfloat angle,
 				GLfloat y,
 				GLfloat z)
 {
+  angle = angle * (PI / 180.0f);
   GLfloat c = cos(angle);
   GLfloat s = sin(angle);
 
