@@ -59,6 +59,9 @@ void render();
 //Frees media and shuts down SDL
 void close_window();
 
+//Iterates through a 4x4 matrix and prints the values
+void print_matrix(float *m);
+
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
@@ -131,12 +134,12 @@ int initGL()
   //Initialize Projection Matrix
   glMatrixMode( GL_PROJECTION );
   glLoadIdentity();
-  
+  glOrtho(-1.0, 1.0, -1.0, 1.0, 1.0, -1.0);
 
+  
   //Initialize Modelview Matrix
   glMatrixMode( GL_MODELVIEW );
   glLoadIdentity();
-  
 
   //Initialize clear color
   glClearColor( 1.f, 1.f, 1.f, 0.f );
@@ -158,12 +161,12 @@ void handleKeys( unsigned char key, int x, int y )
   if (key=='e') glTranslatef(0.0f, 0.0f, 0.01f);
   if (key=='d') glTranslatef(0.0f, 0.0f, -0.01f);
 
-  if (key=='r') glRotatef(1.f, 1.0f, 0.0f, 0.0f);
-  if (key=='f') glRotatef(1.f, -1.0f, 0.0f, 0.0f);
-  if (key=='t') glRotatef(1.f, 0.0f, 1.0f, 0.0f);
-  if (key=='g') glRotatef(1.f, 0.0f, -1.0f, 0.0f);
-  if (key=='y') glRotatef(1.f, 0.0f, 0.0f, 1.0f);
-  if (key=='h') glRotatef(1.f, 0.0f, 0.0f, -1.0f);
+  if (key=='r') glRotatef(5.f, 1.0f, 0.0f, 0.0f);
+  if (key=='f') glRotatef(5.f, -1.0f, 0.0f, 0.0f);
+  if (key=='t') glRotatef(5.f, 0.0f, 1.0f, 0.0f);
+  if (key=='g') glRotatef(5.f, 0.0f, -1.0f, 0.0f);
+  if (key=='y') glRotatef(5.f, 0.0f, 0.0f, 1.0f);
+  if (key=='h') glRotatef(5.f, 0.0f, 0.0f, -1.0f);
 
   
 
@@ -188,30 +191,29 @@ void render()
     //glRotatef(0.5f, 0.0f,0.0f,1.0f);
 
     // glTranslatef(0.1f, 0.0f, 0.0f);
-    //glRotatef(1.f, .0f, 0.0f, 1.0f);
+    //    glRotatef(90.f, .0f, 0.0f, 1.0f);
     glColor3f(0.0f, 0.0f, 0.0f);
     glBegin( GL_QUADS );
     
-    glVertex3f( -0.25f, -0.25f , 0.25f);
-    glVertex3f( 0.25f, -0.25f , 0.25f);
-    glVertex3f( 0.25f, 0.25f , 0.25f);
-    glVertex3f(-0.25f, 0.25f, 0.25f);
+    glVertex3f( -0.25f, -0.25f , 0.5f);
+    glVertex3f( 0.25f, -0.25f , 0.5f);
+    glVertex3f( 0.25f, 0.25f , 0.5f);
+    glVertex3f(-0.25f, 0.25f, 0.5f);
 
     glVertex3f( -0.25f, -0.25f , 0.0f);
     glVertex3f( 0.25f, -0.25f , 0.0f);
     glVertex3f( 0.25f, 0.25f , 0.0f);
     glVertex3f(-0.25f, 0.25f, 0.0f);
 
-    glVertex3f( -0.25f, -0.25f , 0.25f);
-    glVertex3f( 0.25f, -0.25f , 0.25f);
+    glVertex3f( -0.25f, -0.25f , 0.5f);
+    glVertex3f( 0.25f, -0.25f , 0.5f);
     glVertex3f( 0.25f, -0.25f , 0.0f);
     glVertex3f(-0.25f, -0.25f, 0.0f);
 
-    glVertex3f( -0.25f, 0.25f , 0.25f);
-    glVertex3f( 0.25f, 0.25f , 0.25f);
+    glVertex3f( -0.25f, 0.25f , 0.5f);
+    glVertex3f( 0.25f, 0.25f , 0.5f);
     glVertex3f( 0.25f, 0.25f , 0.0f);
     glVertex3f(-0.25f, 0.25f, 0.0f);
-
     
     // glVertex2f(-val/2, -val/2); 
     /* glVertex2f(val/2, -val/2); */
@@ -234,6 +236,19 @@ void render()
     /* glVertex2f( -val/3, val/3 ); */
     
     glEnd();
+    /*
+    GLfloat M_MAT[16], P_MAT[16];
+    glGetFloatv(GL_MODELVIEW_MATRIX, M_MAT);
+    glGetFloatv(GL_PROJECTION_MATRIX, P_MAT);
+    printf("MODELVIEW MATRIX: \n");
+    print_matrix(M_MAT);
+    printf("PERSPECTIVE MATRIX: \n");
+    print_matrix(P_MAT);
+    SDL_Delay(5);
+    */
+
+    
+    //glLoadIdentity();
     val -= 0.01f;
   }
 }
@@ -293,9 +308,8 @@ void close_window()
 #ifdef TRGL_MODE
 	    SDL_TR_SwapWindow(gWindow);
 #else
-            SDL_GL_SwapWindow( gWindow );
+	    SDL_GL_SwapWindow( gWindow );
 #endif
-	    SDL_Delay(5);
         }
         //Disable text input
         SDL_StopTextInput();
@@ -311,4 +325,14 @@ void close_window()
     return 0;
 }
 
-
+void print_matrix(float *m)
+{
+  for (unsigned int i = 0; i < 16; ++i) {
+    printf("%f ", m[i]);
+    if (i  == 3 || i==7 || i==11 || i==15)
+      printf("\n");
+    if (i == 15)
+      printf("\n");
+    
+  }
+}

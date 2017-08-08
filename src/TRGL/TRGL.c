@@ -56,23 +56,19 @@ GLAPI void GLAPIENTRY glVertex3f(float x, float y, float z)
   }
 
   /* Asignación de coordenadas reales */
-  float REAL[16] = { 1, 0, 0, x,
-		     0, 1, 0, y,
-		     0, 0, 1, z,
-		     0, 0, 0, 1};
-  float NEW_REAL[16];
-  multiply_matrix_4x4_1x4(REAL, MAT, NEW_REAL);
+  float REAL[16] = { 1, 0, 0, 0,
+		     0, 1, 0, 0,
+		     0, 0, 1, 0,
+		     x, y, z, 1};
+
   
-  temp->Real[0]=NEW_REAL[3];
-  temp->Real[1]=NEW_REAL[7];
-  temp->Real[2]=NEW_REAL[11];
-  temp->Real[3]=NEW_REAL[15];
-  
-  /* Ahora debería de calcular las proyecciones */
-  temp->Projected[0] = temp->Real[0];
-  temp->Projected[1] = temp->Real[1];
-  temp->Projected[2] = temp->Real[2];
-  temp->Projected[3] = temp->Real[3];
+  float MULT_MATRIX[16], RES[16];
+  multiply_matrix_4x4_1x4(P_MAT, M_MAT, MULT_MATRIX);
+  multiply_matrix_4x4_1x4(MULT_MATRIX, REAL, RES);
+
+  temp->Projected[0] =RES[12];
+  temp->Projected[1] =RES[13];
+  temp->Projected[2] =1 ;
 
   /* Asignación de colores */
   temp->Color[0] = first->Color[0];
@@ -225,7 +221,6 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   screen_matrix[5] = (float)delta_y/2 + y_m;
   screen_matrix[8] = 1;
 
-
   /* Primero se calcula la posición en la pantalla de todos los puntos */
   for (current=first;current!=NULL;current=current->next){
     for (temp=current->inf;temp!=NULL;temp=temp->inf){
@@ -290,10 +285,10 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
 
 GLAPI void GLAPIENTRY glTranslatef(GLfloat x, GLfloat y, GLfloat z )
 {
-  const float m[16] = { 1, 0, 0, x,
-			0, 1, 0, y,
-			0, 0, 1, z,
-			0, 0, 0, 1 };
+  const float m[16] = { 1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			x, y, z, 1 };
   glMultMatrixf(m);
 }
 
@@ -340,4 +335,21 @@ GLAPI void GLAPIENTRY glOrtho( GLdouble left, GLdouble right,
                                  GLdouble bottom, GLdouble top,
                                  GLdouble near_val, GLdouble far_val )
 {
+  float tx = - (right + left)/(right-left);
+  float ty = - (top+bottom)/(top-bottom);
+  float tz = - (far_val+near_val)/(far_val-near_val);
+  
+  float m[16] = { 2/(right-left) , 0, 0, tx,
+		  0, 2/(top-bottom), 0,  ty,
+		  0, 0, (-2)/(far_val-near_val), tz,
+		  0, 0, 0, 1};
+  glMultMatrixf(m);
+}
+
+GLAPI void GLAPIENTRY glGetFloatv(GLenum pname, GLfloat *params)
+{
+  if ((pname & GL_MODELVIEW_MATRIX) == GL_MODELVIEW_MATRIX)
+    copy_matrix4x4f(M_MAT, params);
+  if ((pname & GL_PROJECTION_MATRIX) == GL_PROJECTION_MATRIX)
+    copy_matrix4x4f(M_MAT, params);
 }

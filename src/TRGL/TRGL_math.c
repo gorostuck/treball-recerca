@@ -29,14 +29,13 @@ void multiply_matrix_4x4_1x4(const float M1[16], const float M2[16], float MR[16
 
 void print_matrix4x4(float *m)
 {
- for (unsigned int i = 0; i < 16; ++i)
-    {
-      printf("%f ", m[i]);
-      if (i  == 3 || i==7 || i==11 || i==15)
-	printf("\n");
-      if (i == 15)
-	printf("\n");
-    }
+  for (unsigned int i = 0; i < 16; ++i){
+    printf("%f ", m[i]);
+    if (i  == 3 || i==7 || i==11 || i==15)
+      printf("\n");
+    if (i == 15)
+      printf("\n");
+  }
 }
 
 void copy_matrix4x4f(float matrix_a[16], float matrix_b[16])
