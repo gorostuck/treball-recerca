@@ -45,7 +45,7 @@ GLAPI void GLAPIENTRY glBegin(GLenum mode)
   current->inf  = NULL;
 }
 
-GLAPI void GLAPIENTRY glVertex(float x, float y, float z)
+GLAPI void GLAPIENTRY glVertex3f(float x, float y, float z)
 {
   if (current->inf == NULL) {
     current->inf = malloc(sizeof(struct Node));
@@ -56,12 +56,23 @@ GLAPI void GLAPIENTRY glVertex(float x, float y, float z)
   }
 
   /* Asignación de coordenadas reales */
-  temp->Real[0] = x;
-  temp->Real[1] = y;
-  temp->Real[2] = z;
-  temp->Real[3] = 1;
-
+  float REAL[16] = { 1, 0, 0, x,
+		     0, 1, 0, y,
+		     0, 0, 1, z,
+		     0, 0, 0, 1};
+  float NEW_REAL[16];
+  multiply_matrix_4x4_1x4(REAL, MAT, NEW_REAL);
+  
+  temp->Real[0]=NEW_REAL[3];
+  temp->Real[1]=NEW_REAL[7];
+  temp->Real[2]=NEW_REAL[11];
+  temp->Real[3]=NEW_REAL[15];
+  
   /* Ahora debería de calcular las proyecciones */
+  temp->Projected[0] = temp->Real[0];
+  temp->Projected[1] = temp->Real[1];
+  temp->Projected[2] = temp->Real[2];
+  temp->Projected[3] = temp->Real[3];
 
   /* Asignación de colores */
   temp->Color[0] = first->Color[0];
@@ -227,7 +238,8 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
   struct Node *mem1;
   for (current=first;current!=NULL;current=current->next){
     for (temp=current->inf;temp!=NULL;temp=temp->inf){
-      if (current->Type==GL_QUADS) {
+      if (current->Type==GL_QUADS)
+	{
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	if (state==3) {
 	  SDL_SetRenderDrawColor(renderer,
@@ -253,7 +265,9 @@ void SDL_TR_SwapWindow(SDL_Window *gWindow)
 	    mem1 = temp;
 	  ++state;
 	}
+	
       }
+      
     }
   }
 
