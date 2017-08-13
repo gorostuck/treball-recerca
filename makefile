@@ -1,5 +1,6 @@
 APPNAME := bin/program
 SOURCES := $(wildcard src/*.cpp src/*.cu src/*.c)
+TRGL_SOURCES := $(wildcard src/*.cpp src/*.cu src/*.c)
 OBJECTS := $(patsubst src%,obj%, $(patsubst %.cu,%.device.o, $(patsubst %.cpp,%.o, $(patsubst %.c,%.o, $(SOURCES)))))
 
 INCLUDE := 
@@ -62,10 +63,18 @@ endif
 
 
 trgl:
-	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/TRGL_math.c -o src/TRGL/TRGL_math.o
-	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/TRGL.c -o src/TRGL/TRGL.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Stack.c  -o obj/Stack.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Objects.c  -o obj/Objects.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Examples.c  -o obj/Examples.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Renderer.c  -o obj/Renderer.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/List.c  -o obj/List.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Node.c  -o obj/Node.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Matrix.c  -o obj/Matrix.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Execute.c  -o obj/Execute.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Scanner.c  -o obj/Scanner.o
+	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/TRGL/Init.c  -o obj/Init.o
 	$(CC) $(INCLUDE) -g -D TRGL_MODE -c src/main.c  -o obj/main.o
-	$(CC) $(OBJECTS) -g src/TRGL/TRGL_math.o src/TRGL/TRGL.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
+	$(CC) $(OBJECTS) -g obj/Stack.o obj/Objects.o obj/Examples.o obj/Renderer.o obj/List.o obj/Node.o obj/Matrix.o obj/Execute.o obj/Scanner.o obj/Init.o $(CCFLAGS) -DTRGL_MODE -lSDL2main -lSDL2 $(INCLUDE) $(LIBPATH) -o $(APPNAME)  $(LIBS)
 
 %.o: ../src/%.c
 	$(CC) $(CCFLAGS) $(INCLUDE) -c $< -o $@

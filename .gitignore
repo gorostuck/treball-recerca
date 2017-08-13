@@ -35,6 +35,10 @@
 *.toc
 *.tex~
 
+#Emacs
+*.c~
+*.h~
+
 *.DS_Store
 
 # Exceptions
