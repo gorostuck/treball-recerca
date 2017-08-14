@@ -5,12 +5,19 @@
 #include <stdio.h>
 #include <math.h>
 
+
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-#include "TRGL/Init.h"
+
+#include "Init.h"
+#include "Renderer.h"
+
+#ifdef TRGL_MODE
 #include "TRGL/Scanner.h"
 #include "TRGL/Execute.h"
+#endif /* TRGL_MODE */
 
 //#define SCREEN_WIDTH   640
 //#define SCREEN_HEIGHT  640

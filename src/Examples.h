@@ -7,7 +7,6 @@
 
 #include "Objects.h"
 #include "Init.h"
-#include "Scanner.h"
 
 void Example1(void);
 void Example2(void);

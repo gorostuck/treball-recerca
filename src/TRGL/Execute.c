@@ -274,3 +274,33 @@ GLboolean SDL_TR_Poligon(void)
 
   return SDL_TRUE;
 }
+
+/* Estas funciones son para cubrir la magia de OpenGL y SDL2 */
+
+GLboolean SDL_TR_CreateRenderer(SDL_Window *_gWindow)
+{
+  renderer = SDL_CreateRenderer(_gWindow, -1, SDL_RENDERER_SOFTWARE); // También podría poner SDL_RENDERER_HARDWARE
+
+  if (renderer == NULL)
+    return SDL_FALSE;
+
+  CreateFirstList();
+
+  CreateFirsStack();
+
+  InitMatrix();
+
+  return SDL_TRUE;
+}
+
+void SDL_TR_Quit()
+{
+  FreeAllLists();
+  //FreeStacks();
+  SDL_Quit();
+}
+
+void InitMatrix(void)
+{
+  memcpy(firstList->firstNode->Matrix, Identity, sizeof16GLfloat);
+}

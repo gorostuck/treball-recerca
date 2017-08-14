@@ -56,21 +56,6 @@ void handleKeys(unsigned char key, int x, int y)
     }
 }
 
-GLboolean SDL_TR_CreateRenderer(SDL_Window *_gWindow)
-{
-  renderer = SDL_CreateRenderer(_gWindow, -1, SDL_RENDERER_SOFTWARE); // También podría poner SDL_RENDERER_HARDWARE
-
-  if (renderer == NULL)
-    return SDL_FALSE;
-
-  CreateFirstList();
-
-  CreateFirsStack();
-
-  InitMatrix();
-
-  return SDL_TRUE;
-}
 
 void close_window()
 {
@@ -78,14 +63,13 @@ void close_window()
   SDL_DestroyWindow(gWindow);
   gWindow = NULL;
 
-  //Quit SDL subsystems
+#ifdef TRGL_MODE
+  SDL_TR_Quit();
+#else
   SDL_Quit();
+#endif /* TRGL_MODE */
+  
 
-  FreeAllLists();
   //FreeStacks();
 }
 
-void InitMatrix(void)
-{
-  memcpy(firstList->firstNode->Matrix, Identity, sizeof16GLfloat);
-}

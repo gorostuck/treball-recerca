@@ -20,5 +20,10 @@ GLboolean SDL_TR_Line_loop(void);
 GLboolean SDL_TR_Triangles(void);
 GLboolean SDL_TR_Quads(void);
 GLboolean SDL_TR_Poligon(void);
+GLboolean SDL_TR_CreateRenderer(SDL_Window *gWindow);
+
+void SDL_TR_Quit();
+void InitMatrix();
+
 
 #endif // EXECUTE_H_INCLUDED

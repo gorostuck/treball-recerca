@@ -8,10 +8,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-#include "Node.h"
-#include "List.h"
-#include "Matrix.h"
-#include "Scanner.h"
 
 SDL_bool quit;
 
@@ -45,18 +41,18 @@ void handleKeys(unsigned char key, int x, int y);
 //Per frame update
 //void update();
 
-//Renders quad to the screen
-void render();
-
 //Frees media and shuts down SDL
 void close_window();
-
-GLboolean SDL_TR_CreateRenderer(SDL_Window *_gWindow);
 
 GLboolean SDL_TR_SwapWindow(void);
 //void SDL_TR_SwapWindow(SDL_Window *_gWindow);
 
-void InitMatrix(void);
-
+/* No están definidas aquí */
+void SDL_TR_Quit();
+GLboolean SDL_TR_CreateRenderer(SDL_Window *gWindow);
+void SDL_TR_Perspective(GLfloat fovY, GLfloat aspect, GLfloat front, GLfloat back);
+void gluLookAt(GLdouble eyex, GLdouble eyey, GLdouble eyez,
+	       GLdouble centerx, GLdouble centery, GLdouble centerz,
+	       GLdouble upx, GLdouble upy, GLdouble upz);
 
 #endif // INITWINDOW_H_INCLUDED
