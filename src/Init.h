@@ -47,12 +47,5 @@ void close_window();
 GLboolean SDL_TR_SwapWindow(void);
 //void SDL_TR_SwapWindow(SDL_Window *_gWindow);
 
-/* No están definidas aquí */
-void SDL_TR_Quit();
-GLboolean SDL_TR_CreateRenderer(SDL_Window *gWindow);
-void SDL_TR_Perspective(GLfloat fovY, GLfloat aspect, GLfloat front, GLfloat back);
-void gluLookAt(GLdouble eyex, GLdouble eyey, GLdouble eyez,
-	       GLdouble centerx, GLdouble centery, GLdouble centerz,
-	       GLdouble upx, GLdouble upy, GLdouble upz);
 
 #endif // INITWINDOW_H_INCLUDED

@@ -1,5 +1,9 @@
 #include "Init.h"
 
+#ifdef TRGL_MODE
+#include "TRGL/TRGL.h"
+#endif /* TRGL_MODE */
+
 //The renderer
 SDL_Renderer *renderer = NULL;
 
@@ -27,7 +31,13 @@ int init_window(void)
       return SDL_FALSE;
     }
     else {
+      
+#ifdef TRGL_MODE
       SDL_TR_CreateRenderer(gWindow);
+#else
+      SDL_GL_CreateContext(gWindow);
+#endif /* TRGL_MODE */
+      
       if (!initGL()) {
 	printf("Unable to initialize TRGL!\n");
 	//success = SDL_FALSE;
@@ -42,8 +52,6 @@ int init_window(void)
 int initGL()
 {
   glClear(GL_COLOR_BUFFER_BIT);
-	
-  //	glClearColor(1.f, 0.5f, 0.25f, 1.f);
 	
   return SDL_TRUE;
 }

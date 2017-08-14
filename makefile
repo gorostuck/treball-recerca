@@ -87,8 +87,12 @@ trgl:
 
 opengl:
 #	$(CC) $(INCLUDE) -g -c src/logic.c -o obj/logic.o
+	$(CC) $(INCLUDE) -g -c src/Objects.c  -o obj/Objects.o
+	$(CC) $(INCLUDE) -g -c src/Examples.c  -o obj/Examples.o
+	$(CC) $(INCLUDE) -g -c src/Renderer.c  -o obj/Renderer.o
+	$(CC) $(INCLUDE) -g -c src/Init.c  -o obj/Init.o
 	$(CC) $(INCLUDE) -g -c src/main.c  -o obj/main.o
-	$(CC) $(OBJECTS) -g $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -lSDL2main -lSDL2 -o $(APPNAME)  $(LIBS)
+	$(CC) obj/Objects.o obj/Examples.o obj/Renderer.o obj/Init.o obj/main.o -g $(CCFLAGS) $(GLFLAGS) $(INCLUDE) $(LIBPATH) -lSDL2main -lSDL2 -o $(APPNAME)  $(LIBS)
 
 clean:
 	rm -fr obj/*

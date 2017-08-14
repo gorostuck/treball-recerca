@@ -15,8 +15,7 @@
 #include "Renderer.h"
 
 #ifdef TRGL_MODE
-#include "TRGL/Scanner.h"
-#include "TRGL/Execute.h"
+#include "TRGL/TRGL.h"
 #endif /* TRGL_MODE */
 
 //#define SCREEN_WIDTH   640
