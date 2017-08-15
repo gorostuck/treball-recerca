@@ -17,40 +17,72 @@ extern struct List *firstList, *currentList;
 
 int init_window(void)
 {
-  //Initialize SDL
+#ifdef TRGL_MODE
+  return init_window_TRGL();
+#else
+  return init_window_openGL();
+#endif /* TRGL_MODE */
+}
+
+int init_window_openGL()
+{
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
-    //success = SDL_FALSE;
+    return SDL_FALSE;
+  }
+  else {
+    // Use OpenGL 2.1
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,2);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,1);
+    gWindow = SDL_CreateWindow("TRGL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+    if (gWindow == NULL) {
+      printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+      return SDL_FALSE;
+    } else {
+      gContext = SDL_GL_CreateContext(gWindow);
+      if (!initGL()) {
+	printf("Unable to initialize OpenGL!");
+	return SDL_FALSE;
+      }
+    }
+  }
+  return SDL_TRUE;
+}
+
+#ifdef TRGL_MODE
+int init_window_TRGL()
+{
+  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
     return SDL_FALSE;
   }
   else {
     gWindow = SDL_CreateWindow("TRGL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (gWindow == NULL) {
       printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
-      //success = SDL_FALSE;
       return SDL_FALSE;
     }
     else {
-      
-#ifdef TRGL_MODE
       SDL_TR_CreateRenderer(gWindow);
-#else
-      SDL_GL_CreateContext(gWindow);
-#endif /* TRGL_MODE */
-      
       if (!initGL()) {
 	printf("Unable to initialize TRGL!\n");
-	//success = SDL_FALSE;
 	return SDL_FALSE;
       }
     }
   }
-
   return SDL_TRUE;
 }
+#endif /* TRGL_MODE */
 
 int initGL()
 {
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  glClearColor(1.f, 1.f, 1.f, 0.f);
   glClear(GL_COLOR_BUFFER_BIT);
 	
   return SDL_TRUE;
@@ -80,4 +112,14 @@ void close_window()
 
   //FreeStacks();
 }
+
+void swap_window()
+{
+#ifdef TRGL_MODE
+  SDL_TR_SwapWindow();
+#else
+  SDL_GL_SwapWindow(gWindow);
+#endif /* TRGL_MODE */
+}
+
 

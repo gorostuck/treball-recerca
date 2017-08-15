@@ -22,6 +22,10 @@ extern const size_t sizeof16GLfloat;
  * Miscellaneous Functions. SDL_opengl.h
  */
 
+GLAPI void GLAPIENTRY glClear(GLbitfield mask)
+{
+}
+
 GLAPI void GLAPIENTRY glMatrixMode(GLenum flags)
 {
   CreateNode(&(currentList->currentNode), flags);

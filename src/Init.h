@@ -48,4 +48,9 @@ GLboolean SDL_TR_SwapWindow(void);
 //void SDL_TR_SwapWindow(SDL_Window *_gWindow);
 
 
+int init_window_openGL();
+int init_window_TRGL();
+
+void swap_window();
+
 #endif // INITWINDOW_H_INCLUDED

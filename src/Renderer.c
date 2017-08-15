@@ -3,9 +3,10 @@
 //GLfloat ang3 = 1.f;
 void render()
 {
-	glClearColor(1.f, 0.5f, 0.25f, 1.f);
+  glClear(GL_COLOR_BUFFER_BIT);
+  glClearColor(1.f, 0.5f, 0.25f, 1.f);
 	//Example1();
-	Example4();
+  Example4();
 	//glClearColor(1.f, 0.5f, 0.25f, 1.f);
 	//glMatrixMode(GL_MODELVIEW);
 	//glLoadIdentity();

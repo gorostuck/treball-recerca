@@ -27,7 +27,8 @@ const GLfloat FAR_PLANE = 100.0f;
 const GLfloat CAMERA_ANGLE_X = 45.0f;     // pitch in degree
 const GLfloat CAMERA_ANGLE_Y = -45.0f;    // heading in degree
 const GLfloat CAMERA_DISTANCE = 25.0f;    // camera distance
-																					// default projection matrix values
+
+// default projection matrix values
 const GLfloat DEFAULT_LEFT = -0.5f;
 const GLfloat DEFAULT_RIGHT = 0.5f;
 const GLfloat DEFAULT_BOTTOM = -0.5f;
