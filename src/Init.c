@@ -34,7 +34,7 @@ int init_window_openGL()
     // Use OpenGL 2.1
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,2);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,1);
-    gWindow = SDL_CreateWindow("TRGL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+    gWindow = SDL_CreateWindow("OpenGL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     if (gWindow == NULL) {
       printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
       return SDL_FALSE;

@@ -41,12 +41,12 @@ void AxisPlane(void)
   glColor3f(0.8f, 0.8f, 0.8f);
   for (i = 0; i <= 4; i += 1.f)
     {
-      glBegin(GL_POLYGON);
+      glBegin(GL_LINE_LOOP);
       glVertex3f(0.f, 4.f, i);
       glVertex3f(0.f, 0.f, i);
       glEnd();
 
-      glBegin(GL_POLYGON);
+      glBegin(GL_LINE_LOOP);
       glVertex3f(0.f, i, 4.f);
       glVertex3f(0.f, i, 0.f);
       glEnd();
@@ -56,12 +56,12 @@ void AxisPlane(void)
   glColor3f(0.5f, 0.5f, 0.5f);
   for (i = 0; i <= 4; i += 1.f)
     {
-      glBegin(GL_POLYGON);
+      glBegin(GL_LINE_LOOP);
       glVertex3f(4.f, 0.f, i);
       glVertex3f(0.f, 0.f, i);
       glEnd();
 
-      glBegin(GL_POLYGON);
+      glBegin(GL_LINE_LOOP);
       glVertex3f(i, 0.f, 4.f);
       glVertex3f(i, 0.f, 0.f);
       glEnd();
@@ -71,12 +71,12 @@ void AxisPlane(void)
   glNormal3f(0.f, 0.f, 0.f);
   for (i = 0; i <= 4; i += 1.f)
     {
-      glBegin(GL_POLYGON);
+      glBegin(GL_LINE_LOOP);
       glVertex3f(i, 4.f, 0.f);
       glVertex3f(i, 0.f, 0.f);
       glEnd();
 
-      glBegin(GL_POLYGON);
+      glBegin(GL_LINE_LOOP);
       glVertex3f(4.f, i, 0.f);
       glVertex3f(0.f, i, 0.f);
       glEnd();
@@ -89,7 +89,7 @@ void Cubo(GLfloat s)
   // LADO DELANTERO: lado rojo
   glColor3f(1.0, 0.0, 0.0);
   glNormal3f(0.f, 0.f, 1.f);
-  glBegin(GL_POLYGON);
+  glBegin(GL_LINE_LOOP);
   glVertex3f(s1, -s1, s); 
   glVertex3f(s1, s1, s);  
   glVertex3f(-s1, s1, s); 
@@ -99,7 +99,7 @@ void Cubo(GLfloat s)
   // LADO TRASERO: lado blanco
   glColor3f(1.0, 1.0, 1.0);
   glNormal3f(0.f, 0.f, -1.f);
-  glBegin(GL_POLYGON);
+  glBegin(GL_LINE_LOOP);
   glVertex3f(s1, -s1, -s);
   glVertex3f(s1, s1, -s);
   glVertex3f(-s1, s1, -s);
@@ -109,7 +109,7 @@ void Cubo(GLfloat s)
   // LADO DERECHO: lado morado
   glColor3f(1.0, 0.0, 1.0);
   glNormal3f(1.f, 0.f, 0.f);
-  glBegin(GL_POLYGON);
+  glBegin(GL_LINE_LOOP);
   glVertex3f(s, -s1, -s1);
   glVertex3f(s, s1, -s1);
   glVertex3f(s, s1, s1);
@@ -119,7 +119,7 @@ void Cubo(GLfloat s)
   // LADO IZQUIERDO: lado verde
   glColor3f(0.0, 1.0, 0.0);
   glNormal3f(-1.f, 0.f, 0.f);
-  glBegin(GL_POLYGON);
+  glBegin(GL_LINE_LOOP);
   glVertex3f(-s, -s1, s1);
   glVertex3f(-s, s1, s1);
   glVertex3f(-s, s1, -s1);
@@ -129,7 +129,7 @@ void Cubo(GLfloat s)
   // LADO SUPERIOR: lado azul
   glColor3f(0.0, 0.0, 1.0);
   glNormal3f(0.f, 1.f, 0.f);
-  glBegin(GL_POLYGON);
+  glBegin(GL_LINE_LOOP);
   glVertex3f(s1, s, s1);
   glVertex3f(s1, s, -s1);
   glVertex3f(-s1, s, -s1);
@@ -139,7 +139,7 @@ void Cubo(GLfloat s)
   // LADO INFERIOR: lado 
   glColor3f(1.0, 1.0, 0.0);
   glNormal3f(0.f, -1.f, 0.f);
-  glBegin(GL_POLYGON);
+  glBegin(GL_LINE_LOOP);
   glVertex3f(s1, -s, -s1);
   glVertex3f(s1, -s, s1);
   glVertex3f(-s1, -s, s1);
@@ -160,8 +160,8 @@ void Esfera(void)
   float ResolucionEsfera = 20.f;
   float FinalPhi = (GLfloat)(2 * PI), FinalTeta = (GLfloat)(2 * PI);
 
-  float incrementox = 1.f / (2.f * ResolucionEsfera); //1/20
-  float incrementoy = -1.f / ResolucionEsfera; //1/10
+  //   float incrementox = 1.f / (2.f * ResolucionEsfera); //1/20 NO USADO
+  //  float incrementoy = -1.f / ResolucionEsfera; //1/10         NO USADO
   float increRad = (float)PI / ResolucionEsfera;
   float Vertice1x, Vertice1y, Vertice1z;
   float Vertice2x, Vertice2y, Vertice2z;
@@ -198,7 +198,7 @@ void Esfera(void)
 	  //glNormal3f(1.5f*sinf(teta)*sinf(phi), 1.5f*cosf(teta), 1.5f*sinf(teta)*cosf(phi));
 	  //
 
-	  glBegin(GL_QUADS);
+	  glBegin(GL_LINE_LOOP);
 	  glVertex3f(Vertice1x, Vertice1y, Vertice1z);
 	  glVertex3f(Vertice2x, Vertice2y, Vertice2z);
 	  glVertex3f(Vertice3x, Vertice3y, Vertice3z);

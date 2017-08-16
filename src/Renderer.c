@@ -5,16 +5,18 @@ void render()
 {
   glClear(GL_COLOR_BUFFER_BIT);
   glClearColor(1.f, 0.5f, 0.25f, 1.f);
-	//Example1();
-  Example4();
-	//glClearColor(1.f, 0.5f, 0.25f, 1.f);
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
+  Example1();
+    
+  //Example4();
+  //	glClearColor(1.f, 0.5f, 0.25f, 1.f);
+  //	glMatrixMode(GL_MODELVIEW);
+  //	glLoadIdentity();
+  //	glMatrixMode(GL_PROJECTION);
+  //	glLoadIdentity();
+	
 	////glViewport(0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	//glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	//glMatrixMode(GL_PROJECTION);
-	//glLoadIdentity();
 	////glOrtho(-4.f, 4.f, -4.f, 4.f, 0.5f, 20.f);
 	//SDL_TR_Perspective(60.f, 1.f, 0.1f, 20.f);
 
@@ -32,10 +34,16 @@ void render()
 	//glVertex3f(1.f, -1.f, -2.9f);
 	//glEnd();
 
-	//glBegin(GL_POLYGON);
-	//	glVertex3f(0.f, 4.f, -2.f);
-	//	glVertex3f(0.f, 0.f, -2.f);
-	//glEnd();
+	//	glTranslatef(0.2f, 0.0f, 0.0f);
+  /*
+	glColor3f(1.f, 1.f, 1.f);
+	glBegin(GL_LINES);
+		glVertex3f(0.f, 0.5f, -1.f);
+		glVertex3f(0.f, -0.5f, -1.f);
+		glVertex3f(0.5f, 0.f, -1.f);
+		glVertex3f(-0.5f, 0.0f, -1.f);
+	glEnd();
+  */
 }
 //void render()
 //{

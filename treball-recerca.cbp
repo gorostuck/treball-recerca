@@ -36,24 +36,52 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src/TRGL/TRGL.c">
+		<Unit filename="src/Examples.c">
 			<Option compilerVar="CC" />
-			<Option target="opengl" />
 		</Unit>
-		<Unit filename="src/TRGL/TRGL.h">
-			<Option target="opengl" />
-		</Unit>
-		<Unit filename="src/logic.c">
+		<Unit filename="src/Examples.h" />
+		<Unit filename="src/Init.c">
 			<Option compilerVar="CC" />
-			<Option target="opengl" />
 		</Unit>
-		<Unit filename="src/logic.h">
-			<Option target="opengl" />
+		<Unit filename="src/Init.h" />
+		<Unit filename="src/Objects.c">
+			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/Objects.h" />
+		<Unit filename="src/Renderer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Renderer.h" />
+		<Unit filename="src/TRGL/Execute.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/TRGL/Execute.h" />
+		<Unit filename="src/TRGL/List.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/TRGL/List.h" />
+		<Unit filename="src/TRGL/Matrix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/TRGL/Matrix.h" />
+		<Unit filename="src/TRGL/Model.h" />
+		<Unit filename="src/TRGL/Node.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/TRGL/Node.h" />
+		<Unit filename="src/TRGL/Scanner.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/TRGL/Scanner.h" />
+		<Unit filename="src/TRGL/Stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/TRGL/Stack.h" />
+		<Unit filename="src/TRGL/TRGL.h" />
 		<Unit filename="src/main.c">
 			<Option compilerVar="CC" />
-			<Option target="opengl" />
 		</Unit>
+		<Unit filename="src/main.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

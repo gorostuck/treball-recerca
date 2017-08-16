@@ -157,11 +157,9 @@ GLboolean SDL_TR_Lines(void)
   }
   MatrixxPoint4x4(currentStack->MVP, currentNode->Point, Point);
   Normalize4(Point);
-  for (currentNode = currentNode->Next; currentNode->Type != END; currentNode = currentNode->Next)
-    {
+  for (currentNode = currentNode->Next; currentNode->Type != END; currentNode = currentNode->Next) {
       for (; currentNode->Type == COLOR || currentNode->Type == NORMAL; currentNode = currentNode->Next) {
-	switch (currentNode->Type)
-	  {
+	switch (currentNode->Type) {
 	  case NORMAL:
 	    memcpy(currentStack->Normal, currentNode->Normal, sizeof4GLfloat);
 	    break;
@@ -173,13 +171,16 @@ GLboolean SDL_TR_Lines(void)
 	  }
       }
       if (SDL_SetRenderDrawColor(renderer, currentStack->Color[0], currentStack->Color[1], currentStack->Color[2], currentStack->Color[3])) {
-	printf("Error en SDL_SetRenderDrawColor en SDL_TR_Lines");
+	printf("Error en SDL_SetRenderDrawColor en SDL_TR_Lines\n");
 	return SDL_FALSE;
       }
       MatrixxPoint4x4(currentStack->MVP, currentNode->Point, Point2);
+      printf("x: %d, y: %d\n", (int)Point2[0], (int)Point2[1]);
+
       Normalize4(Point2);
+      //PrintMatrix4x4(currentStack->MVP);
       if (SDL_RenderDrawLine(renderer, (int)Point[0], (int)Point[1], (int)Point2[0], (int)Point2[1])) {
-	printf("Error en SDL_RenderDrawLine en SDL_TR_Lines");
+	printf("Error en SDL_RenderDrawLine en SDL_TR_Lines\n");
 	return SDL_FALSE;
       }
       memcpy(Point, Point2, sizeof4GLfloat);
@@ -282,6 +283,10 @@ GLboolean SDL_TR_CreateRenderer(SDL_Window *_gWindow)
   CreateFirsStack();
 
   InitMatrix();
+
+  int width, height;
+  SDL_GetWindowSize(_gWindow, &width, &height);
+  glViewport(0, 0, width, height);
 
   return SDL_TRUE;
 }

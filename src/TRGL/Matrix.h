@@ -18,4 +18,6 @@ void VectorxMatrix4x4(GLfloat *Vector, GLfloat *Matrix, GLfloat *Vector2);
 
 void Normalize4(GLfloat *Point);
 
+void PrintMatrix4x4(GLfloat *Matrix);
+
 #endif // OPERATION_H_INCLUDED

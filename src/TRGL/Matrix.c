@@ -1,6 +1,7 @@
 #include "Matrix.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 // Valores definidos en Execute.c
 extern const size_t sizeof4GLuint;
@@ -52,7 +53,7 @@ void Inverse4x4(GLfloat *m, GLfloat *mi)
       matrix[i][j] = m[4 * i + j];
     }
   }
-	
+
   for (i = 0; i < 4; ++i) {
     for (j = 4; j < 8; ++j) {
       if (i == (j - 4))
@@ -118,6 +119,17 @@ void Normalize4(GLfloat *Point)
   Point[1] /= Point[3];
   Point[2] /= Point[3];
   Point[3] /= Point[3];
+}
+
+void PrintMatrix4x4(GLfloat *Matrix)
+{
+  for (GLuint i = 0; i < 16; ++i){
+    printf("%f ", Matrix[i]);
+    if ( i==3 || i==7 || i==11 || i==15 )
+      printf("\n");
+    if (i == 15)
+      printf("\n");
+  }
 }
 
 
