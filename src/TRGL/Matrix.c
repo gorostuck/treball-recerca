@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 // Valores definidos en Execute.c
 extern const size_t sizeof4GLuint;
