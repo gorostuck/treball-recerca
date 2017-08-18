@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include <math.h>
 
 //GLfloat ang3 = 1.f;
 void render()
