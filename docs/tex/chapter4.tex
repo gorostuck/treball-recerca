@@ -7,6 +7,10 @@ El \textbf{espacio global} es el sistema de coordenadas para la escena entera. S
 
 El \textbf{espacio local del objeto} es el sistema de coordenadas desde el punto de vista del objeto. El origen del espacio local del objeto está en el centro del mismo, y sus ejes son rotados con el objeto. Tanto en OpenGL como en la librería gráfica propia el concepto de \textit{objeto} es simplemente una lista ordenada de vértices. Esto es llamado \textit{Primitive}. El proceso de creación de estas listas ordenadas de vértices se llama \textit{Vertex Specification}. Los vértices se relacionan de una forma u otra dependiendo del tipo de \textit{primitive} que componen. 
 
+\newpage
+
+\newgeometry{top=20mm, bottom=40mm}
+
 \section{Tipos de primitivos}
 
 \subsection{Primitivos de puntos}
@@ -15,7 +19,7 @@ El \textbf{espacio local del objeto} es el sistema de coordenadas desde el punto
 
 \end{itemize}
 
-\begin{figure} [hb]
+\begin{figure} [h]
   \centering
   \includegraphics[width=0.3\textwidth]{gl_points}
   \caption{GL\_POINTS}
@@ -28,7 +32,8 @@ El \textbf{espacio local del objeto} es el sistema de coordenadas desde el punto
 \item{GL\_LINE\_LOOP: Como el anterior excepto que el primer y último vértice también són usados como línea. Entonces, se producen \textit{n} líneas para \textit{n} vértices de entrada.}
 \end{itemize}
 
-\begin{figure} [hb]
+
+\begin{figure} [h]
   \centering
   \captionsetup[subfigure]{justification=centering}
   \begin{subfigure}  {0.3\textwidth}
@@ -46,6 +51,14 @@ El \textbf{espacio local del objeto} es el sistema de coordenadas desde el punto
   \caption{Primitivos de líneas}
 \end{figure}
 
+\restoregeometry
+
+
+\newpage
+
+\newgeometry{top=10mm, bottom=20mm}
+
+
 \subsection{Primitivos triangulares}
 Un triangulo es un primitivo formado por 3 vértices. Es la forma bidimensional con el menor número de vértices, así que los renderizadores normalmente están diseñados para rendierizar con ellos.
 \begin{itemize}
@@ -54,18 +67,18 @@ Un triangulo es un primitivo formado por 3 vértices. Es la forma bidimensional 
 \item{GL\_TRIANGLE\_FAN: El primer vértice siempre se mantiene fijo. De ahí en adelante, por cada grupo de dos vértices adyacentes se hará un triángulo con el primero. Una lista de \textit{n} vértices generará \textit{n}-2 triángulos.}
 \end{itemize}
 
-\begin{figure} [hb]
+\begin{figure} [ht]
   \centering
   \captionsetup[subfigure]{justification=centering}
-  \begin{subfigure} [h] {0.3\textwidth}
+  \begin{subfigure} {0.3\textwidth}
     \includegraphics[width=\textwidth]{gl_triangles}
     \caption{GL\_TRIANGLES}
   \end{subfigure}
-  \begin{subfigure} [h] {0.3\textwidth}
+  \begin{subfigure} {0.3\textwidth}
     \includegraphics[width=\textwidth]{gl_triangle_strip}
     \caption{GL\_TRIANGLE\_STRIP}
   \end{subfigure}
-  \begin{subfigure} [h] {0.3\textwidth}
+  \begin{subfigure} {0.3\textwidth}
     \includegraphics[width=\textwidth]{gl_triangle_fan}
     \caption{GL\_TRIANGLE\_FAN}
   \end{subfigure}
@@ -93,6 +106,7 @@ Un \textit{quad} es un primitivo cuadrilateral de cuatro vértices. Frecuentemen
   \caption{Primitivos \textit{quad}}
 \end{figure}
 
+\restoregeometry
 
 \section{Especificación de vértices usando la librería gráfica}
 Es importante destacar que desde que se inicia la creación de un \textit{primitive} hasta que se termina \textbf{no} se puede utilizar una función de transformación.
