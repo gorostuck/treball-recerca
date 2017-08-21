@@ -5,10 +5,27 @@
 void render()
 {
   glClear(GL_COLOR_BUFFER_BIT);
-  glClearColor(1.f, 0.5f, 0.25f, 1.f);
-  Example1();
+  glClearColor(1.f, 1.f, 1.f, 1.f);
+
+  glColor3f(0.f, 0.f, 0.f);
+
+  /*
+  glBegin(GL_QUAD_STRIP);
+      glVertex2f(-0.25f, 0.75f);
+      glVertex2f(0.25f, 0.5f);
+      glVertex2f(0.f, 0.f);
+      glVertex2f(-0.75f, -0.75f);
+      glVertex2f(0.75f, -0.75f);
+      glVertex2f(0.75f, 0.f);
+  glEnd();
+  */
+  
+  
+  //Example1();
+  //  Example2();
+  Example3();
     
-  //Example4();
+  //  Example4();
   //	glClearColor(1.f, 0.5f, 0.25f, 1.f);
   //	glMatrixMode(GL_MODELVIEW);
   //	glLoadIdentity();
