@@ -1,42 +1,134 @@
 \chapter{Espacio de vista y transformación de la vista del modelo}
-\section{Matriz de transformación}
-La matriz de transformación es aquella que se aplica a los diferentes vértices cuando son llamados y que acumula operaciones de \textbf{Translación}, \textbf{Rotación} y \textbf{Escalado}.
- \begin{figure}[ht]
-   \centering
-   \[
-  \begin{bmatrix}
+En este paso los objetos son transformados del espacio local al espacio de vista utilizando la matriz \textbf{GL\_MODELVIEW}. Esta matriz es una combinación de las matrices de Modelo y Vista. (\(M_{view} \cdot M_{model}\)). La transformación de Modelo es para convertir del espacio local del objeto al espacio global. Y, la transformación de Vista es para convertir del espacio global al espacio de vista.
+
+\begin{figure}[ht]
+  \centering
+  \(
+  \begin{pmatrix}
+    x_{vista}\\y_{vista}\\z_{vista}\\w_{vista}
+  \end{pmatrix}
+  = M_{modeloVista} \cdot
+  \begin{pmatrix}
+    x_{obj}\\y_{obj}\\z_{obj}\\w_{obj}
+  \end{pmatrix}
+  = M_{vista} \cdot M_{modelo} \cdot
+  \begin{pmatrix}
+    x_{obj}\\y_{obj}\\z_{obj}\\w_{obj}
+  \end{pmatrix}
+  \)
+\end{figure}
+
+Nótese que no hay una matriz de cámara (vista) separada en OpenGL. Entonces, para simular la transformación de la cámara o de la vista, la escena (objetos 3D y luces) deben ser transformados con lo inverso de la transformación de vista. En otras palabras, OpenGL deefine que la cámara siempre se encuentra en (0, 0, 0) mirando al eje -Z en las cordenadas de espacio de vista, y no puede ser tansformada.
+
+Los vectores normales también son transformados desde coordenadas locales de objeto a coordenadas de vista para hacer cálculos de iluminación. Nótesese que las normales son transformadas de forma diferente a como lo hacen los vértices. Se multiplica la transposición de la inversa de la matriz GL\_MODELVIEW por un vector normal.
+
+\begin{figure}[ht]
+  \centering
+  \(
+  \begin{pmatrix}
+    nx_{vista}\\ny_{vista}\\nz_{vista}\\nw_{vista}
+  \end{pmatrix}
+  = ((M_{modeloVista})^{-1})^T \cdot
+  \begin{pmatrix}
+    nx_{obj}\\ny_{obj}\\nz_{obj}\\nw_{obj}
+  \end{pmatrix}
+  \)
+\end{figure}
+En las siguientes secciones se observará el conjunto de funciones que se pueden usar para operar sobre esta matriz.
+
+\section{Matriz de modelo-vista (GL\_MODELVIEW)}
+La matriz GL\_MODELVIEW combina las matrices de vista y de modelaje en una sola matriz. Para transformar la vista (cámara), es necesario mover la escena con la transformación inversa.
+
+\begin{figure}[ht]
+  \centering
+  \(
+  \begin{pmatrix}
+    \textcolor{red}{m_0} && \textcolor{green}{m_4} && \textcolor{blue}{m_8} && m_{12}\\
+    \textcolor{red}{m_1} && \textcolor{green}{m_5} && \textcolor{blue}{m_9} && m_{13}\\
+    \textcolor{red}{m_2} && \textcolor{green}{m_6} && \textcolor{blue}{m_{10}} && m_{14}\\
+    \textcolor{gray}{m_3} && \textcolor{gray}{m_7} && \textcolor{gray}{m_{11}} && \textcolor{gray}{m_{15}}
+  \end{pmatrix}
+  \)
+\end{figure}
+
+Los 3 elementos más a la derecha de la matriz \((m_{12}, m_{13}, m_{14})\) son para la transformación de translación, \textbf{glTranslatef()}. El elemento \(m_{15}\) es la cooredenada homogénia. Se usa específicamente para la transformación proyectiva.
+
+3 conjuntos de elementos, \((m_0, m_1, m_2)\), \((m_4, m_5, m_6)\) y \((m_8, m_9, m_{10})\) son para transformaciones euclidianas y afines, como la rotación \textbf{glRotatef()} o el escalado \textbf{glScalef()}. Nótese que estos 3 sets están representando 3 ejes ortogonales:
+
+\begin{itemize}
+\item{\((m_0, m_1, m_2)\) : eje +X, vector \textit{izquierda}, (1, 0, 0) por defecto}
+\item{\((m_4, m_5, m_6)\) : eje +Y, vector \textit{arriba}, (0, 1, 0) por defecto}
+\item{\((m_8, m_9, m_{10})\) : eje +Z, vector \textit{adelante}, (0, 0, 1) por defecto}
+\end{itemize}
+
+\section{Reseteo}
+Para restaurar la matriz a su estado por defecto se hace uso de las siguientes funciones. La primera sólo es necesaria en caso de que la matriz seleccionada actualmente no sea GL\_MODELVIEW.
+\begin{lstlisting}[language=C]
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+\end{lstlisting}
+
+\section{Translación}
+Con la operación de translación la matriz actual se translada por (x, y, z). Primero, se crea una matriz de translación, $M_T$, después se multiplica con la matriz seleccionada actualmente para producir la matriz de transformación final: $M = M \cdot M_T$
+\begin{figure} [ht]
+  \centering
+  \(
+  \begin{pmatrix}
     1 && 0 && 0 && x\\
     0 && 1 && 0 && y\\
     0 && 0 && 1 && z\\
     0 && 0 && 0 && 1
-  \end{bmatrix}
-  \]
- \end{figure}
- \subsection{Operación: Reseteo}
-Para restaurar la matriz a su estado original se hace uso de la función
+  \end{pmatrix}
+  \)
+  \caption{Matriz de translación, $M_T$}
+\end{figure}
+
+La función utilizada en OpenGL para efectuar una transformación es la siguiente.
 \begin{lstlisting}[language=C]
-  glLoadIdentity();
+  glTranslatef(GLfloat x, GLfloat y, GLfloat z);
 \end{lstlisting}
-\subsection{Operación: Traslación}
-Con la operación de Traslación se desplaza la matriz de transformación por un vector llamando a la función
-\begin{lstlisting}[language=C]
-  glTransformf(GLfloat x, GLfloat y, GLfloat z);
-\end{lstlisting}
-En los argumentos ponemos los valores del vector deseado.
-\subsubsection{Operación matemática}
-\(\overrightarrow{V}\) es el vector que hemos pasado como argumento, \(\mathbf{transf}\) es la matriz de transformación.
-\begin{equation}
-  \begin{bmatrix}
-    1 && 0 && 0 && \overrightarrow{V}_x\\
-    0 && 1 && 0 && \overrightarrow{V}_y\\
-    0 && 0 && 1 && \overrightarrow{V}_z\\
+En los argumentos pasamos los valores de las coordenadas del vector deseado.
+
+\section{Rotación}
+La matriz de rotación se puede usar para rotar modeles 3D por un ángulo (en grados) sobre un eje de rotación (x, y, z). Esta función genera una matriz de rotación $M_R$ que luego es multiplicada por la matriz seleccionada actualmente y sustituye esa por el resultado: $M = M \cdot M_R$.
+\begin{figure} [ht]
+  \centering
+  \(
+  \begin{pmatrix}
+    x^2(1-c) + c  && xy(1-c) - zs && xz(1-c) + ys && 0\\
+    xy(1-c) + zs && y^2(1-c) + c  && yz(1-c) - xs && 0\\
+    xz(1-c) - ys && yz(1-c) + xs && z^2(1-c) + c  && 0\\
     0 && 0 && 0 && 1
-  \end{bmatrix}
-  \cdot
-  \begin{bmatrix}
-    \mathbf{transf}_x\\\mathbf{transf}_y\\\mathbf{transf}_z\\1
-  \end{bmatrix} =
-  \begin{bmatrix}
-    \mathbf{transf}_x'\\\mathbf{transf}_y'\\\mathbf{transf}_y'\\1
-  \end{bmatrix}
-\end{equation}
+  \end{pmatrix}
+  \)
+  \\dónde $c = cos \alpha$, $s = sin \alpha$ 
+  \caption{Matriz de rotación, $M_R$}
+\end{figure}
+
+La función utilizada en OpenGL para efectuar una rotación es la siguiente.
+\begin{lstlisting}[language=C]
+  glRotatef(GLfloat angle, GLfloat x, GLfloat y, GLfloat z);
+\end{lstlisting}
+En los argumentos pasamos el ángulo (en grados) que se usará cómo $\alpha$ en la matriz de rotación y los valores de los ejes.
+
+\section{Escalado}
+El escalado produce una matriz de transformación de escalado no uniforme en cada eje (x, y, z) multiplicando la matriz de escalado por la matriz seleccionada actualmente. $M = M \cdot M_S$
+\begin{figure} [ht]
+  \centering
+  \(
+  \begin{pmatrix}
+    x && 0 && 0 && 0\\
+    0 && y && 0 && 0\\
+    0 && 0 && z && 0\\
+    0 && 0 && 0 && 1
+  \end{pmatrix}
+  \)
+  \caption{Matriz de escalado, $M_S$}
+\end{figure}
+
+La función utilizada en OpenGL para efectuar un escalado es la siguiente.
+\begin{lstlisting}[language=C]
+  glScalef(GLfloat x, GLfloat y, GLfloat z);
+\end{lstlisting}
+En los tres parámetros se indica el factor de escalado deseado en cada uno de los ejes.
+
