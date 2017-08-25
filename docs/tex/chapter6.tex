@@ -1,2 +1,126 @@
-\chapter{Espacio de clipping y transformación de proyección}
-En el espacio de vista ocurre la iluminación por vértice.
+\chapter{Espacio de clip y transformación de proyección}
+En este paso los objetos son transformados del espacio de vista al espacio de clip utilizando la matriz \textbf{GL\_PROJECTION}. Esta matriz se utiliza para definir el frustum o tronco. Este frustum determina qué objetos o porciones de objetos serán recortados (\textit{clipped out}). También determina cómo se proyecta a la pantalla la escena 3D.
+
+OpenGL proporciona dos funciones para la transformación de GL\_PROJECTION.
+
+\begin{itemize}
+\item{\textbf{glFrustum()}, para producir una proyección con perspectiva}
+\item{\textbf{glOrtho()}, para producir una proyección ortográfica (paralela)}
+\end{itemize}
+
+Ambas funciones requieren 6 parámetros para especificar los 6 planos de corte; \textit{left}, \textit{right}, \textit{bottom}, \textit{top}, \textit{near} y \textit{far}.
+
+
+También se puede utilizar \textbf{gluPerspective()}, que requiere de sólo 4 parámetros; el campo de vista vertical (FOV), la relación de aspecto de ancho a alto y las distancias a los planos de corte \textit{near} y \textit{far}. Es posible convertir la función gluPerspective() a glFrustum() con un código que será explicado en una sección posterior.
+
+\section{Matriz de proyección (GL\_PROJECTION)}
+Un monitor de ordenador es una superfície 2D. Una escena 3D renderizada por OpenGL tiene que ser proyectada a la pantalla del ordenador como una imagen 2D. La matriz GL\_PROJECTION es usada para esta transformación de proyección. Primero, la información de las coordenadas de vista es transformada a coordenadas de clip. Luego, estas coordenadas de clip son también transformadas a coorenadas normalizadas de dispositivo (NDC) dividiendo por el componente \textit{w} de las coordenadas de clip.
+
+Por ello, tenemos que tener en cuenta que tanto el clipping (corte de frustum) como las transformaciones NDC están integradas en la matriz \textbf{GL\_PROJECTION}. Las siguientes secciones describen cómo construir la matriz de proyección utilizando 6 parámetros; \textit{left}, \textit{right}, \textit{bottom}, \textit{top}, \textit{near} y \textit{far}.
+
+Nótese que el corte de frustum (clipping) se efectua en las coordenadas de clip, justo antes de dividir por $w_c$. Las coordenadas de clip, $x_c$, $y_c$ y $z_c$ se comprueban siendo comparadas con $w_c$. Si cualquiera de las coordenadas de clip es menor que $-w_c$, o más grande que $w_c$, entonces el vértice será descartado.
+$ -w_c < x_c, y_c, z_c < wc $
+
+Entonces, OpenGL rescunstruirá los filos del polígono donde ocurre el clipping.
+
+\begin{figure} [h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{gl_frustumclip}
+  \caption{Un triangulo clipeado por el frustum}
+\end{figure}
+
+\section{Proyección de perspectiva}
+En una proyección de perspectiva, un punto 3D en un en un frustum piramical truncado (coordenadas de vista) es mapeado a un cubo (NDC); el rango de la coordenada X desde [l, r] hasta [-1, 1], la coordenada Y desde [b, t] hasta [-1, 1] y la coordenada Z desde [n, f] hasta [-1, 1].
+
+\begin{figure} [h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{gl_projectionmatrix01}
+  \caption{Frustum de perspectiva y \textit{Normalized Device Coordinates} (NDC)}
+\end{figure}
+
+
+\newpage
+
+Nótese que las coordenadas de vista están definidas por el sistema de coordenadas de la mano derecha, pero NDC utiliza el sistema de coordenadas de la mano izquierda. Por ello, la cámara en el origen está mirando a través del jee -Z en el espacio de vista, pero está mirando en el eje +Z en NDC. Puesto que \textbf{glFrustum()} sólo acepta valores positivos cómo distancias \textit{near} y \textit{far}, necesitamos negarlos durante la construcción de la matriz GL\_PROJECTION.
+
+En OpenGL, un punto 3D en el espacio de vista es proyectado a el plano \textit{near} (plano de proyección). Los siguientes diagramas muestran como un punto $(x_e, y_e, z_e)$ en el espacio de vista está proyecatado a $(x_p, y_p, z_p)$ al plano \textit{near}.
+
+\begin{figure} [h]
+  \centering
+  \captionsetup[subfigure]{justification=centering}
+  \begin{subfigure}{0.3\textwidth} 
+    \includegraphics[width=\textwidth]{gl_projectionmatrix03} 
+    \caption{Vista superior del Frustum}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+    \includegraphics[width=\textwidth]{gl_projectionmatrix04} 
+    \caption{Vista lateral del Frustum}
+  \end{subfigure}
+\end{figure}
+
+Desde la vista superior del frustum, la coordenada X del espacio de vista, $x_e$ está mapeada a $x_p$, que es calculada utilizando la proporción de triangulos similares;
+\begin{figure} [h]
+  \centering
+  \[
+  \frac{x_p}{x_e} = \frac{-n}{z_e}
+  x_p = \frac{-n \cdot x_e}{z_e} = \frac{n \cdot x_e}{-z_e}
+  \]
+\end{figure}
+
+Desde la vista lateral del frustum, $y_p$ puede ser calculada con un método similar;
+
+\begin{figure} [h]
+  \centering
+  \[ \frac{y_p}{y_e} = \frac{-n}{z_e}
+  y_p = \frac{-n \cdot y_e}{z_e} = \frac{n \cdot y_e}{-z_e} \]
+\end{figure}
+
+\newpage
+
+Nótese que tanto $x_p$ como $y_p$ dependen de $z_e$; son inversamente proporcionales a $-z_e$. En otras palabras, ambas están divididas por $-z_e$. Esta es la primera pista para la construcción de la matriz GL\_PROJECTION. Después de que las coordenadas sean transformadas multiplicando la matriz GL\_PROJECTION, las coordenadas siguien siendo coordenadas homogéneas. Se vuelven finalmente \textit{Normalized Device Coordinates} (NDC) cuando se dividen por el componente \textit{w} de las coordenadas de clip.
+
+\begin{figure} [h]
+  \centering
+  \[
+  \begin{pmatrix}
+    x_{clip} \\ y_{clip} \\ z_{clip} \\ w_{clip}
+  \end{pmatrix}
+  =
+  M_{projection} \cdot
+  \begin{pmatrix}
+    x_{eye} \\ y_{eye} \\ z_{eye} \\ w_{eye}
+  \end{pmatrix} ,
+  \begin{pmatrix}
+    x_{ndc} \\ y_{ndc} \\ z_{ndc}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    x_{ndc}/w_{clip} \\ y_{ndc}/w_{clip} \\ z_{ndc}/w_{clip}
+  \end{pmatrix}
+  \]
+\end{figure}
+
+
+Entonces, podemos definir el componente \textit{w} de las coordenadas de clip como $-z_e$. Y la cuarta fila de la matriz GL\_PROJECTION se vuelve (0, 0, -1, 0).
+
+
+\begin{figure} [h]
+  \centering
+  \[
+  \begin{pmatrix}
+    x_{c} \\ y_{c} \\ z_{c} \\ w_{c}
+  \end{pmatrix}
+  =
+  M_{projection} \cdot
+  \begin{pmatrix}
+    \cdot && \cdot && \cdot && \cdot \\
+    \cdot && \cdot && \cdot && \cdot \\
+    \cdot && \cdot && \cdot && \cdot \\
+        0 &&     0 &&    -1 &&     0
+  \end{pmatrix} \cdot
+  \begin{pmatrix}
+    x_{e} \\ y_{e} \\ z_{e} \\ w_{e}
+  \end{pmatrix}
+  ,  \therefore w_c = -z_e
+  \]
+\end{figure}
