@@ -76,7 +76,7 @@ Desde la vista lateral del frustum, $y_p$ puede ser calculada con un método sim
 \end{figure}
 
 \newpage
-
+\newgeometry{top=25mm, bottom=27mm}
 Nótese que tanto $x_p$ como $y_p$ dependen de $z_e$; son inversamente proporcionales a $-z_e$. En otras palabras, ambas están divididas por $-z_e$. Esta es la primera pista para la construcción de la matriz GL\_PROJECTION. Después de que las coordenadas sean transformadas multiplicando la matriz GL\_PROJECTION, las coordenadas siguien siendo coordenadas homogéneas. Se vuelven finalmente \textit{Normalized Device Coordinates} (NDC) cuando se dividen por el componente \textit{w} de las coordenadas de clip.
 
 \begin{figure} [h]
@@ -108,7 +108,7 @@ Entonces, podemos definir el componente \textit{w} de las coordenadas de clip co
   \centering
   \[
   \begin{pmatrix}
-    x_{c} \\ y_{c} \\ z_{c} \\ w_{c}
+    x_{clip} \\ y_{clip} \\ z_{clip} \\ w_{clip}
   \end{pmatrix}
   =
   M_{projection} \cdot
@@ -119,8 +119,101 @@ Entonces, podemos definir el componente \textit{w} de las coordenadas de clip co
         0 &&     0 &&    -1 &&     0
   \end{pmatrix} \cdot
   \begin{pmatrix}
-    x_{e} \\ y_{e} \\ z_{e} \\ w_{e}
+    x_{vista} \\ y_{vista} \\ z_{vista} \\ w_{vista}
   \end{pmatrix}
-  ,  \therefore w_c = -z_e
+  ,  \hspace*{0.5cm} \therefore w_c = -z_e
   \]
 \end{figure}
+
+
+Después, mapeamos $x_p$ y $y_p$ a $x_n$ y $y_n$ de NDC con una relación linear; \([l, r] \implies [-1, 1] \) y \([b, t] \implies [-1, 1]\).
+
+
+
+\begin{figure} [h!]
+  \centering
+\begin{minipage}{0.25\textwidth}
+  \includegraphics[width=\textwidth]{gl_projectionmatrix05}
+  \caption{Mapeado de $x_p$ a $x_n$}
+\end{minipage} \hspace*{2cm}
+\begin{minipage}{0.3\textwidth}
+\begin{flalign*}
+   x_n &= \frac{1-(-1)}{r-l} \cdot x_p + \beta \\
+   1   &=  \frac{2r}{r - l} + \beta \\
+ \beta &= 1 - \frac{2r}{r-l} = \frac{r-l}{r-l} - \frac{2r}{r-l}\\
+       &=\frac{r - l - 2r}{r - l} = \frac{-r -l}{r-l} = - \frac{r+l}{r-l} \\
+   \therefore x_n &= \frac{2x_p}{r-l}-\frac{r+l}{r-l} \\
+\end{flalign*}
+\end{minipage}
+
+\end{figure}
+
+\begin{figure} [h!]
+  \centering
+\begin{minipage}{0.25\textwidth}
+  \includegraphics[width=\textwidth]{gl_projectionmatrix06}
+  \caption{Mapeado de $x_y$ a $t_n$}
+\end{minipage} \hspace*{2cm}
+\begin{minipage}{0.3\textwidth}
+\begin{flalign*}
+   y_n &= \frac{1-(-1)}{t-b} \cdot y_p + \beta \\
+     1 &=  \frac{2t}{t - b} + \beta \\
+ \beta &= 1 - \frac{2t}{t-b} = \frac{t-b}{t-b} - \frac{2t}{t-b}\\
+       &=   \frac{t - b - 2t}{t - b} = \frac{-t -b}{t-b} = - \frac{t+b}{t-b} \\
+\therefore y_n &= \frac{2y_p}{t-b}-\frac{t+b}{t-b} \\
+\end{flalign*}
+\end{minipage}
+
+\end{figure}
+\restoregeometry
+
+Ahora, sustituimos $x_p$ y $y_p$ a esas ecuaciones.
+
+\begin{figure} [h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \begin{flalign*}
+      x_n &= \frac{2x_p}{r-l} - \frac{r+l}{r-l} \hspace*{0.5cm} (x_p = \frac{nx_e}{-z_e})\\
+          &= \frac{2 \cdot \frac{n \cdot x_e }{-z_e}}{r-l} - \frac{r+l}{r-l}\\
+          &= \frac{2n \cdot x_e}{(r-l)(-z_e)} - \frac{r+l}{r-l}\\
+          &= \frac{\frac{2n}{r-l} \cdot x_e}{-z_e} - \frac{r+l}{r-l}\\
+          &= \frac{\frac{2n}{r-l} \cdot x_e}{-z_e} + \frac{\frac{r+l}{r-l}\cdot z_e}{-z_e}\\
+          &= \Big( \underbrace{\frac{2n}{r-l}\cdot x_e + \frac{r+l}{r-l}\cdot z_e}_{{x_c}} \Big) \Big/ -z_e
+    \end{flalign*}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    \begin{flalign*}
+      y_n &= \frac{2y_p}{t-b} - \frac{t+b}{t-b} \hspace*{0.5cm} (y_p = \frac{ny_e}{-z_e})\\
+          &= \frac{2 \cdot \frac{n \cdot y_e }{-z_e}}{t-b} - \frac{t+b}{t-b}\\
+          &= \frac{2n \cdot y_e}{(t-b)(-z_e)} - \frac{t+b}{t-b}\\
+          &= \frac{\frac{2n}{t-b} \cdot y_e}{-z_e} - \frac{t+b}{t-b}\\
+          &= \frac{\frac{2n}{t-b} \cdot y_e}{-z_e} + \frac{\frac{t+b}{t-b}\cdot z_e}{-z_e}\\
+          &= \Big( \underbrace{\frac{2n}{t-b}\cdot y_e + \frac{t+b}{t-b}\cdot z_e}_{y_c} \Big) \Big/ -z_e
+    \end{flalign*}
+  \end{minipage}
+\end{figure}
+
+Nótese que hacemos que ambos términos sean divisibles por $-z_e$ para la división de perspectiva ($x_c/w_c$, $y_c/w_c$). Y ya establecimos que $w_c = -z_e$ anteriormente, y que los términos dentro del paréntesis se vuelven las coordenadas $x_c$ y $y_c$ de las coordenadas de clip.
+
+
+De estas dos ecuaciones, podemos encontrar la primera y segunda fila de la matriz GL\_PROJECTION.
+
+\begin{figure}[h]
+  \[
+  \begin{pmatrix}
+    x_{clip} \\ y_{clip} \\ z_{clip} \\ w_{clip}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \frac{2n}{r-l} &&              0 && \frac{r+l}{r-l} &&     0 \\
+                 0 && \frac{2n}{t-b} && \frac{t+b}{t-b} &&     0 \\
+             \cdot &&          \cdot &&           \cdot && \cdot \\
+                 0 &&              0 &&              -1 &&     0
+  \end{pmatrix}
+  \cdot
+  \begin{pmatrix}
+    x_{vista} \\ y_{vista} \\ z_{vista} \\ w_{vista}
+  \end{pmatrix}
+  \]
+\end{figure}
+
