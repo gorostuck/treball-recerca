@@ -217,3 +217,76 @@ De estas dos ecuaciones, podemos encontrar la primera y segunda fila de la matri
   \]
 \end{figure}
 
+\newpage
+
+Ahora sólo queda la tercera fila de la matriz GL\_PROJECTION por resolver. Encontrar $z_n$ es un poco más diferente de los demás porque en $z_{vista}$ en el espacio de vista está siempre proyectado hacia $-n$ en el plano \textit{near}. Pero ahora necesitamos un valor \textit{z} único para el clipping y la prueba de profundidad. Además, deberíamos de ser capaces de desproyectar (transformación inversa). Puesto que sabemos que \textit{z} no depende del valor \textit{x} o \textit{y}, tomamos prestado el componente \textit{w} para encontrar la relación entre $z_{ndc}$ y $z_{vista}$. Entonces, podemos especificar la tercera fila de la matriz GL\_PROJECTION de la siguiente forma.
+
+\begin{figure}[h]
+  \[
+  \begin{pmatrix}
+    x_{clip} \\ y_{clip} \\ z_{clip} \\ w_{clip}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \frac{2n}{r-l} &&              0 && \frac{r+l}{r-l} &&     0 \\
+                 0 && \frac{2n}{t-b} && \frac{t+b}{t-b} &&     0 \\
+                 0 &&              0 &&               A &&     B \\
+                 0 &&              0 &&              -1 &&     0
+  \end{pmatrix}
+  \cdot
+  \begin{pmatrix}
+    x_{vista} \\ y_{vista} \\ z_{vista} \\ w_{vista}
+  \end{pmatrix}
+  ,\hspace*{0.5cm} z_{ndc} = \frac{z_{clip}}{w_{clip}} = \frac{Az_{vista} + Bw_{vista}}{-z_e}
+  \]
+\end{figure}
+
+En el espacio de vista, $w_{vista} = 1$. Por lo tanto, la ecuación se vuelve;
+
+\begin{figure} [h!]
+  \centering
+  \[
+  z_{ndc} = \frac{Az_{vista} + B}{-z_e}
+  \]
+\end{figure}
+
+Para encontrar los coeficientes A y B usamos la relación $(Z_{vista}, Z_{ndc})$; $(-n, -1)$ y $(-f, 1)$, y las ponemos en la ecuación de arriba.
+
+\begin{flalign*}
+  \begin{cases}
+    \frac{-An+B}{n} = -1 \\
+    \frac{-Af+B}{f} = 1  \\
+  \end{cases}
+  \to
+  \begin{cases}
+    -An+B = -n \hspace*{1cm} (1) \\
+    -Af+B = f \hspace*{1.28cm} (2)  \\
+  \end{cases}  
+\end{flalign*}
+
+Para resolver las ecuaciones para A y B, reescribimos la ecuación (1) para B;
+\begin{flalign*}
+  B=An-n \hspace*{1cm} (1')
+\end{flalign*}
+
+Sustituye B en la ecuación (2) por la ecuación (1') y aisla A;
+\begin{flalign*}
+&&  -Af + (An - n) = f \hspace*{1cm} (2) \\
+&&  -(f-n)A = f+n \\ 
+&&  A = - \frac{f+n}{f-n}
+\end{flalign*}
+
+Sustituye A en la ecuación (1) para encontrar B;
+\[
+&  \Big(\frac{f+n}{f-n}\Big)n + B = -n \hspace*{1cm} (1)
+\]
+\begin{flalign*}
+  B &= -n - \Big(\frac{f+n}{f-n}\Big)n = - \Big( 1 + \frac{f+n}{f-n}\Big)n = - \Big(\frac{f-n+f+n}{f-n}\Big)n \\
+  &= - \frac{2fn}{f-n}
+\end{flalign*}
+
+
+
+
+
+
