@@ -243,14 +243,11 @@ Ahora sólo queda la tercera fila de la matriz GL\_PROJECTION por resolver. Enco
 
 En el espacio de vista, $w_{vista} = 1$. Por lo tanto, la ecuación se vuelve;
 
-\begin{figure} [h!]
-  \centering
-  \[
-  z_{ndc} = \frac{Az_{vista} + B}{-z_e}
-  \]
-\end{figure}
-
-Para encontrar los coeficientes A y B usamos la relación $(Z_{vista}, Z_{ndc})$; $(-n, -1)$ y $(-f, 1)$, y las ponemos en la ecuación de arriba.
+\begin{equation*}
+  z_{ndc} = \frac{Az_{vista} + B}{-z_e} 
+\end{equation*}
+  
+Para encontrar los coeficientes \textit{A} y \textit{B} usamos la relación $(Z_{vista}, Z_{ndc})$; $(-n, -1)$ y $(-f, 1)$, y las ponemos en la ecuación de arriba.
 
 \begin{flalign*}
   \begin{cases}
@@ -264,21 +261,21 @@ Para encontrar los coeficientes A y B usamos la relación $(Z_{vista}, Z_{ndc})$
   \end{cases}  
 \end{flalign*}
 
-Para resolver las ecuaciones para A y B, reescribimos la ecuación (1) para B;
+Para resolver las ecuaciones para \textit{A} y \textit{B}, se reescribe la ecuación (1) para \textit{B};
 \begin{flalign*}
-  B=An-n \hspace*{1cm} (1')
+  B=An-n
 \end{flalign*}
 
-Sustituye B en la ecuación (2) por la ecuación (1') y aisla A;
-\begin{flalign*}
-&&  -Af + (An - n) = f \hspace*{1cm} (2) \\
-&&  -(f-n)A = f+n \\ 
-&&  A = - \frac{f+n}{f-n}
-\end{flalign*}
+Se sustituye B en la ecuación (2) por la ecuación anterior y se aisla A;
+\begin{gather*}
+  -Af + (An - n) = f \\
+  -(f-n)A = f+n \\ 
+  A = - \frac{f+n}{f-n}
+\end{gather*}
 
-Sustituye A en la ecuación (1) para encontrar B;
+Se sustituye \textit{A} en la ecuación (1) para encontrar \textit{B};
 \[
-&  \Big(\frac{f+n}{f-n}\Big)n + B = -n \hspace*{1cm} (1)
+  \Big(\frac{f+n}{f-n}\Big)n + B = -n 
 \]
 \begin{flalign*}
   B &= -n - \Big(\frac{f+n}{f-n}\Big)n = - \Big( 1 + \frac{f+n}{f-n}\Big)n = - \Big(\frac{f-n+f+n}{f-n}\Big)n \\
@@ -286,7 +283,39 @@ Sustituye A en la ecuación (1) para encontrar B;
 \end{flalign*}
 
 
+Se han hallado \textit{A} y \textit{B}. Por lo tanto, la relación entre $z_{vista}$ y $z_{ndc}$ se vuelve;
 
+\[
+z_n = \frac{-\frac{f+n}{f-n}z_v - \frac{2fn}{f-n}}{-z_v} \hspace*{1cm} (3)
+\]
 
+Finalmente, se han encontrado todas las entradas de la matriz GL\_PROJECTION. La matriz de proyección completa es;
 
+\begin{figure} [h]
+  \[
+  \begin{pmatrix}
+    \frac{2n}{r-l} &&              0 &&   \frac{r+l}{r-l} &&                0 \\
+                 0 && \frac{2n}{t-b} &&   \frac{t+b}{t-b} &&                0 \\
+                 0 &&              0 && \frac{-(f+n)}{f-n} && \frac{-2fn}{f-n} \\
+                 0 &&              0 &&                -1 &&                0
+  \end{pmatrix}
+  \]
+  \caption{Matriz de perspectiva de OpenGL}
+\end{figure}
 
+Esta matriz de proyección es para un frustum general. Si el volumen de vista es simétrico, es decir, $r = -l$ y $t = -b$, entonces puede ser simplificada como:
+
+\begin{equation*}
+  \begin{cases}
+    r+l = 0\\
+    r-l = 2r \hspace*{0.2cm} \text{(anchura)} \\
+  \end{cases}
+  \hspace*{0.3cm} , \hspace*{0.3cm}
+  \begin{cases}
+    t+b=0 \\
+    t-b=2t \hspace*{0.2cm} \text{(altura)} \\
+  \end{cases}
+\end{equation*}
+%% Aún faltan dos parte más que sinceramente no sé si debería incluir
+
+\section{Proyección ortográfica}
