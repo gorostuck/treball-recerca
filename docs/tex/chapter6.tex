@@ -138,8 +138,8 @@ Después, mapeamos $x_p$ y $y_p$ a $x_n$ y $y_n$ de NDC con una relación linear
 \end{minipage} \hspace*{2cm}
 \begin{minipage}{0.3\textwidth}
 \begin{flalign*}
-   x_n &= \frac{1-(-1)}{r-l} \cdot x_p + \beta \\
-   1   &=  \frac{2r}{r - l} + \beta \\
+   x_n &= \frac{1-(-1)}{r-l} \cdot x_p + \beta  \\
+   1   &=  \frac{2r}{r - l} + \beta \hspace*{0.5cm} \textcolor{gray}{(sustituir (r,1) en (x_p, x_n))} \\
  \beta &= 1 - \frac{2r}{r-l} = \frac{r-l}{r-l} - \frac{2r}{r-l}\\
        &=\frac{r - l - 2r}{r - l} = \frac{-r -l}{r-l} = - \frac{r+l}{r-l} \\
    \therefore x_n &= \frac{2x_p}{r-l}-\frac{r+l}{r-l} \\
@@ -157,7 +157,7 @@ Después, mapeamos $x_p$ y $y_p$ a $x_n$ y $y_n$ de NDC con una relación linear
 \begin{minipage}{0.3\textwidth}
 \begin{flalign*}
    y_n &= \frac{1-(-1)}{t-b} \cdot y_p + \beta \\
-     1 &=  \frac{2t}{t - b} + \beta \\
+     1 &=  \frac{2t}{t - b} + \beta \hspace*{0.5cm} \textcolor{gray}{(sustituir (t,1) en (y_p, y_n))} \\ 
  \beta &= 1 - \frac{2t}{t-b} = \frac{t-b}{t-b} - \frac{2t}{t-b}\\
        &=   \frac{t - b - 2t}{t - b} = \frac{-t -b}{t-b} = - \frac{t+b}{t-b} \\
 \therefore y_n &= \frac{2y_p}{t-b}-\frac{t+b}{t-b} \\
@@ -173,7 +173,7 @@ Ahora, sustituimos $x_p$ y $y_p$ a esas ecuaciones.
   \centering
   \begin{minipage}{0.45\textwidth}
     \begin{flalign*}
-      x_n &= \frac{2x_p}{r-l} - \frac{r+l}{r-l} \hspace*{0.5cm} (x_p = \frac{nx_e}{-z_e})\\
+      x_n &= \frac{2x_p}{r-l} - \frac{r+l}{r-l} \hspace*{0.5cm} \textcolor{gray}{(x_p = \frac{nx_e}{-z_e})}\\
           &= \frac{2 \cdot \frac{n \cdot x_e }{-z_e}}{r-l} - \frac{r+l}{r-l}\\
           &= \frac{2n \cdot x_e}{(r-l)(-z_e)} - \frac{r+l}{r-l}\\
           &= \frac{\frac{2n}{r-l} \cdot x_e}{-z_e} - \frac{r+l}{r-l}\\
@@ -183,7 +183,7 @@ Ahora, sustituimos $x_p$ y $y_p$ a esas ecuaciones.
   \end{minipage}
   \begin{minipage}{0.45\textwidth}
     \begin{flalign*}
-      y_n &= \frac{2y_p}{t-b} - \frac{t+b}{t-b} \hspace*{0.5cm} (y_p = \frac{ny_e}{-z_e})\\
+      y_n &= \frac{2y_p}{t-b} - \frac{t+b}{t-b} \hspace*{0.5cm} \textcolor{gray}{(y_p = \frac{ny_e}{-z_e})}\\
           &= \frac{2 \cdot \frac{n \cdot y_e }{-z_e}}{t-b} - \frac{t+b}{t-b}\\
           &= \frac{2n \cdot y_e}{(t-b)(-z_e)} - \frac{t+b}{t-b}\\
           &= \frac{\frac{2n}{t-b} \cdot y_e}{-z_e} - \frac{t+b}{t-b}\\
@@ -256,8 +256,8 @@ Para encontrar los coeficientes \textit{A} y \textit{B} usamos la relación $(Z_
   \end{cases}
   \to
   \begin{cases}
-    -An+B = -n \hspace*{1cm} (1) \\
-    -Af+B = f \hspace*{1.28cm} (2)  \\
+    -An+B = -n \hspace*{1cm} \textcolor{gray}{(1)} \\
+    -Af+B = f \hspace*{1.28cm} \textcolor{gray}{(2)}  \\
   \end{cases}  
 \end{flalign*}
 
@@ -286,7 +286,7 @@ Se sustituye \textit{A} en la ecuación (1) para encontrar \textit{B};
 Se han hallado \textit{A} y \textit{B}. Por lo tanto, la relación entre $z_{vista}$ y $z_{ndc}$ se vuelve;
 
 \[
-z_n = \frac{-\frac{f+n}{f-n}z_v - \frac{2fn}{f-n}}{-z_v} \hspace*{1cm} (3)
+z_n = \frac{-\frac{f+n}{f-n}z_v - \frac{2fn}{f-n}}{-z_v} \hspace*{1cm} \textcolor{gray}{(3)}
 \]
 
 Finalmente, se han encontrado todas las entradas de la matriz GL\_PROJECTION. La matriz de proyección completa es;
@@ -300,22 +300,135 @@ Finalmente, se han encontrado todas las entradas de la matriz GL\_PROJECTION. La
                  0 &&              0 &&                -1 &&                0
   \end{pmatrix}
   \]
-  \caption{Matriz de perspectiva de OpenGL}
+  \caption{Matriz de proyección de perspectiva de OpenGL}
 \end{figure}
 
-Esta matriz de proyección es para un frustum general. Si el volumen de vista es simétrico, es decir, $r = -l$ y $t = -b$, entonces puede ser simplificada como:
+Esta matriz de proyección es para un frustum general. Si el volumen de vista es simétrico, es decir, $r = -l$ y $t = -b$, entonces puede ser simplificada como;
 
 \begin{equation*}
   \begin{cases}
     r+l = 0\\
-    r-l = 2r \hspace*{0.2cm} \text{(anchura)} \\
+    r-l = 2r \hspace*{0.2cm} \textcolor{gray}{(anchura)} \\
   \end{cases}
   \hspace*{0.3cm} , \hspace*{0.3cm}
   \begin{cases}
     t+b=0 \\
-    t-b=2t \hspace*{0.2cm} \text{(altura)} \\
+    t-b=2t \hspace*{0.2cm} \textcolor{gray}{(altura)} \\
   \end{cases}
 \end{equation*}
-%% Aún faltan dos parte más que sinceramente no sé si debería incluir
+
+\begin{figure} [h]
+  \[
+  \begin{pmatrix}
+    \frac{n}{r} &&           0 &&                  0 &&                0 \\
+              0 && \frac{n}{t} &&                  0 &&                0 \\
+              0 &&           0 && \frac{-(f+n)}{f-n} && \frac{-2fn}{f-n} \\
+              0 &&           0 &&                 -1 &&                0
+  \end{pmatrix}
+  \]
+\end{figure}
+
+
+\newpage
+
+%% Aún falta una parte más que tampoco consideraba muy importante.
 
 \section{Proyección ortográfica}
+Construir la matriz GL\_PROJECTION para la proyección ortográfica es mucho más simple que para la proyección de perspectiva.
+
+\begin{figure} [h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{gl_projectionmatrix02}
+  \end{figure}
+
+Los componentes $x_{vista}$, $y_{vista}$ y $z_{vista}$ en el espacio de vista son mapeados linearmente a NDC. Sólo es necesario escalar el volumen rectangular al cubo, y luego moverlo al origen. Ahora se econtrarán los elementos de GL\_PROJECTION utilizando relaciones lineares.
+
+\begin{figure} [h!]
+  \centering
+\begin{minipage}{0.25\textwidth}
+  \includegraphics[width=\textwidth]{gl_projectionmatrix08}
+  \caption{Mapeado de $x_v$ a $x_n$}
+\end{minipage} \hspace*{2cm}
+\begin{minipage}{0.3\textwidth}
+\begin{flalign*}
+   x_n &= \frac{1-(-1)}{r-l} \cdot x_v + \beta  \\
+   1   &=  \frac{2r}{r - l} + \beta \hspace*{0.5cm} \textcolor{gray}{(sustituir (r,1) en (x_v, x_n))} \\
+ \beta &= 1 - \frac{2r}{r-l} = - \frac{r+l}{r-l}\\
+   \therefore x_n &= \frac{2}{r-l}\cdot x_v-\frac{r+l}{r-l} \\
+\end{flalign*}
+\end{minipage}
+\end{figure}
+
+\begin{figure} [h!]
+  \centering
+\begin{minipage}{0.25\textwidth}
+  \includegraphics[width=\textwidth]{gl_projectionmatrix09}
+  \caption{Mapeado de $y_v$ a $y_n$}
+\end{minipage} \hspace*{2cm}
+\begin{minipage}{0.3\textwidth}
+\begin{flalign*}
+   x_n &= \frac{1-(-1)}{t-b} \cdot x_v + \beta  \\
+   1   &=  \frac{2t}{t - b} + \beta \hspace*{0.5cm} \textcolor{gray}{(sustituir (t,1) en (y_v, y_n))} \\
+ \beta &= 1 - \frac{2t}{t-b} = - \frac{t+b}{t-b}\\
+   \therefore y_n &= \frac{2}{t-b}\cdot y_v-\frac{t+b}{t-b} \\
+\end{flalign*}
+\end{minipage}
+\end{figure}
+
+\begin{figure} [h!]
+  \centering
+\begin{minipage}{0.25\textwidth}
+  \includegraphics[width=\textwidth]{gl_projectionmatrix10}
+  \caption{Mapeado de $z_v$ a $z_n$}
+\end{minipage} \hspace*{2cm}
+\begin{minipage}{0.3\textwidth}
+\begin{flalign*}
+   z_n &= \frac{1-(-1)}{-f-(-n)} \cdot z_v + \beta  \\
+   1   &=  \frac{2f}{f - n} + \beta \hspace*{0.5cm} \textcolor{gray}{(sustituir (-f,1) en (z_v, z_n))} \\
+ \beta &= 1 - \frac{2f}{f-n} = - \frac{f+n}{f-n}\\
+   \therefore z_n &= \frac{-2}{f-n}\cdot z_v-\frac{f+n}{f-n} \\
+\end{flalign*}
+\end{minipage}
+\end{figure}
+
+\newpage
+
+Puesto que el componente \textit{w} no es necesario para la proyección ortográfica, la cuarta fila de la matriz GL\_PROJECTION permanece como $(0,0,0,1)$. Por lo tanto, la matriz GL\_PROJECTION completa para la proyección otrográfica es;
+
+\begin{figure} [h!]
+  \[
+  \begin{pmatrix}
+    \frac{2}{r-l} &&             0 && - \frac{r+l}{r-l} &&                0 \\
+                0 && \frac{2}{t-b} && - \frac{t+b}{t-b} &&                0 \\
+                0 &&             0 &&    \frac{-2}{f-n} && -\frac{f+n}{f-n} \\
+                0 &&             0 &&                  0 &&                1
+  \end{pmatrix}
+  \]
+  \caption{Matriz de proyección otrográfica de OpenGL}
+\end{figure}
+
+Puede ser más simplificada si el volumen de vista es simétrico, $r=-l$ y $t=-b$.
+\begin{figure} [h!]
+\begin{equation*} 
+  \begin{cases}
+    r+l = 0\\
+    r-l = 2r \hspace*{0.2cm} \textcolor{gray}{(anchura)} \\
+  \end{cases}
+  \hspace*{0.3cm} , \hspace*{0.3cm}
+  \begin{cases}
+    t+b=0 \\
+    t-b=2t \hspace*{0.2cm} \textcolor{gray}{(altura)} \\
+  \end{cases}
+\end{equation*}
+\end{figure}
+
+\begin{figure} [h!]
+  \[
+  \begin{pmatrix}
+    \frac{1}{r} &&           0 &&                 0 &&                0 \\
+              0 && \frac{1}{t} &&                 0 &&                0 \\ 
+              0 &&           0 &&    \frac{-2}{f-n} && -\frac{f+n}{f-n} \\ 
+              0 &&           0 &&                 0 &&                1
+  \end{pmatrix}
+  \]
+\end{figure}
