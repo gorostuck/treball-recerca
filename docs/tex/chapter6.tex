@@ -43,7 +43,7 @@ En una proyección de perspectiva, un punto 3D en un en un frustum piramical tru
 
 Nótese que las coordenadas de vista están definidas por el sistema de coordenadas de la mano derecha, pero NDC utiliza el sistema de coordenadas de la mano izquierda. Por ello, la cámara en el origen está mirando a través del jee -Z en el espacio de vista, pero está mirando en el eje +Z en NDC. Puesto que \textbf{glFrustum()} sólo acepta valores positivos cómo distancias \textit{near} y \textit{far}, necesitamos negarlos durante la construcción de la matriz GL\_PROJECTION.
 
-En OpenGL, un punto 3D en el espacio de vista es proyectado a el plano \textit{near} (plano de proyección). Los siguientes diagramas muestran como un punto $(x_e, y_e, z_e)$ en el espacio de vista está proyecatado a $(x_p, y_p, z_p)$ al plano \textit{near}.
+En OpenGL, un punto 3D en el espacio de vista es proyectado a el plano \textit{near} (plano de proyección). Los siguientes diagramas muestran como un punto $(x_v, y_v, z_v)$ en el espacio de vista está proyecatado a $(x_p, y_p, z_p)$ al plano \textit{near}.
 
 \begin{figure} [h]
   \centering
@@ -58,12 +58,12 @@ En OpenGL, un punto 3D en el espacio de vista es proyectado a el plano \textit{n
   \end{subfigure}
 \end{figure}
 
-Desde la vista superior del frustum, la coordenada X del espacio de vista, $x_e$ está mapeada a $x_p$, que es calculada utilizando la proporción de triangulos similares;
+Desde la vista superior del frustum, la coordenada X del espacio de vista, $x_v$ está mapeada a $x_p$, que es calculada utilizando la proporción de triangulos similares;
 \begin{figure} [h]
   \centering
   \[
-  \frac{x_p}{x_e} = \frac{-n}{z_e}
-  x_p = \frac{-n \cdot x_e}{z_e} = \frac{n \cdot x_e}{-z_e}
+  \frac{x_p}{x_v} = \frac{-n}{z_v}
+  x_p = \frac{-n \cdot x_v}{z_v} = \frac{n \cdot x_v}{-z_v}
   \]
 \end{figure}
 
@@ -71,13 +71,13 @@ Desde la vista lateral del frustum, $y_p$ puede ser calculada con un método sim
 
 \begin{figure} [h]
   \centering
-  \[ \frac{y_p}{y_e} = \frac{-n}{z_e}
-  y_p = \frac{-n \cdot y_e}{z_e} = \frac{n \cdot y_e}{-z_e} \]
+  \[ \frac{y_p}{y_v} = \frac{-n}{z_v}
+  y_p = \frac{-n \cdot y_v}{z_v} = \frac{n \cdot y_v}{-z_v} \]
 \end{figure}
 
 \newpage
 \newgeometry{top=25mm, bottom=27mm}
-Nótese que tanto $x_p$ como $y_p$ dependen de $z_e$; son inversamente proporcionales a $-z_e$. En otras palabras, ambas están divididas por $-z_e$. Esta es la primera pista para la construcción de la matriz GL\_PROJECTION. Después de que las coordenadas sean transformadas multiplicando la matriz GL\_PROJECTION, las coordenadas siguien siendo coordenadas homogéneas. Se vuelven finalmente \textit{Normalized Device Coordinates} (NDC) cuando se dividen por el componente \textit{w} de las coordenadas de clip.
+Nótese que tanto $x_p$ como $y_p$ dependen de $z_v$; son inversamente proporcionales a $-z_v$. En otras palabras, ambas están divididas por $-z_v$. Esta es la primera pista para la construcción de la matriz GL\_PROJECTION. Después de que las coordenadas sean transformadas multiplicando la matriz GL\_PROJECTION, las coordenadas siguien siendo coordenadas homogéneas. Se vuelven finalmente \textit{Normalized Device Coordinates} (NDC) cuando se dividen por el componente \textit{w} de las coordenadas de clip.
 
 \begin{figure} [h]
   \centering
@@ -101,7 +101,7 @@ Nótese que tanto $x_p$ como $y_p$ dependen de $z_e$; son inversamente proporcio
 \end{figure}
 
 
-Entonces, podemos definir el componente \textit{w} de las coordenadas de clip como $-z_e$. Y la cuarta fila de la matriz GL\_PROJECTION se vuelve (0, 0, -1, 0).
+Entonces, podemos definir el componente \textit{w} de las coordenadas de clip como $-z_v$. Y la cuarta fila de la matriz GL\_PROJECTION se vuelve (0, 0, -1, 0).
 
 
 \begin{figure} [h]
@@ -121,7 +121,7 @@ Entonces, podemos definir el componente \textit{w} de las coordenadas de clip co
   \begin{pmatrix}
     x_{vista} \\ y_{vista} \\ z_{vista} \\ w_{vista}
   \end{pmatrix}
-  ,  \hspace*{0.5cm} \therefore w_c = -z_e
+  ,  \hspace*{0.5cm} \therefore w_c = -z_v
   \]
 \end{figure}
 
@@ -152,7 +152,7 @@ Después, mapeamos $x_p$ y $y_p$ a $x_n$ y $y_n$ de NDC con una relación linear
   \centering
 \begin{minipage}{0.25\textwidth}
   \includegraphics[width=\textwidth]{gl_projectionmatrix06}
-  \caption{Mapeado de $x_y$ a $t_n$}
+  \caption{Mapeado de $y_p$ a $y_n$}
 \end{minipage} \hspace*{2cm}
 \begin{minipage}{0.3\textwidth}
 \begin{flalign*}
