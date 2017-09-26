@@ -8,20 +8,20 @@ Una vez se tienen las coordenadas de los puntos entre las coordenadas (-1, -1) y
   \item{\(x_M\) es la coordenada donde termina la superfície en la que queremos dibujar}  
   \item{\(\Delta x = x_M - x_m\)}
 \end{itemize}
-\begin{equation}
+\begin{equation*}
   \frac{x_s-(-1)}{1-(-1)} = \frac{x_d - x_m}{\Delta x}
-\end{equation}
+\end{equation*}
 Si aislamos \(x_d\) obtenemos la siguiente ecuación:
-\begin{equation}
+\begin{equation*}
   x_d = \frac{\Delta x \cdot x_s}{2}+\frac{\Delta x}{2}+x_m
-\end{equation}
+\end{equation*}
 En el caso de la coordenada \(y\) funciona igual excepto que cambiamos el sentido así que tiene una pequeña variación.
-\begin{equation}
+\begin{equation*}
   y_d = \frac{-(\Delta y) \cdot y_s}{2}+\frac{\Delta y}{2}+y_m
-\end{equation}
+\end{equation*}
 Y en forma de matriz, la operación quedaría así.
 
-\begin{equation}
+\begin{equation*}
   \begin{bmatrix}
      \frac{\Delta x}{2} && 0 && \frac{\Delta x}{2} + x_m\\
      0 && - \frac{\Delta y}{2} && \frac{\Delta y}{2} + y_m \\
@@ -39,5 +39,5 @@ Y en forma de matriz, la operación quedaría así.
     y_d\\
     1
   \end{bmatrix}
-\end{equation}
+\end{equation*}
 

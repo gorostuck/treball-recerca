@@ -36,7 +36,11 @@ GLAPI void GLAPIENTRY glGetFloatv(GLenum pname, GLfloat *params)
   switch (pname)
     {
     case GL_MODELVIEW_MATRIX:
-      memcpy(params, currentStack->Model, sizeof16GLfloat);
+      memcpy(params, currentStack-Model, sizeof16GLfloat);
+      break;
+    case GL_PROJECTION_MATRIX:
+      memcpy(params, currentStack->Projection, sizeof16GLfloat);
+      break;
     default:
       break;
     }

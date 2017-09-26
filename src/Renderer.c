@@ -1,6 +1,8 @@
 #include "Renderer.h"
 #include <math.h>
 
+#include "TRGL/TRGL.h"
+
 //GLfloat ang3 = 1.f;
 void render()
 {
@@ -21,9 +23,21 @@ void render()
   */
   
   
-  //Example1();
-  //  Example2();
-  Example3();
+  Example1();
+
+  float m[16];
+  glGetFloatv(GL_MODELVIEW_MATRIX, m);
+  
+  {
+    for (GLuint i = 0; i < 16; ++i){
+      printf("%f ", m[i]);
+      if ( i==3 || i==7 || i==11 || i==15 )
+	printf("\n");
+      if (i == 15)
+	printf("\n");
+    }
+  }
+    //Example2();
     
   //  Example4();
   //	glClearColor(1.f, 0.5f, 0.25f, 1.f);

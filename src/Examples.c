@@ -15,7 +15,6 @@ void Example1(void)
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  //glViewport(0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
   glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
   glMatrixMode(GL_PROJECTION);
