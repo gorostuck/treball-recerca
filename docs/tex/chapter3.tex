@@ -11,21 +11,57 @@ Algunos ejemplos de librerías gráficas son los siguientes:
 Para este proyecto se ha tomado como referencia OpenGL.
 
 \newpage
-\section{Pipeline de geometría}
-Los siguientes capítulos siguen un orden explicando las diferentes fases de la \textit{pipeline} de los gráficos computados.
+\section{Pasos que sigue el motor gráfico}
+Para mostrar en una pantalla 2D una escena 3D se siguen unos pasos conceptuales que se describirán a continuación: 
 \subsection{Espacio local del objeto}
-Es el espacio en el que se definen las coordenadas de los vértices, las normales y otros. Esto ocurre antes de que tome lugar cualquier transformación.
-\subsection{Espacio de vista y transformación de la vista del modelo}
-Es donde se calcula la iluminación por vértice. La camara está en (0,0,0) y la dirección de la vista es (0,1,0). La posición de la iluminación está guardada en este espacio después de ser multiplicada por la matriz de vista del modelo. Las normales de los vértices son consumidos por la \textit{pipeline} en este espacio para la ecuación de iluminación.
-\subsection{Espacio de clipping y transformación de proyección}
+Es el espacio en el que se definen las coordenadas de los vértices, las normales y otros. Esto ocurre antes de que tome lugar cualquier transformación. Las coordenadas son relativas al centro del objeto en cuestión. 
+
+Tomemos como ejemplo el siguiente cuadrado, éste tiene las siguientes coordenadas:
+\[
+E = (0, 3) \hspace*{0.5cm}
+F = (0, 0) \hspace*{0.5cm} 
+G = (3, 0) \hspace*{0.5cm} 
+H = (3, 3) \hspace*{0.5cm} 
+\]
+
+\begin{figure} [h!]
+  \centering
+  \definecolor{zzttqq}{rgb}{0.6,0.2,0}\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}\begin{tikzpicture}[thick,scale=0.9, every node/.style={scale=0.9}, line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]\draw [color=cqcqcq,, xstep=0.5cm,ystep=0.5cm] (-0.6906114486751231,-1.604846252165888) grid (4.0535015362365625,4.117008450971423);\draw[->,color=black] (-0.6906114486751231,0) -- (4.0535015362365625,0);\foreach \x in {-0.5,0.5,1,1.5,2,2.5,3,3.5,4}\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};\draw[->,color=black] (0,-1.604846252165888) -- (0,4.117008450971423);\foreach \y in {-1.5,-1,-0.5,0.5,1,1.5,2,2.5,3,3.5,4}\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};\clip(-0.6906114486751231,-1.604846252165888) rectangle (4.0535015362365625,4.117008450971423);\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,3) -- (0,0) -- (3,0) -- (3,3) -- cycle;\draw [line width=2pt,color=zzttqq] (0,3)-- (0,0);\draw [line width=2pt,color=zzttqq] (0,0)-- (3,0);\draw [line width=2pt,color=zzttqq] (3,0)-- (3,3);\draw [line width=2pt,color=zzttqq] (3,3)-- (0,3);\begin{scriptsize}\draw [fill=xdxdff] (0,3) circle (2.5pt);\draw[color=xdxdff] (0.30090127966636127,3.149594990332684) node {$E = (0, 3)$};\draw [fill=ududff] (0,0) circle (2.5pt);\draw[color=ududff] (0.30090127966636127,0.1475147850765256) node {$F = (0, 0)$};\draw [fill=xdxdff] (3,0) circle (2.5pt);\draw[color=xdxdff] (3.302981484922522,0.1475147850765256) node {$G = (3, 0)$};\draw [fill=ududff] (3,3) circle (2.5pt);\draw[color=ududff] (3.302981484922522,3.149594990332684) node {$H = (3, 3)$};\end{scriptsize}\end{tikzpicture}
+  
+\end{figure}
+
+Ahora, los valores de estas coordenadas son transladados al espacio del mundo, y por lo tanto, los valores de las coordenadas cambiarán.
+\newpage
+
+\subsection{Espacio global}
+Es el espacio en el que todos los objetos que hay en la escena están colocados en valores \textit{absolutos} relativos a un punto arbitario.
+
+\begin{figure} [h!]
+  \centering
+  
+  \definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}\definecolor{zzttqq}{rgb}{0.6,0.2,0}\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}\begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=1}, line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]\draw [color=cqcqcq,, xstep=1cm,ystep=1cm] (-1.8634742178724637,3.307104496255782) grid (7.398849069890592,10.543294564820641);\draw[->,color=black] (0,3.307104496255782) -- (0,10.543294564820641);\foreach \y in {3,4,5,6,7,8,9,10}\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};\clip(-1.8634742178724637,3.307104496255782) rectangle (7.398849069890592,10.543294564820641);\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (3,5) -- (3,8) -- (6,8) -- (6,5) -- cycle;\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,6) -- (-1,4) -- (1,4) -- cycle;\draw [line width=2pt,color=zzttqq] (3,5)-- (3,8);\draw [line width=2pt,color=zzttqq] (3,8)-- (6,8);\draw [line width=2pt,color=zzttqq] (6,8)-- (6,5);\draw [line width=2pt,color=zzttqq] (6,5)-- (3,5);\draw [line width=2pt,color=zzttqq] (0,6)-- (-1,4);\draw [line width=2pt,color=zzttqq] (-1,4)-- (1,4);\draw [line width=2pt,color=zzttqq] (1,4)-- (0,6);\begin{scriptsize}\draw [fill=ududff] (3,5) circle (2.5pt);\draw[color=ududff] (3.5274873832083777,5.254845656377824) node {$I = (3, 5)$};\draw [fill=ududff] (3,8) circle (2.5pt);\draw[color=ududff] (3.5274873832083777,8.25786453483224) node {$J = (3, 8)$};\draw [fill=ududff] (6,8) circle (2.5pt);\draw[color=ududff] (6.530506261662806,8.25786453483224) node {$K = (6, 8)$};\draw [fill=ududff] (6,5) circle (2.5pt);\draw[color=ududff] (6.530506261662806,5.254845656377824) node {$L = (6, 5)$};\draw [fill=xdxdff] (0,6) circle (2.5pt);\draw[color=xdxdff] (0.10235741742099742,6.2558519491959625) node {$E$};\draw [fill=ududff] (-1,4) circle (2.5pt);\draw[color=ududff] (-0.8986488753971453,4.253839363559685) node {$F$};\draw [fill=ududff] (1,4) circle (2.5pt);\draw[color=ududff] (1.0913033934581988,4.253839363559685) node {$G$};\end{scriptsize}\end{tikzpicture}
+
+  \caption{Todos los puntos del cubo se han desplazado 3 unidades en el eje X y 5 unidades en el eje Y con respecto a la figura anterior, una transformación ha ocurrido.}
+  
+  \end{figure}
+  
+\subsection{Espacio de vista}
+En el espacio de vista se introduce una \textit{cámara} (coordenada desde la que se proyectará la imagen a mostrar) 
+\begin{figure} [h!]
+  \centering
+  \definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}\begin{tikzpicture}[thick,scale=0.6, every node/.style={scale=1}, line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]\clip(-8.459136529072637,-0.8073256135157997) rectangle (3.3936789799010794,11.085087274663833);\fill[line width=2pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.10000000149011612] (-6,3) -- (-5,6) -- (-4,3) -- cycle;\fill[line width=2pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.10000000149011612] (-5,6) -- (-4,4) -- (-4,3) -- cycle;\fill[line width=0.4pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.1] (-3,7) -- (-3,5) -- (-1,5) -- (0,6) -- (0,8) -- (-2,8) -- cycle;\draw [line width=0.4pt,color=rvwvcq] (-6,3)-- (-5,6);\draw [line width=0.4pt,color=rvwvcq] (-4,3)-- (-6,3);\draw [line width=0.4pt,color=rvwvcq] (-5,6)-- (-4,4);\draw [line width=0.4pt,color=rvwvcq] (-4,4)-- (-4,3);\draw [line width=0.4pt,color=rvwvcq] (-4,3)-- (-5,6);\draw [line width=2pt,color=wrwrwr] (-7.8,1)-- (-2.2,12.4);\draw [line width=2pt,color=wrwrwr] (-7.8,1)-- (3.5,5.6);\draw (-7.561595933738325,1.0141538299567745) node[anchor=north west] {Cámara};\draw [line width=0.4pt,color=rvwvcq] (-3,7)-- (-2,8);\draw [line width=0.4pt,color=rvwvcq] (-3,7)-- (-3,5);\draw [line width=0.4pt,color=rvwvcq] (-3,5)-- (-1,5);\draw [line width=0.4pt,color=rvwvcq] (-1,5)-- (0,6);\draw [line width=0.4pt,color=rvwvcq] (0,6)-- (0,8);\draw [line width=0.4pt,color=rvwvcq] (0,8)-- (-2,8);\draw [line width=0.4pt,color=rvwvcq] (-2,8)-- (-3,7);\draw [line width=0.4pt,color=rvwvcq] (-3,7)-- (-1,7);\draw [line width=0.4pt,color=rvwvcq] (-1,5)-- (-1,7);\draw [line width=0.4pt,color=rvwvcq] (-1,7)-- (0,8);\begin{scriptsize}\draw [fill=rvwvcq] (-6,3) circle (2.5pt);\draw[color=rvwvcq] (-5.898506007089451,3.2778040078955173) node {$A$};\draw [fill=rvwvcq] (-5,6) circle (2.5pt);\draw[color=rvwvcq] (-4.895372400539337,6.287204827545857) node {$B$};\draw [fill=rvwvcq] (-4,3) circle (2.5pt);\draw[color=rvwvcq] (-3.8922387939892236,3.2778040078955173) node {$C$};\draw [fill=rvwvcq] (-4,4) circle (2.5pt);\draw[color=rvwvcq] (-3.8922387939892236,4.28093761444563) node {$D$};\draw [fill=rvwvcq] (-3,5) circle (2.5pt);\draw[color=rvwvcq] (-2.8891051874391094,5.2840712209957434) node {$E$};\draw [fill=rvwvcq] (-1,5) circle (2.5pt);\draw[color=rvwvcq] (-0.8960371007408563,5.2840712209957434) node {$F$};\draw [fill=rvwvcq] (-1,7) circle (2.5pt);\draw[color=rvwvcq] (-0.8960371007408563,7.29033843409597) node {$G$};\draw [fill=rvwvcq] (-3,7) circle (2.5pt);\draw[color=rvwvcq] (-2.8891051874391094,7.29033843409597) node {$H$};\draw [fill=rvwvcq] (0,6) circle (2.5pt);\draw[color=rvwvcq] (0.10709650580925786,6.287204827545857) node {$I$};\draw [fill=rvwvcq] (0,8) circle (2.5pt);\draw[color=rvwvcq] (0.10709650580925786,8.280272914244108) node {$J$};\draw [fill=rvwvcq] (-2,8) circle (2.5pt);\draw[color=rvwvcq] (-1.8991707072909705,8.280272914244108) node {$K$};\draw [color=rvwvcq] (-7.8,1) circle (4.5pt);\end{scriptsize}\end{tikzpicture}
+  
+\end{figure}
+
+\subsection{Espacio de clipping}
 Está después de la proyección y antes de la división de perspectiva. El \textit{clipping} contra el \textit{view frustum} se hace en este espacio.
 \begin{equation*}
   -w <= x <= w;
   -w <= y <= w;
   -w <= z <= w;
   \end{equation*}
-\subsection{Espacio NDC y división de perspectiva}
-El espcio NDC es aquel con coordenadas normalizadas, para llegar a este espacio se divide $(x,y,z,w)$ por $w$ donde $w = \frac{z}{-d}$ ($d=1$ en OpenGL así que $w= -z$).
+\subsection{Espacio NDC}
+El espacio NDC es aquel con coordenadas normalizadas, para llegar a este espacio se divide $(x,y,z,w)$ por $w$ donde $w = \frac{z}{-d}$ ($d=1$ en OpenGL así que $w= -z$).
 Resulta en un efecto escorzado.
-\subsection{Espacio de la pantalla y escalado y translación}es
+\subsection{Espacio de la pantalla}
 Consiste en mapear las coordenadas NDC a la ventana. $X$ y $Y$ son íntegros, relativos a la esquina izquierda inferior de la ventana. Las $Z$ son escaladas y sesgadas a [0,1]. La rasterización se produce en este espacio.
