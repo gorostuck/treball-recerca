@@ -20,7 +20,16 @@ El \textbf{espacio local del objeto} es el sistema de coordenadas desde el punto
 
 \begin{figure} [h]
   \centering
-  \includegraphics[width=0.3\textwidth]{gl_points}
+  %%\includegraphics[width=0.3\textwidth]{gl_points}
+  \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+    \clip(0,0) rectangle (6, 6);
+    \draw(1,4) node (n0) {.};
+    \draw(4,4) node (n1) {.};
+    \draw(2,3) node (n2) {.};
+    \draw(1,1) node (n3) {.};
+    \draw(5,1) node (n4) {.};
+    \draw(5,3) node (n5) {.};
+    \end{tikzpicture}
   \caption{GL\_POINTS}
 \end{figure}
 
@@ -36,15 +45,68 @@ El \textbf{espacio local del objeto} es el sistema de coordenadas desde el punto
   \centering
   \captionsetup[subfigure]{justification=centering}
   \begin{subfigure}  {0.3\textwidth}
-    \includegraphics[width=\textwidth]{gl_lines}
+    \centering
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {.};
+      (4,4) node (n1) {.};
+      (2,3) node (n2) {.};
+      (1,1) node (n3) {.};
+      (5,1) node (n4) {.};
+      (5,3) node (n5) {.};
+
+      \draw [-, line width=1pt, color=black]
+      (n0.center) -- (n1.center)
+      (n2.center) -- (n3.center)
+      (n4.center) -- (n5.center);
+      
+    \end{tikzpicture}
+
     \caption{GL\_LINES}
   \end{subfigure}
   \begin{subfigure} {0.3\textwidth}
-    \includegraphics[width=\textwidth]{gl_line_strip}
+    \centering
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {.};
+      (4,4) node (n1) {.};
+      (2,3) node (n2) {.};
+      (1,1) node (n3) {.};
+      (5,1) node (n4) {.};
+      (5,3) node (n5) {.};
+
+      \draw [-, line width=1pt, color=black]
+      (n0.center) -- (n1.center)
+      (n1.center) -- (n2.center)
+      (n2.center) -- (n3.center)
+      (n3.center) -- (n4.center)
+      (n4.center) -- (n5.center);
+      
+    \end{tikzpicture}
+
     \caption{GL\_LINE\_STRIP}
   \end{subfigure}
   \begin{subfigure} {0.3\textwidth}
-    \includegraphics[width=\textwidth]{gl_line_loop}
+    \centering
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {.};
+      (4,4) node (n1) {.};
+      (2,3) node (n2) {.};
+      (1,1) node (n3) {.};
+      (5,1) node (n4) {.};
+      (5,3) node (n5) {.};
+
+      \draw [-, line width=1pt, color=black]
+      (n0.center) -- (n1.center)
+      (n1.center) -- (n2.center)
+      (n2.center) -- (n3.center)
+      (n3.center) -- (n4.center)
+      (n4.center) -- (n5.center)
+      (n5.center) -- (n0.center);
+      
+    \end{tikzpicture}
+
     \caption{GL\_LINE\_LOOP}
   \end{subfigure}
   \caption{Primitivos de líneas}
@@ -70,15 +132,75 @@ Un triangulo es un primitivo formado por 3 vértices. Es la forma bidimensional 
   \centering
   \captionsetup[subfigure]{justification=centering}
   \begin{subfigure} {0.3\textwidth}
-    \includegraphics[width=\textwidth]{gl_triangles}
+    \centering
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {.};
+      (4,4) node (n1) {.};
+      (2,3) node (n2) {.};
+      (1,1) node (n3) {.};
+      (5,1) node (n4) {.};
+      (5,3) node (n5) {.};
+
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n1.center) -- (n2.center);
+      \fill[black, opacity=0.7]
+      (n3.center) -- (n4.center) -- (n5.center);
+    \end{tikzpicture}
     \caption{GL\_TRIANGLES}
   \end{subfigure}
   \begin{subfigure} {0.3\textwidth}
-    \includegraphics[width=\textwidth]{gl_triangle_strip}
+    \centering
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {.};
+      (4,4) node (n1) {.};
+      (2,3) node (n2) {.};
+      (1,1) node (n3) {.};
+      (5,1) node (n4) {.};
+      (5,3) node (n5) {.};
+
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n1.center) -- (n2.center);
+      \fill[black, opacity=0.7]
+      (n1.center) -- (n2.center) -- (n3.center);
+      \fill[black, opacity=0.7]
+      (n2.center) -- (n3.center) -- (n4.center);
+      \fill[black, opacity=0.7]
+      (n3.center) -- (n4.center) -- (n5.center);
+      \end{tikzpicture}
+
     \caption{GL\_TRIANGLE\_STRIP}
   \end{subfigure}
   \begin{subfigure} {0.3\textwidth}
-    \includegraphics[width=\textwidth]{gl_triangle_fan}
+    \centering
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {1}
+      (4,4) node (n1) {2}
+      (2,3) node (n2) {3}
+      (1,1) node (n3) {4}
+      (5,1) node (n4) {5}
+      (5,3) node (n5) {6};
+
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n1.center) -- (n2.center);
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n2.center) -- (n3.center);
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n3.center) -- (n4.center);
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n4.center) -- (n5.center);
+
+      \draw[ red]
+      (1,4) node (n0)
+      (4,4) node (n1) 
+      (2,3) node (n2) 
+      (1,1) node (n3) 
+      (5,1) node (n4) 
+      (5,3) node (n5);
+
+      \end{tikzpicture}
     \caption{GL\_TRIANGLE\_FAN}
   \end{subfigure}
   \caption{Primitivos triangulares}
@@ -94,12 +216,38 @@ Un \textit{quad} es un primitivo cuadrilateral de cuatro vértices. Frecuentemen
 \begin{figure} [h]
   \centering
   \captionsetup[subfigure]{justification=centering}
-  \begin{subfigure}{0.3\textwidth} 
-    \includegraphics[width=\textwidth]{gl_quads} 
+  \begin{subfigure}{0.2\textwidth} 
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {.};
+      (4,4) node (n1) {.};
+      (2,3) node (n2) {.};
+      (1,1) node (n3) {.};
+      (5,1) node (n4) {.};
+      (5,3) node (n5) {.};
+
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n1.center) -- (n2.center) -- (n3.center);
+    \end{tikzpicture}
     \caption{GL\_QUADS}
   \end{subfigure}
-  \begin{subfigure}{0.3\textwidth}
-    \includegraphics[width=\textwidth]{gl_quad_strip} 
+  \begin{subfigure}{0.4\textwidth}
+    \centering
+    \begin{tikzpicture}[thick, scale=0.6, every node/.style={scale=1.2}, line cap=round, line join=round, >=triangle 45, x=1cm, y=1cm]
+      \clip(0,0) rectangle (6, 6);
+      (1,4) node (n0) {.};
+      (4,4) node (n1) {.};
+      (2,3) node (n2) {.};
+      (1,1) node (n3) {.};
+      (5,1) node (n4) {.};
+      (5,3) node (n5) {.};
+
+      \fill[black, opacity=0.7]
+      (n0.center) -- (n1.center) -- (n2.center) -- (n3.center);
+      \fill[black, opacity=0.7]
+      (n2.center) -- (n3.center) -- (n4.center) -- (n5.center);
+      
+    \end{tikzpicture}
     \caption{GL\_QUAD\_STRIP}
   \end{subfigure}
   \caption{Primitivos \textit{quad}}
