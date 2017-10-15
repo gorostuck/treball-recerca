@@ -1,0 +1,73 @@
+%% En este archivo la idea es tener textos que realmente no tienen lugar ahora pero quizás serán útiles en el futuro
+%% Estos nodos no funcionan igual que los implementados en la última versión
+\section{Nodos}
+Un nodo es una estructura básica multiprósito que además de contener valores contiene punteros hacia otros nodos.
+\subsection{Nodo en el código}
+\begin{lstlisting}[language=C]
+  struct Node {
+    GLenum Type;          // Tipo de nodo
+    GLfloat Real[4];      // Matriz coordenadas reales
+    GLfloat Projected[4]; // Matriz coordenadas proyectadas
+    GLfloat Screen[3];    // Matriz coordenadas pantalla
+    GLfloat Color[4];     // Matriz con los colores
+    struct Node *next;    // Puntero hacia el nodo a la derecha  
+    struct Node *inf;     // Punerto hacia el nodo debajo
+  };
+\end{lstlisting}
+\subsection{Tipos de nodos}
+Básicamente podemos distinguir entre los diferentes tipos de nodos dependiendo de como deben de ser interpretados.
+\begin{itemize}
+\item{\textbf{Inicio} : es el primer nodo, no tiene ninguna información excepto que señala al primer nodo con información útil.}
+\item{\textbf{Encabezado} : en el tipo contiene la forma en la que se tienen que unir los vértices que se encuentran debajo de este nodo, a la derecha tiene otro encabezado o nada si es el último encabezado.}
+  \item{\textbf{Vértice} : contiene información sobre las coordenadas reales, proyectadas y en la pantalla, además del color. Debajo tiene otro vértice excepto en caso de ser el último vértice de esa estructura.}
+\end{itemize}
+\section{Organización de la información dentro de las matrices del nodo}
+En el nodo de un vértice se puede encontrar la información del mismo en las siguientes matrices.
+\begin{figure}[ht]
+  \[
+  \centering
+  \begin{bmatrix}
+    x_{real} \\
+    y_{real} \\
+    z_{real}  \\
+    1 
+  \end{bmatrix}
+  \begin{bmatrix}
+    x_{proyectada} \\
+    y_{proyectada} \\
+    z_{proyectada} \\
+    1
+  \end{bmatrix}
+  \begin{bmatrix}
+    x_{pantalla} \\
+    y_{pantalla} \\
+    1
+  \end{bmatrix}
+  \begin{bmatrix}
+    color_r \\
+    color_g \\
+    color_b \\
+    color_a
+  \end{bmatrix}
+  \]
+  \caption{Matriz de las coordenadas reales, las coordenads proyectadas, las coordenadas en la pantalla y el color.}
+\end{figure}
+\section{Sintaxis de la gestión de vértices}
+Para ir creando vértices se tiene que estructurar el código de forma similar a este ejemplo.
+\begin{lstlisting}[language=C]
+  glColor3f(0.0f, 0.0f, 0.0f);
+  glBegin(GL_QUADS);
+  glVertex3f(0.75f, 0.75f);
+  glVertex3f(0.75f, -0.75f);
+  glVertex3f(-0.75f, -0.75f);
+  glVertex3f(-0.75f, 0.75f);
+  glEnd();
+\end{lstlisting}
+Se explicará el funcionamiento de esas funciones en las siguientes subsecciones.
+\section{Colores en los vértices}
+Utilizando la función
+\begin{lstlisting}[language=C]
+  glColor3f(Glclampf red, GLclampf green, GLclampf blue)
+\end{lstlisting}
+se puede asignar un color a todos los vértices que se definan posteriormente hasta que se vuelva a llamar una función de color.
+

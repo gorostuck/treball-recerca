@@ -39,7 +39,7 @@ En una proyección de perspectiva, un punto 3D en un en un frustum piramical tru
 \end{figure}
 
 
-
+\newpage
 
 Nótese que las coordenadas de vista están definidas por el sistema de coordenadas de la mano derecha, pero NDC utiliza el sistema de coordenadas de la mano izquierda. Por ello, la cámara en el origen está mirando a través del jee -Z en el espacio de vista, pero está mirando en el eje +Z en NDC. Puesto que \textbf{glFrustum()} sólo acepta valores positivos cómo distancias \textit{near} y \textit{far}, necesitamos negarlos durante la construcción de la matriz GL\_PROJECTION.
 
@@ -76,6 +76,7 @@ Desde la vista lateral del frustum, $y_p$ puede ser calculada con un método sim
 \end{figure}
 
 \newpage
+\newgeometry{top=25mm, bottom=27mm}
 Nótese que tanto $x_p$ como $y_p$ dependen de $z_v$; son inversamente proporcionales a $-z_v$. En otras palabras, ambas están divididas por $-z_v$. Esta es la primera pista para la construcción de la matriz GL\_PROJECTION. Después de que las coordenadas sean transformadas multiplicando la matriz GL\_PROJECTION, las coordenadas siguien siendo coordenadas homogéneas. Se vuelven finalmente \textit{Normalized Device Coordinates} (NDC) cuando se dividen por el componente \textit{w} de las coordenadas de clip.
 
 \begin{figure} [h]
@@ -124,7 +125,7 @@ Entonces, podemos definir el componente \textit{w} de las coordenadas de clip co
   \]
 \end{figure}
 
-\newpage
+
 Después, mapeamos $x_p$ y $y_p$ a $x_n$ y $y_n$ de NDC con una relación linear; \([l, r] \implies [-1, 1] \) y \([b, t] \implies [-1, 1]\).
 
 
@@ -216,8 +217,8 @@ De estas dos ecuaciones, podemos encontrar la primera y segunda fila de la matri
   \]
 \end{figure}
 
+\newpage
 
-\newpage 
 Ahora sólo queda la tercera fila de la matriz GL\_PROJECTION por resolver. Encontrar $z_n$ es un poco más diferente de los demás porque en $z_{vista}$ en el espacio de vista está siempre proyectado hacia $-n$ en el plano \textit{near}. Pero ahora necesitamos un valor \textit{z} único para el clipping y la prueba de profundidad. Además, deberíamos de ser capaces de desproyectar (transformación inversa). Puesto que sabemos que \textit{z} no depende del valor \textit{x} o \textit{y}, tomamos prestado el componente \textit{w} para encontrar la relación entre $z_{ndc}$ y $z_{vista}$. Entonces, podemos especificar la tercera fila de la matriz GL\_PROJECTION de la siguiente forma.
 
 \begin{figure}[h]
@@ -260,7 +261,6 @@ Para encontrar los coeficientes \textit{A} y \textit{B} usamos la relación $(Z_
   \end{cases}  
 \end{flalign*}
 
-\newpage
 Para resolver las ecuaciones para \textit{A} y \textit{B}, se reescribe la ecuación (1) para \textit{B};
 \begin{flalign*}
   B=An-n
@@ -289,7 +289,6 @@ Se han hallado \textit{A} y \textit{B}. Por lo tanto, la relación entre $z_{vis
 z_n = \frac{-\frac{f+n}{f-n}z_v - \frac{2fn}{f-n}}{-z_v} \hspace*{1cm} \textcolor{gray}{(3)}
 \]
 
-\newpage 
 Finalmente, se han encontrado todas las entradas de la matriz GL\_PROJECTION. La matriz de proyección completa es;
 
 \begin{figure} [h]
@@ -329,7 +328,11 @@ Esta matriz de proyección es para un frustum general. Si el volumen de vista es
   \]
 \end{figure}
 
+
 \newpage
+
+%% Aún falta una parte más que tampoco consideraba muy importante.
+
 \section{Proyección ortográfica}
 Construir la matriz GL\_PROJECTION para la proyección ortográfica es mucho más simple que para la proyección de perspectiva.
 
@@ -372,7 +375,6 @@ Los componentes $x_{vista}$, $y_{vista}$ y $z_{vista}$ en el espacio de vista so
 \end{minipage}
 \end{figure}
 
-
 \begin{figure} [h!]
   \centering
 \begin{minipage}{0.25\textwidth}
@@ -388,6 +390,8 @@ Los componentes $x_{vista}$, $y_{vista}$ y $z_{vista}$ en el espacio de vista so
 \end{flalign*}
 \end{minipage}
 \end{figure}
+
+\newpage
 
 Puesto que el componente \textit{w} no es necesario para la proyección ortográfica, la cuarta fila de la matriz GL\_PROJECTION permanece como $(0,0,0,1)$. Por lo tanto, la matriz GL\_PROJECTION completa para la proyección otrográfica es;
 

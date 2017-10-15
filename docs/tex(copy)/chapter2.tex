@@ -17,19 +17,19 @@ Posteriormente se puede compilar yendo a la raíz de la carpeta y introduciendo 
 \begin{itemize}
 \item{\textbf{compilar} la librería gráfica propia y posteriormente compilar el programa}
 \begin{lstlisting}[language=bash]
-   make trgl
+  $ make trgl
 \end{lstlisting}
 \item{\textbf{compilar} el programa utilizando OpenGL}
 \begin{lstlisting}[language=bash]
-   make opengl
+  $ make opengl
 \end{lstlisting}
 \item{\textbf{ejecutar} el programa una vez la compilación ha terminado satisfactoriamente}
 \begin{lstlisting}[language=bash]
-   ./bin/program
+  $ ./bin/program
 \end{lstlisting}
 \item{\textbf{limpiar} todos los archivos creados durante procesos anteriores de compilación}
 \begin{lstlisting}[language=bash]
-   make clean
+  $ make clean
 \end{lstlisting}
 \end{itemize}
 
@@ -40,11 +40,11 @@ GNU Linux es el entorno en el que más cómodo trabajo por diversos motivos. Uno
 Ubuntu\footnote{\url{https://www.ubuntu.com}} es una de las distribuciones más comunes así que explicaré los requisitos previos para la compilación y ejecución del programa en Ubuntu.
 \\ Todos los paquetes necesarios se pueden obtener introduciendo este comando en la terminal.
 \begin{lstlisting}[language=bash]
-  sudo apt-get install git libsdl2-dev gcc
+  $ sudo apt-get install git libsdl2-dev gcc
 \end{lstlisting}
 Se puede descargar el Treball de Recerca utilizando el siguiente comando en la carpeta deseada.
 \begin{lstlisting}[language=bash]
-  git clone https://github.com/gorostuck/treball-recerca
+  $ git clone https://github.com/gorostuck/treball-recerca
 \end{lstlisting}
 
 \subsubsection{macOS}
@@ -53,7 +53,7 @@ Para compilar macOS es un poco más laborioso debido a que no tiene un gestor de
 \\ Una vez descargado el fichero .dmg, abrirlo y copiar ``SDL2.framework'' a \textit{/Library/Frameworks}.
 \\ Después quizás es necesario volver a firmar el Framework, para hacer esto, hay que abrir una terminal en \textit{/Library/Frameworks/SDL2.framework/} y utilizar el siguiente comando:
 \begin{lstlisting}[language=bash]
-  codesign -f -s - SDL2
+  $ codesign -f -s - SDL2
 \end{lstlisting}
 Si las \textit{Command Line Tools} no han sido instaladas previamente, la primera vez que intentemos utilizar el comando \textit{make} nos saltará una ventana preguntando si deseamos instalar las herramientas, para poder compilar el programa será necesario utilizar esas herramientas.
 
@@ -79,8 +79,7 @@ Git es un programa utilizado para controlar un repositorio de código\footnote{L
 Para redactar el documento escrito he utilizado \LaTeX \footnote{\url{https://wwww.latex-project.org}}, un lenguaje de programación orientado al procesamiento de texto. Esta herramienta me ha permitido organizar el Treball de Recerca de forma simple y efectiva, además de incluir trozos de código y comandos e incluso expresión matemática. \LaTeX utiliza un sistema de tags para formatear y procesar textos de la forma que desee el usuario. A continuación se muestra un ejemplo:
 \begin{lstlisting}
 \begin{equation*}
-  (g \circ f)^\prime (x) =
-  g^\prime (f(x))\cdot f^\prime(x)
+  (g \circ f)^\prime (x) = g^\prime (f(x))\cdot f^\prime(x)
 \end{equation*}  
 \end{lstlisting}
 

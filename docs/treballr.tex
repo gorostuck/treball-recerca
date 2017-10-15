@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[12pt, a4paper]{report}
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -13,8 +13,16 @@
 
 \usepackage{pgf,tikz}\usepackage{mathrsfs}\usetikzlibrary{arrows}
 
-\usepackage[margin=1.5in]{geometry}
+\usepackage[]{geometry}
 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 \renewcommand{\contentsname}{Contenidos}
 \renewcommand{\chaptername}{Capítulo}
@@ -38,6 +46,15 @@
 
 \begin{abstract}
   En este Treball de Recerca he intentado demostrar cómo funcionan las principales librerías gráficas comerciales y poder entender los diversos cálculos que se efectúan en la ejecución de una aplicación gráfica 3D. Para esto he programado una librería gráfica relativamente simple y la he usado en un motor gráfico que también he programado.
+\end{abstract}
+
+\renewcommand{\abstractname}{Agradecimientos}
+\begin{abstract}
+  Me gustaría dar las gracias a todos los profesores que he tenido a lo largo de mi vida, en especial a José Ramírez por ser un brillante tutor que además ha invertido mucho de su tiempo libre en ayudarme.
+
+  También me gustaría agradecer a mis familiares y mis amigos por soportarme. Además de agradecer a la comunidad de \textit{Handmade Hero} por inspirarme a ver la programación como algo más que una herramienta.
+
+  And finally I'd also like to thank Mariah Borg for being so special to me.
 \end{abstract}
 
 \tableofcontents
@@ -65,12 +82,6 @@
 
 %% Espacio de la pantalla y escalado y translación
 \include{tex/chapter8}
-
-%% Situación actual
-\include{tex/chapter9}
-
-%% Valoración general y conclusión
-\include{tex/chapter10}
 
 \end{document}
 

@@ -20,10 +20,9 @@ En este paso los objetos son transformados del espacio local al espacio de vista
 
 Nótese que no hay una matriz de cámara (vista) separada en OpenGL. Entonces, para simular la transformación de la cámara o de la vista, la escena (objetos 3D y luces) deben ser transformados con lo inverso de la transformación de vista. En otras palabras, OpenGL deefine que la cámara siempre se encuentra en (0, 0, 0) mirando al eje -Z en las cordenadas de espacio de vista, y no puede ser tansformada.
 
-\newpage
 Los vectores normales también son transformados desde coordenadas locales de objeto a coordenadas de vista para hacer cálculos de iluminación. Nótesese que las normales son transformadas de forma diferente a como lo hacen los vértices. Se multiplica la transposición de la inversa de la matriz GL\_MODELVIEW por un vector normal.
 
-\begin{figure}[ht!]
+\begin{figure}[ht]
   \centering
   \(
   \begin{pmatrix}
@@ -35,7 +34,6 @@ Los vectores normales también son transformados desde coordenadas locales de ob
   \end{pmatrix}
   \)
 \end{figure}
-
 En las siguientes secciones se observará el conjunto de funciones que se pueden usar para operar sobre esta matriz.
 
 \section{Matriz de modelo-vista (GL\_MODELVIEW)}
@@ -76,7 +74,7 @@ Una operación de translación consiste en desplazar un punto por un vector de c
 \begin{minipage}{0.3\textwidth}
   \centering
   \begin{tikzpicture}[thick ,scale=0.6, every node/.style={scale=0.9}, line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
-    \clip(-7,-2.4) rectangle (-1.5,1.5);
+    \clip(-7,-4) rectangle (-1.5,1.5);
     \draw [->,>=stealth,line width=0.5pt,color=gray] (-5.22,-1.72) -- (-3.32,0.24);
     \begin{scriptsize}
       \draw [fill=black] (-5.22,-1.72) circle (1pt);
@@ -86,9 +84,9 @@ Una operación de translación consiste en desplazar un punto por un vector de c
       \draw[color=gray] (-3,-0.8810231214816775) node {(X, Y, Z)};
     \end{scriptsize}
   \end{tikzpicture}
-\end{minipage}\begin{minipage}{0.5\textwidth}
+\end{minipage}\begin{minipage}[t]{0.5\textwidth}
   \centering
-  \[
+  \(
   \begin{bmatrix}
     1 && 0 && 0 && X\\
     0 && 1 && 0 && Y\\
@@ -106,8 +104,11 @@ Una operación de translación consiste en desplazar un punto por un vector de c
     z + Z \cdot 1 \\
     1
   \end{pmatrix}
-  \]
+  \)
 \end{minipage}
+
+\newpage
+
 
 Con la operación de translación la matriz actual se translada por (x, y, z). Primero, se crea una matriz de translación, $M_T$, después se multiplica con la matriz seleccionada actualmente para producir la matriz de transformación final: $M = M \cdot M_T$
 \begin{figure} [h!]
@@ -129,7 +130,6 @@ La función utilizada en OpenGL para efectuar una transformación es la siguient
 \end{lstlisting}
 En los argumentos pasamos los valores de las coordenadas del vector deseado.
 
-\newpage
 \section{Rotación}
 Una transformación de rotación rota un vector alrededor del origen (0, 0, 0) utilizando un eje y un ángulo.
 \begin{figure} [ht!]
@@ -288,10 +288,8 @@ Una transformación de escalado consiste en escalar cada componente de un vector
       \draw[color=black] (1,-2) node {Escalar por (2,2,1)};
     \end{scriptsize}
   \end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-  \centering
-  \[
+\end{minipage}\begin{minipage}[t]{0.5\textwidth}
+  \(
   \begin{bmatrix}
     SX && 0 && 0 && 0\\
     0 && SY && 0 && 0\\
@@ -309,7 +307,7 @@ Una transformación de escalado consiste en escalar cada componente de un vector
     SZ \cdot 1 \\
     1
   \end{pmatrix}
-  \]
+  \)
 \end{minipage}
 
 
