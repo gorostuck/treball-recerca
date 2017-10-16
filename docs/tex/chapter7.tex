@@ -5,8 +5,8 @@ Una vez se tienen las coordenadas de los puntos entre las coordenadas (-1, -1) y
 \begin{itemize}
   \item{\(x_d\) es la coordenada en la pantalla}
   \item{\(x_s\) es la coordenada real normalizada}  
-  \item{\(x_m\) es la coordenada donde comienza la superfície en la que queremos dibujar}
-  \item{\(x_M\) es la coordenada donde termina la superfície en la que queremos dibujar}  
+  \item{\(x_m\) es la coordenada donde comienza la superficie en la que queremos dibujar}
+  \item{\(x_M\) es la coordenada donde termina la superficie en la que queremos dibujar}  
   \item{\(\Delta x = x_M - x_m\)}
 \end{itemize}
 \begin{equation*}
@@ -72,7 +72,7 @@ Para iniciar un entorno de SDL2 se llama a la siguiente función:
 \begin{lstlisting}[language=C]
   int SDL_Init(Uint32 flags)
 \end{lstlisting}
-Como parámetro, se pueden aladir flags de inicialización como por ejemplo
+Como parámetro, se pueden añadir flags de inicialización como por ejemplo
 \textit{SDL\_INIT\_VIDEO}, para inicializar el vídeo.
 
 \subsubsection{Creación de ventana}
@@ -135,7 +135,7 @@ El primer parámetro es la ventana en la que se desea dibujar, la segunda es el 
 
 
 \subsubsection{Cambio de color}
-En lugar lugar de escojer el color cada vez que se dibuja algo, SDL2 guarda el último color seleccionado y es el que utiliza hasta que se llama a la siguiente función.
+En lugar lugar de escoger el color cada vez que se dibuja algo, SDL2 guarda el último color seleccionado y es el que utiliza hasta que se llama a la siguiente función.
 \begin{lstlisting}[language=C]
   void SDL_SetRenderDrawColor(SDL_Renderer* renderer,
        int8 r, Uint8 g, Uint8 b, Uint a)
@@ -158,7 +158,7 @@ Para dibujar una línea, funciona de forma similar a un punto, pero con una coor
                         int x1, int y1,
                         int x2, int y2)
 \end{lstlisting}
-El primer parámetro es el contexto de renderización que se está utilizndo, \textit{x1} y \textit{y1} corresponden a la coordenada origen de la línea y \textit{x2} y \textit{y2} corresponden a la coordenada final de la línea.
+El primer parámetro es el contexto de renderización que se está utilizando, \textit{x1} y \textit{y1} corresponden a la coordenada origen de la línea y \textit{x2} y \textit{y2} corresponden a la coordenada final de la línea.
 
 
 En caso de de no estar utilizando OpenGL directamente, se puede llamar a
@@ -175,7 +175,7 @@ Una vez se hayan aplicado todas las operaciones que se deseen, se ha de llamar a
 El único parámetro es el renderizador que se quiere actualizar.
 \newpage
 
-\subsection{Finalización de SDL2}
+\subsubsection{Finalización de SDL2}
 La forma de finalizar SDL2 cuando no se ha usado directamente OpenGL es un poco más compleja.
 Primero hace falta destruir el renderer que se ha usado.
 \begin{lstlisting}[language=C]

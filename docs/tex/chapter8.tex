@@ -1,3 +1,4 @@
+\newgeometry{margin=3cm, hmargin=2cm}
 \chapter{Valoración general y conclusión}
 \section{Procesos por los que pasó el Treball de Recerca}
 Inicialmente el objetivo del Treball de Recerca era el de crear una escena tridimiensional interactiva en la que se mostrase alguna figura. Tras unas pocas semanas, nos dimos cuenta de que hoy en día existen muchas herramientas para realizar esto, pero nos daba la sensación de que no se comprendía muy bien cómo funcionaba, y por lo tanto no era honesto simplemente utilizar esas herramientas, duramente se podría extraer una conclusión.
@@ -16,6 +17,8 @@ Aunque parezca que el trabajo se ha simplificado mucho, aún seguía siendo una 
 
 Y estas son sólo unas pocas de las docenas que han surgido a lo largo del Treball de Recerca y se han ido respondido de forma bastante satisfactoria. Claro está, los recursos son los que hay y han habido cuestiones que han sido más difíciles y prácticamente imposibles de resolver, pero que al menos han surgido en primer momento.
 
+
+\newpage
 Finalmente, coincidiendo con la aproximación de la fecha de entrega del documento redactado, tocó el momento de trazar la línea y intentar pasar a centarnos en cómo enfocar la defensa del Treball de Recerca. Para esta, al no ser importante el conocimiento adquirido, usaremos herramientas que nos permitan comunicar y explicar el trabajo de una forma más directa y comprensible.
 
 \section{Revisión de la hipótesis}
@@ -29,4 +32,16 @@ La evidencia de que este parece ser el caso se encuentra en los commits\footnote
 
 Por lo tanto, me parece justo establecer que el mundo de los gráficos computables requiere que el programador sea altamente consciente del funcionamiento interno del mismo para poder hacer un uso óptimo.
 
-La prueba definitiva de que mi hipótesis es verdad se halla en la evolución de OpenGL como librería gráfica. En las versiones originales de OpenGL (1 y 2), la misma librería gráfica, además de gestionar la comunicación con la tarjeta gráfica, hace todos los cálcuos y gestiona los vértices. Sin embargo, en la versión más reciente, OpenGL ha quedado completamente relegado a comunicación directa con la tarjeta gráfica, y todas las funciones de más (justamente las mismas que hemos creado nosotros en nuestra librería gráfica) han creado deprecadas y ahora es tarea del equipo de desarrollo que usa OpenGL crear las suyas propias, pensadas para funcionar de forma óptima en ese proyecto, pues un motor, o incluso librería, con uso general, parece ser cada vez más inviable. 
+La prueba definitiva de que mi hipótesis es verdad se halla en la evolución de OpenGL como librería gráfica. En las versiones originales de OpenGL (1 y 2), la misma librería gráfica, además de gestionar la comunicación con la tarjeta gráfica, hace todos los cálcuos y gestiona los vértices. Sin embargo, en la versión más reciente, OpenGL ha quedado completamente relegado a comunicación directa con la tarjeta gráfica, y todas las funciones de más (justamente las mismas que hemos creado nosotros en nuestra librería gráfica) han creado deprecadas y ahora es tarea del equipo de desarrollo que usa OpenGL crear las suyas propias, pensadas para funcionar de forma óptima en ese proyecto, pues un motor, o incluso librería, con uso general, parece ser cada vez más inviable.
+
+\section{Opinión personal}
+Estoy muy satisfecho con el resultado de este Treball de Recerca. Aunque he intentado dejar este documento lo más teórico posible, la mayoría de horas se han invertido en progaramar el motor gráfico utilizando la teoría que se ha expuesto. Espero poder continuar investigando sobre el complejo mundo de los motores gráficos más adelante, pero ciertamente este primer trabajo ha servido para tener una (limitada, pero no negligible) idea de cómo funciona la investigación.
+
+\section{Bibliografía}
+Diversos de estos recursos se han ido usando simultáneamente a lo largo del Treball de Recerca
+\begin{itemize}
+\item{Wiki de SDL2 \\ \url{https://wiki.libsdl.org}}
+\item{Página web de Song Ho Ahn sobre OpenGL \\\url{https://www.songho.ca/opengl/index.html}}
+\item{Página web de referencia oficial sobre OpenGL de Khronos \\\url{https://www.khronos.org/registry/OpenGL-Refpages/}}
+  \item{Wiki de \LaTeX \\ \url{https://en.wikibooks.org/wiki/LaTeX}}
+\end{itemize}
