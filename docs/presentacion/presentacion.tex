@@ -75,6 +75,21 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Motivación personal}
+  \begin{minipage}{0.5\textwidth}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/c}
+    \end{figure}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/unity}
+    \end{figure}
+    \end{minipage}
+\end{frame}
+
 \begin{frame}{Hipótesis}
   \begin{itemize}
     \item{Hipótesis original:}
@@ -306,6 +321,20 @@
 
 \end{frame}
 
+
+\begin{frame}{Espacio global}
+  \begin{itemize}
+  \item{Las coordenadas tienen valores absolutos respecto a un \textbf{punto arbitrario}.}
+  \item{Pueden existir distintos objetos.}
+  \end{itemize}
+
+  \begin{figure}[h]
+    \centering
+    \definecolor{qqqqff}{rgb}{0,0,1}\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]\draw [color=cqcqcq,, xstep=1cm,ystep=1cm] (-0.8954391833090678,4) grid (8.899624154736587,8.625717670298478);\draw[->,color=black] (0,3.5) -- (0,8.5);\foreach \y in {4,5,6,7,8}\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};\clip(-0.8954391833090678,1.7979314035066118) rectangle (7,9);\fill[line width=1pt,color=qqqqff,fill=qqqqff,fill opacity=0.15] (3,5) -- (6,5) -- (6,8) -- (3,8) -- cycle;\draw [line width=0.5pt,color=qqqqff] (3,5)-- (6,5);\draw [line width=0.5pt,color=qqqqff] (6,5)-- (6,8);\draw [line width=0.5pt,color=qqqqff] (6,8)-- (3,8);\draw [line width=0.5pt,color=qqqqff] (3,8)-- (3,5);\begin{scriptsize}\draw [fill=black] (3,5) circle (2pt);\draw[color=black] (3.0858504808186202,5.239292743321078) node {$M (3,5)$};\draw [fill=black] (6,5) circle (2pt);\draw[color=black] (6.085452282558659,5.239292743321078) node {$N (6,5)$};\draw [fill=black] (6,8) circle (2pt);\draw[color=black] (6.085452282558659,8.238894545061104) node {$O (6,8)$};\draw [fill=black] (3,8) circle (2pt);\draw[color=black] (3.0858504808186202,8.238894545061104) node {$P (3, 8)$};\end{scriptsize}\end{tikzpicture}
+  \end{figure}
+
+\end{frame}
+
 \begin{frame}{Implementación del espacio global y del espacio de vista}
   En OpenGL, la transformación de Modelo (espacio global) y la transformación de Vista (espacio de vista), ocurren a la vez.
   \begin{figure}[ht]
@@ -324,19 +353,6 @@
   \end{pmatrix}
   \)
 \end{figure}
-\end{frame}
-
-\begin{frame}{Espacio global}
-  \begin{itemize}
-  \item{Las coordenadas tienen valores absolutos respecto a un \textbf{punto arbitrario}.}
-  \item{Pueden existir distintos objetos.}
-  \end{itemize}
-
-  \begin{figure}[h]
-    \centering
-    \definecolor{qqqqff}{rgb}{0,0,1}\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]\draw [color=cqcqcq,, xstep=1cm,ystep=1cm] (-0.8954391833090678,4) grid (8.899624154736587,8.625717670298478);\draw[->,color=black] (0,3.5) -- (0,8.5);\foreach \y in {4,5,6,7,8}\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};\clip(-0.8954391833090678,1.7979314035066118) rectangle (7,9);\fill[line width=1pt,color=qqqqff,fill=qqqqff,fill opacity=0.15] (3,5) -- (6,5) -- (6,8) -- (3,8) -- cycle;\draw [line width=0.5pt,color=qqqqff] (3,5)-- (6,5);\draw [line width=0.5pt,color=qqqqff] (6,5)-- (6,8);\draw [line width=0.5pt,color=qqqqff] (6,8)-- (3,8);\draw [line width=0.5pt,color=qqqqff] (3,8)-- (3,5);\begin{scriptsize}\draw [fill=black] (3,5) circle (2pt);\draw[color=black] (3.0858504808186202,5.239292743321078) node {$M (3,5)$};\draw [fill=black] (6,5) circle (2pt);\draw[color=black] (6.085452282558659,5.239292743321078) node {$N (6,5)$};\draw [fill=black] (6,8) circle (2pt);\draw[color=black] (6.085452282558659,8.238894545061104) node {$O (6,8)$};\draw [fill=black] (3,8) circle (2pt);\draw[color=black] (3.0858504808186202,8.238894545061104) node {$P (3, 8)$};\end{scriptsize}\end{tikzpicture}
-  \end{figure}
-
 \end{frame}
 
 \begin{frame}{Transformaciones}
@@ -754,7 +770,7 @@
 \begin{frame}{Ajustes del método}
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/method}
+    \includegraphics[width=0.6\textwidth]{img/cpu_gpu}
   \end{figure}
 
 \end{frame}
@@ -777,6 +793,8 @@
 \begin{frame}{Preguntas}
 \end{frame}
 \begin{frame}{Valoración personal}
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/linus}
 \end{frame}
 
 \end{document}
