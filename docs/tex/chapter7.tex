@@ -79,7 +79,8 @@ Como parámetro, se pueden añadir flags de inicialización como por ejemplo
 Para crear una ventana se llama a esta función:
 \begin{lstlisting}[language=C]
   SDL_Window* SDL_CreateWindow(const char* title,
-                              int x, int y, int w, int h, Uint32 flags)
+                              int x, int y, int w, int h, 
+                              Uint32 flags)
 \end{lstlisting}
 Donde los parámetros son el título, las coordenadas \textit{x} y \textit{y} iniciales, w y h son la anchura y la altura, respectivamente y además se puede añadir alguna opción en flag, en este caso, es necesario añadir SDL\_WINDOW\_OPENGL para indicar que esta ventana se destinará a OpenGL.
 
@@ -121,7 +122,8 @@ Como parámetro, se pueden aladir flags de inicialización como por ejemplo \tex
 Para crear una ventana se llama a esta función:
 \begin{lstlisting}[language=C]
   SDL_Window* SDL_CreateWindow(const char* title,
-              int x, int y, int w, int h, Uint32 flags)
+                               int x, int y, int w, int h,
+                               Uint32 flags)
 \end{lstlisting}
 Donde los parámetros son el título, las coordenadas \textit{x} y \textit{y} iniciales, w y h son la anchura y la altura, respectivamente y además se puede añadir alguna opción en flag.
 

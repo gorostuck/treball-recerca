@@ -8,7 +8,7 @@ LIBPATH :=
 LIBS    :=
 
 FLAGS    := 
-CCFLAGS  := $(FLAGS) -std=c99 -lm
+CCFLAGS  := $(FLAGS) -std=c99
 GLFLAGS  :=
 ERFLAGS  := -Wall -Wno-unused-variable
 CXXFLAGS := $(FLAGS) -std=c++11
@@ -42,7 +42,7 @@ ifeq ($(OS),Windows_NT)
 else
     ifeq ($(UNAME_S),Linux)
         CCFLAGS += -D LINUX
-	GLFLAGS += -lGL -lSDL2main -lSDL2
+	GLFLAGS += -lGL -lGLU -lSDL2main -lSDL2
 	INCLUDE += -I/usr/include
 	LIBPATH += -L/usr/share
     endif

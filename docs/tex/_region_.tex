@@ -1,0 +1,63 @@
+\message{ !name(chapter5.tex)}
+\message{ !name(chapter5.tex) !offset(22) }
+\section{Transformación de vectores normales}
+Los vectores normales también son transformados desde coordenadas locales de objeto a coordenadas de vista para hacer cálculos de iluminación.
+Es importante destacar que los vectores normales no son transformados de la misma forma.
+\\
+Para un punto $(P_x, P_y, P_z)$ en un plano;
+Con un vector normal $(n_x, n_y, n_z)$ en el mismo plano;
+\\
+La ecuación del plano es la siguiente:
+\begin{equation*}
+  n_xx + n_yy + n_zz  = 0
+\end{equation*}
+Ahora podemos sustituir con las coordenadas de ese punto y resulta en:
+\begin{equation*}
+    n_xP_x + n_yP_y + n_zP_z  = 0
+\end{equation*}
+En forma de producto de matrices:
+\begin{equation*}
+  \begin{pmatrix}
+    n_x && n_y && n_z
+  \end{pmatrix}
+  \cdot
+  \begin{pmatrix}
+    P_x \\ P_y \\ P_z
+  \end{pmatrix}
+  = 0
+\end{equation*}
+
+Nótese que para poder resolver la operación correctamente, la matriz del vector normal está transpuesta. De forma más simple, la operación es la siguiente:
+\begin{equation*}
+  n^t \cdot P = 0
+\end{equation*}
+
+La inversa de una matriz por la matriz original es igual a la matriz identidad. Por ello, la matriz inversa de GL\_MODELVIEW por GL\_MODELVIEW es igual a la matriz identidad. Esto se puede introducir en la ecuación y seguiría siendo equivalente.
+
+\begin{equation*}
+  \underbrace{n^t \cdot M^{-1}}_{normal} \underbrace{M \cdot P}_{v\accent{é}rtice} = 0
+\end{equation*}
+Con esta ecuación hemos llegado a la forma de calcular la transformación de las normales. \\
+
+\newpage
+La forma final de la ecuación se obtiene aplicando la regla $A^t \cdot B^t = (B \cdot A)^t$.
+\begin{equation*}
+  n^t \cdot M^{-1} = n^t \cdot \Big((M^{-1})^t\Big)^t = \Big((M^{-1})^t\cdot n\Big)^t
+  \end{equation*}
+
+La forma en matriz de la operación es la siguiente.
+
+\begin{figure}[ht!]
+  \centering
+  \(
+  \begin{pmatrix}
+    nx_{vista}\\ny_{vista}\\nz_{vista}\\nw_{vista}
+  \end{pmatrix}
+  = ((M_{modeloVista})^{-1})^t \cdot
+  \begin{pmatrix}
+    nx_{obj}\\ny_{obj}\\nz_{obj}\\nw_{obj}
+  \end{pmatrix}
+  \)
+\end{figure}
+
+\message{ !name(chapter5.tex) !offset(-63) }

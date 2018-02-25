@@ -1,45 +1,13 @@
 #include "Renderer.h"
-#include <math.h>
-
-#include "TRGL/TRGL.h"
 
 //GLfloat ang3 = 1.f;
 void render()
 {
   glClear(GL_COLOR_BUFFER_BIT);
-  glClearColor(1.f, 1.f, 1.f, 1.f);
-
-  glColor3f(0.f, 0.f, 0.f);
-
-  /*
-  glBegin(GL_QUAD_STRIP);
-      glVertex2f(-0.25f, 0.75f);
-      glVertex2f(0.25f, 0.5f);
-      glVertex2f(0.f, 0.f);
-      glVertex2f(-0.75f, -0.75f);
-      glVertex2f(0.75f, -0.75f);
-      glVertex2f(0.75f, 0.f);
-  glEnd();
-  */
-  
-  
+  glClearColor(1.f, 0.5f, 0.25f, 1.f);
   Example1();
-
-  float m[16];
-  glGetFloatv(GL_MODELVIEW_MATRIX, m);
-  
-  {
-    for (GLuint i = 0; i < 16; ++i){
-      printf("%f ", m[i]);
-      if ( i==3 || i==7 || i==11 || i==15 )
-	printf("\n");
-      if (i == 15)
-	printf("\n");
-    }
-  }
-    //Example2();
     
-  //  Example4();
+  //Example4();
   //	glClearColor(1.f, 0.5f, 0.25f, 1.f);
   //	glMatrixMode(GL_MODELVIEW);
   //	glLoadIdentity();
