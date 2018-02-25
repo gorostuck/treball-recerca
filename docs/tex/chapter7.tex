@@ -192,3 +192,30 @@ Finalmente, se cierra el entorno de SDL.
 \begin{lstlisting}[language=C]
   void SDL_Quit()
 \end{lstlisting}
+
+\section{Estructura del código}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\textwidth]{diagrama}
+\end{figure}
+
+\begin{itemize}
+  \item{main: es donde se inicia la lógica de SDL (la gestión de
+      ventanas y se llaman a las demás funciones del programa}
+  \item{Init: contiene muchos aspectos de la inicialización del motor
+      gráfico y es la parte que se dedica a decidir entre OpenGL y
+      TRGL}
+  \item{Renderer: contiene el bucle general de renderización, adema´s
+      de algunas funciones que han sido deprecadas pero que se querían
+      implementar}
+  \item{Objects: algunas formas geométricas}
+  \item{Examples: funciones con muestras de lo que se puede
+      renderizar}
+  \item{TRGL: sustituye parte de la funcionalidad de OpenGL}
+  \item{Node: estructuras de memoria donde se guarda información concreta}
+  \item{List: estructuras de memoria en las que se guardan nodos}
+  \item{Matrix: recursos matemáticos para la gestión de matrices}
+  \item{Scanner: lector de las estructuras de memoria}
+  \item{Execute: intérprete de la información leída}
+\end{itemize}
