@@ -10,11 +10,13 @@
 
 
 SDL_bool quit;
+GLfloat time;
+GLint level;
 
 void handleKeys(unsigned char key, int x, int y);
 
-static int SCREEN_WIDTH = 640;
-static int SCREEN_HEIGHT = 640;
+static int SCREEN_WIDTH = 700;
+static int SCREEN_HEIGHT = 700;
 
 extern struct Node *firstNode, *currentNode;// , *temp;
 

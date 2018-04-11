@@ -94,6 +94,54 @@ void handleKeys(unsigned char key, int x, int y)
     {
       quit = SDL_TRUE;
     }
+  if (key == ' ')
+    {
+      level +=1;
+      time = 0;
+    }
+  if (key == '1')
+    {
+      level = 1;
+      time = 0;
+    }
+  if (key == '0')
+    {
+      level = 0;
+      time = 0;
+    }
+  if (key == '2')
+    {
+      level = 2;
+      time = 0;
+    }
+  if (key == '3')
+    {
+      level = 3;
+      time = 0;
+    }
+  if (key == '4')
+    {
+      level = 4;
+      time = 0;
+    }
+
+  if (key == '5')
+    {
+      level = 5;
+      time = 0;
+    }
+
+  if (key == '6')
+    {
+      level = 6;
+      time = 0;
+    }
+
+  if (key == '7')
+    {
+      level = 7;
+      time = 0;
+    }
 }
 
 
@@ -109,8 +157,6 @@ void close_window()
   SDL_Quit();
 #endif /* TRGL_MODE */
   
-
-  //FreeStacks();
 }
 
 void swap_window()

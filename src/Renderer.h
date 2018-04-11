@@ -13,7 +13,7 @@
 
 static SDL_bool gRenderQuad = SDL_TRUE;
 
-void render(void);
+void render(GLint level, GLfloat time);
 
 void gluPerspective(GLfloat fovY, GLfloat aspect, GLfloat front, GLfloat back);
 void gluLookAt(GLdouble eyex, GLdouble eyey, GLdouble eyez,

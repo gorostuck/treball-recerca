@@ -32,25 +32,27 @@ extern SDL_Renderer *renderer;
 
 GLboolean SDL_TR_SwapWindow(void)
 {
-  //static clock_t t_ini, t_fin;
-  //double secs;
-  //static double fps = 1. / 36.;
-  //static GLboolean first = GL_FALSE;
+  /* TIMER 
+  static clock_t t_ini, t_fin;
+  double secs;
+  static double fps = 1. / 36.;
+  static GLboolean first = GL_FALSE;
 
-  //if (first == GL_FALSE) {
-  //	t_ini = clock();
-  //	first = GL_TRUE;
-  //}
-  //t_fin = clock();
+  if (first == GL_FALSE) {
+    t_ini = clock();
+    first = GL_TRUE;
+  }
+  t_fin = clock();
 
-  //secs = fps - (double)(t_fin - t_ini) / CLOCKS_PER_SEC;
+  secs = fps - (double)(t_fin - t_ini) / CLOCKS_PER_SEC;
 
-  //if (secs > 0)
-  //	SDL_Delay((Uint32)(secs * 1000));
-  //t_ini = t_fin;
-  //glClearColor(1.f, 0.5f, 0.25f, 1.f);
+  if (secs > 0)
+    SDL_Delay((Uint32)(secs * 1000));
+  t_ini = t_fin;
+  glClearColor(1.f, 0.5f, 0.25f, 1.f);
+  */
 
-  //currentNode = firstList->currentNode;
+  currentNode = firstList->currentNode;
 
   currentList = firstList;
 
@@ -99,19 +101,12 @@ GLboolean SDL_TR_SwapWindow(void)
       break;
     case GL_TEXTURE:
       break;
-
     case LOADIDENTITY:
       memcpy(MatrixMode, Identity, sizeof16GLfloat);
       if (MatrixMode == currentStack->Model)
 	Inverse4x4(currentStack->Model, currentStack->NormalMatrix);
       Multiplicacion24x4(currentStack->Viewport, currentStack->Projection, currentStack->Model, currentStack->MVP);
       break;
-      //	case LOADMATRIX:
-
-      //		break;
-      //	case MULTMATRIX:
-
-      //		break;
     case MODEL:
       Multiplicacion4x4(currentStack->Model, currentNode->Matrix, currentStack->Model);
       Inverse4x4(currentStack->Model, currentStack->NormalMatrix);
@@ -121,20 +116,12 @@ GLboolean SDL_TR_SwapWindow(void)
       memcpy(currentStack->Viewport, currentNode->Matrix, sizeof16GLfloat);
       Multiplicacion24x4(currentStack->Viewport, currentStack->Projection, currentStack->Model, currentStack->MVP);
       break;
-      //	case PUSHMATRIX:
-
-      //		break;
-      //	case POPMATRIX:
-
-      //		break;
     default:
       break;
     }
   }
   SDL_RenderPresent(renderer);
-
   FreeFirstList();
-
   return SDL_TRUE;
 }
 
@@ -294,7 +281,6 @@ GLboolean SDL_TR_CreateRenderer(SDL_Window *_gWindow)
 void SDL_TR_Quit()
 {
   FreeAllLists();
-  //FreeStacks();
   SDL_Quit();
 }
 
@@ -302,22 +288,3 @@ void InitMatrix(void)
 {
   memcpy(firstList->firstNode->Matrix, Identity, sizeof16GLfloat);
 }
-
-
-//#define BEGIN			0x0010
-//#define END				0x0011
-//
-//#define CLEARCOLOR 0xA000
-//
-//#define LOADIDENTITY 0xA010
-//#define LOADMATRIX 0xA011
-//#define MULTMATRIX 0xA012
-//
-//#define MODEL 0xA020
-//#define VIEWPORT 0xA021
-//#define ORTHO			0xA031
-//#define FRUSTUM   0xA032
-//
-//#define PUSHMATRIX 0xA030
-//#define POPMATRIX 0xA031
-

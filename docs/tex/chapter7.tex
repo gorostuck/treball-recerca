@@ -195,27 +195,36 @@ Finalmente, se cierra el entorno de SDL.
 
 \section{Estructura del código}
 
+El código se estructura en dos tipos de archivos, unos compatibles con
+OpenGL y con nuestra adaptación de la librería y otros que son los que
+sustuyen parcialmente la funcionalidad de OpenGL. 
+
+\textbf{Archivos genéricos}
+\begin{itemize}
+	\item [\textbf{Examples}] Contiene diferentes ejemplos de escenas que incluyen objetos definidos en el archivo \textit{Objects} con la finalidad de comprobar el funcionamiento correcto de la implementación.
+	\item [\textbf{Init}] Inicializa la comunicación gráfica entre software y hardware, es decir, entre el programa y la tarjeta gráfica,  mediante la librería SDL2.
+	\item [\textbf{main}] Es donde comienza y acaba el programa, haciendo las llamadas necesarias a las diferentes partes del programa para su continua ejecución.
+	\item [\textbf{Objects}] Instucciones para crear objetos gráficos individuales, que agrupados formarán los ejemplos.
+	\item [\textbf{Renderer}] Es donde se encuentra el bucle de renderización de la escena, además de contener dos funciones de utilidad gráfica para simplificar la visualización en perspectiva, deprecadas en las últimas versiones de OpenGL.
+\end{itemize}
+
+\newpage
+
+\textbf{Archivos específicos}
+\begin{itemize}
+	\item [\textbf{Execute}] Es el archivo que contiene una función llamada desde la función inicial main() en cada bucle de renderización. Se encarga de dos cosas principalmente, la primera es inicializar las variables que se necesitan para los cálculo gráficos y la segunda es la manipulación y gestión de las estructuras de memoria gráfica en cada ciclo.
+	\item [\textbf{List}] Es una lista que contiene todas las intrucciones que se tienen que ejecutar en cada ciclo del programa.
+	\item [\textbf{Matrix}] Se realizan algunas operaciones con matrices necesarias, como es: multiplicar dos matrices, inversa de una matriz, matriz por un vector, normalizar un vector, ...
+	\item [\textbf{Model}] Contiene las definiciones de las variables del modelo. Matrices de rotación, translación y escalado, matriz que guarda el último movimiento realizado y los elementos mínimos de funcionamiento del programa, los nodos.
+	\item [\textbf{Node}] Manipula los elementos mínimos del programa, los nodos. Aquí se crean y se destruyen. También es donde se enlazan con el siguiente.
+	\item [\textbf{Scanner}] En este archivo se interpretan las instrucciones y se va creando una lista de nodos a ejecutar en el ciclo actual, guardándose todas en un pila.
+	\item [\textbf{Stack}] Manipula las pilas, es decir, las crea, las destruye y las enlaza con la siguiente. Estas pilas serán recorridas y ejecutadas para crear la escena.
+	\item [\textbf{TRGL}] Encapsula funciones análogas a las OpenGL, de manera que sea posible utilizar la librería OpenGL o el propio motor gráfico con sólo cambiar un parámetro del make (la compilación).
+\end{itemize}
+
+
+
 \begin{figure}[h]
  \centering
  \includegraphics[width=\textwidth]{diagrama}
 \end{figure}
-
-\begin{itemize}
-  \item{main: es donde se inicia la lógica de SDL (la gestión de
-      ventanas y se llaman a las demás funciones del programa}
-  \item{Init: contiene muchos aspectos de la inicialización del motor
-      gráfico y es la parte que se dedica a decidir entre OpenGL y
-      TRGL}
-  \item{Renderer: contiene el bucle general de renderización, adema´s
-      de algunas funciones que han sido deprecadas pero que se querían
-      implementar}
-  \item{Objects: algunas formas geométricas}
-  \item{Examples: funciones con muestras de lo que se puede
-      renderizar}
-  \item{TRGL: sustituye parte de la funcionalidad de OpenGL}
-  \item{Node: estructuras de memoria donde se guarda información concreta}
-  \item{List: estructuras de memoria en las que se guardan nodos}
-  \item{Matrix: recursos matemáticos para la gestión de matrices}
-  \item{Scanner: lector de las estructuras de memoria}
-  \item{Execute: intérprete de la información leída}
-\end{itemize}

@@ -147,6 +147,66 @@ void Cubo(GLfloat s)
   glEnd();
 }
 
+void CuboNegro(float s)
+{
+  glColor3f(0.0, 0.0, 0.0);
+  GLfloat s1 = s * 1.f;
+  
+  // LADO DELANTERO: lado rojo
+  glNormal3f(0.f, 0.f, 1.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s1, s); 
+  glVertex3f(s1, s1, s);  
+  glVertex3f(-s1, s1, s); 
+  glVertex3f(-s1, -s1, s);
+  glEnd();
+
+  // LADO TRASERO: lado blanco
+  glNormal3f(0.f, 0.f, -1.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s1, -s);
+  glVertex3f(s1, s1, -s);
+  glVertex3f(-s1, s1, -s);
+  glVertex3f(-s1, -s1, -s);
+  glEnd();
+
+  // LADO DERECHO: lado morado
+  glNormal3f(1.f, 0.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s, -s1, -s1);
+  glVertex3f(s, s1, -s1);
+  glVertex3f(s, s1, s1);
+  glVertex3f(s, -s1, s1);
+  glEnd();
+
+  // LADO IZQUIERDO: lado verde
+  glNormal3f(-1.f, 0.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(-s, -s1, s1);
+  glVertex3f(-s, s1, s1);
+  glVertex3f(-s, s1, -s1);
+  glVertex3f(-s, -s1, -s1);
+  glEnd();
+
+  // LADO SUPERIOR: lado azul
+  glNormal3f(0.f, 1.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, s, s1);
+  glVertex3f(s1, s, -s1);
+  glVertex3f(-s1, s, -s1);
+  glVertex3f(-s1, s, s1);
+  glEnd();
+
+  // LADO INFERIOR: lado 
+  glNormal3f(0.f, -1.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s, -s1);
+  glVertex3f(s1, -s, s1);
+  glVertex3f(-s1, -s, s1);
+  glVertex3f(-s1, -s, -s1);
+  glEnd();
+}
+
 void Esfera(void)
 {
   //int i = 0;
@@ -276,3 +336,157 @@ void Esfera(void)
   //}
 }
 
+// Presentación
+
+void Cubo0()
+{
+  glColor3f(0.0, 0.0, 0.0);
+  GLfloat s  = 1.f;
+  GLfloat s1 = 1.f;
+  
+  // LADO DELANTERO: lado rojo
+  glNormal3f(0.f, 0.f, 1.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s1, s); 
+  glVertex3f(s1, s1, s);  
+  glVertex3f(-s1, s1, s); 
+  glVertex3f(-s1, -s1, s);
+  glEnd();
+
+  // LADO TRASERO: lado blanco
+  glNormal3f(0.f, 0.f, -1.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s1, -s);
+  glVertex3f(s1, s1, -s);
+  glVertex3f(-s1, s1, -s);
+  glVertex3f(-s1, -s1, -s);
+  glEnd();
+
+  // LADO DERECHO: lado morado
+  glNormal3f(1.f, 0.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s, -s1, -s1);
+  glVertex3f(s, s1, -s1);
+  glVertex3f(s, s1, s1);
+  glVertex3f(s, -s1, s1);
+  glEnd();
+
+  // LADO IZQUIERDO: lado verde
+  glNormal3f(-1.f, 0.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(-s, -s1, s1);
+  glVertex3f(-s, s1, s1);
+  glVertex3f(-s, s1, -s1);
+  glVertex3f(-s, -s1, -s1);
+  glEnd();
+
+  // LADO SUPERIOR: lado azul
+  glNormal3f(0.f, 1.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, s, s1);
+  glVertex3f(s1, s, -s1);
+  glVertex3f(-s1, s, -s1);
+  glVertex3f(-s1, s, s1);
+  glEnd();
+
+  // LADO INFERIOR: lado 
+  glNormal3f(0.f, -1.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s, -s1);
+  glVertex3f(s1, -s, s1);
+  glVertex3f(-s1, -s, s1);
+  glVertex3f(-s1, -s, -s1);
+  glEnd();
+}
+
+void Plano1()
+{
+  // Esto es sólo el plano frontal...
+  glColor3f(0.0, 0.0, 0.0);
+  GLfloat s  = 1.f;
+  GLfloat s1 = 1.f;
+  
+  // LADO DELANTERO: lado rojo
+  glNormal3f(0.f, 0.f, 1.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s1, s); 
+  glVertex3f(s1, s1, s);  
+  glVertex3f(-s1, s1, s); 
+  glVertex3f(-s1, -s1, s);
+  glEnd();
+}
+
+void Cubo1(GLfloat margen)
+{
+  // Esto son todas las caras de un cubo menos la frontal
+  glColor3f(0.0, 0.0, 0.0);
+  GLfloat s = 1.f;
+  GLfloat s1 = s * margen;
+
+  // LADO TRASERO: lado blanco
+  glNormal3f(0.f, 0.f, -1.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s1, -s);
+  glVertex3f(s1, s1, -s);
+  glVertex3f(-s1, s1, -s);
+  glVertex3f(-s1, -s1, -s);
+  glEnd();
+
+  // LADO DERECHO: lado morado
+  glNormal3f(1.f, 0.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s, -s1, -s1);
+  glVertex3f(s, s1, -s1);
+  glVertex3f(s, s1, s1);
+  glVertex3f(s, -s1, s1);
+  glEnd();
+
+  // LADO IZQUIERDO: lado verde
+  glNormal3f(-1.f, 0.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(-s, -s1, s1);
+  glVertex3f(-s, s1, s1);
+  glVertex3f(-s, s1, -s1);
+  glVertex3f(-s, -s1, -s1);
+  glEnd();
+
+  // LADO SUPERIOR: lado azul
+  glNormal3f(0.f, 1.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, s, s1);
+  glVertex3f(s1, s, -s1);
+  glVertex3f(-s1, s, -s1);
+  glVertex3f(-s1, s, s1);
+  glEnd();
+
+  // LADO INFERIOR: lado 
+  glNormal3f(0.f, -1.f, 0.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s, -s1);
+  glVertex3f(s1, -s, s1);
+  glVertex3f(-s1, -s, s1);
+  glVertex3f(-s1, -s, -s1);
+  glEnd();
+
+}
+
+void Plano2(void)
+{
+  // Esto es sólo el plano frontal...
+  glColor3f(0.0, 0.0, 0.0);
+  GLfloat s  = 1.f;
+  GLfloat s1 = 1.f;
+  
+  // LADO DELANTERO: lado rojo
+  glNormal3f(0.f, 0.f, 1.f);
+  glBegin(GL_LINE_LOOP);
+  glVertex3f(s1, -s1, s); 
+  glVertex3f(s1, s1, s);  
+  glVertex3f(-s1, s1, s); 
+  glVertex3f(-s1, -s1, s);
+  glVertex3f(s1, s1, s);
+  glVertex3f(s1, -s1, s);
+  glVertex3f(-s1, -s1, s);
+  glEnd();
+
+}

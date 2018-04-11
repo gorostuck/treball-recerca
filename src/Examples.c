@@ -15,28 +15,16 @@ void Example1(void)
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  //glViewport(0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
   glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  //glOrtho(-4.f, 4.f, -4.f, 4.f, 0.5f, 20.f);
   gluPerspective(60.f, (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.25f, 35.f);
-  //SDL_TR_Perspective(60.f, 1.f, eye[2] + 0.25f, 20.f);
-
-  //gluLookAt(eye[0], eye[1], eye[2], center[0], center[1], center[2], up[0], up[1], up[2]);
-
-  //glRotatef(2*ang2, 0.25f, 1.f, 0.f);
-  //AxisPlane();
 
   glTranslatef(0.f, 0.f, -20.0f);
   glRotatef(3 * ang2, 0.25f, 0.5f, 1.f);
-  //glTranslatef(1.f, 0.f, 0.f);
-  //glRotatef(2 * ang2, 1.f, 0.5f, 0.25f);
 
-  //glTranslatef(1.f, -1.f, -7.f);
-  //glRotatef(ang2, 0.f, 1.f, 1.f);
-  Cubo(0.75f);
+    Cubo(0.75f);
   AxisPlane();
   glScalef(5.f, 5.f, 5.f);
   glColor3f(0.f, 0.f, 0.f);
@@ -59,18 +47,13 @@ void Example2(void)
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(60.f, 2.f, eye[2] + 0.5f, 20.f);
-  //glFrustum(-2.f, 2.f, -2.f, 2.f, 0.5f, 20.f);
-  //gluLookAt(eye[0], eye[1], eye[2], center[0], center[1], center[2], up[0], up[1], up[2]);
-
-  //AxisPlane();
   glTranslatef(0.15f, 0.15f, -3.9f);
-  //glRotatef(25.f, 0.f, 1.f, 0.f);
   glRotatef(-ang3, 0.5f, 0.25f, 1.f);
 
   glScalef(1.f, 1.5f, 2.f);
   Cubo(0.5f);
 
-  ++ang3;// += 1.f;
+  ++ang3;
 }
 
 void Example3(void)
@@ -84,14 +67,10 @@ void Example3(void)
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  //glViewport(0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2);
   glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  //SDL_TR_Perspective(60.f, 2.f, 0.5f, 20.f);
-  //glFrustum(-2.f, 2.f, -2.f, 2.f, 0.5f, 20.f);
-  //glOrtho(-2.f, 2.f, -2.f, 2.f, 0.5f, 20.f);
   gluPerspective(60.f, 1.f, eye[2] + 0.25f, 20.f);
 
   gluLookAt(eye[0], eye[1], eye[2], center[0], center[1], center[2], up[0], up[1], up[2]);
@@ -125,8 +104,7 @@ void Example4(void)
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  //glFrustum(-2.f, 2.f, -2.f, 2.f, 0.5f, 20.f);
-  //glOrtho(-6.f, 6.f, -6.f, 6.f, 0.5f, 20.f);
+
   gluPerspective(60.f, 1.f, eye[2] + 0.25f, 20.f);
 
   gluLookAt(eye[0], eye[1], eye[2], center[0], center[1], center[2], up[0], up[1], up[2]);
@@ -135,21 +113,6 @@ void Example4(void)
   AxisPlane();
 
 
-  ///////////////////
-  //GLuint lista = glGenLists(1); // Reserva espacio para una lista.
-
-  ////Compilación de una Lista
-  //	glNewList(lista, GL_COMPILE);
-  ///* DIBUJAR PRIMITIVAS */
-  //glEndList();
-
-  ////Llamada y Eliminación de Listas
-
-  //	glCallList(lista);         // Dibuja la lista compilada
-
-  //glDeleteLists(lista, 1);   // Borra una lista
-  //////////////////////
-  Vector(1.f);
   Vector2(-1.f, -1.f, -1.f);
 
   glTranslatef(2.f, 2.f, 2.f);
@@ -157,18 +120,80 @@ void Example4(void)
   glTranslatef(1.f, 0.f, 0.f);
   glRotatef(5 * ang4, 1.f, -0.5f, 0.25f);
 
-  //GLfloat mat[16];
-  //glGetFloatv(GL_MODELVIEW_MATRIX, mat);
 
   glScalef(3.f, 3.f, 3.f);
 
   Esfera();
 
-  //glLoadMatrixf(mat);
-  //glScalef(1.f, 1.f, 1.f);
   Cubo(0.5f);
 
 
   ang4 += 1.f;
 }
 
+void Presentacion(GLint level, GLfloat time)
+{
+  GLfloat eye[3] = { 10.f, 10.f, 10.f };
+  GLfloat center[3] = { 0.f, 0.f, 0.f };
+  GLfloat up[3] = { 0.f, 1.f, 0.f };
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(60.f, (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.25f, 25.f);
+
+  if (level == 0) {
+    glTranslatef(0.f, 0.f, -5.f);
+    glRotatef(-25.f, 0.f, 1.f, 0.f);
+    Cubo0();
+  }
+  if (level == 1) {
+    glTranslatef(0.f, 0.f, -5.f);
+    glRotatef(-25.f, 0.f, 1.f, 0.f);
+    if (time > 60.f) {
+      float ang = 0.5 * (time-60.f);
+      if (ang > 25.f) ang = 25.f;
+      glRotatef (ang, 0.f, 1.f, 0.f);
+    }
+    Plano1();
+    GLfloat margin = 1.f - 0.02 * time;
+    if (margin < 0) margin = 0;
+    Cubo1(margin);
+  }
+  if (level == 2){
+    glTranslatef(0.f, 0.f, -5.f);
+    Plano2();
+  }
+  if (level == 3){
+    glTranslatef(-2.f, 0.f, -5.f);
+    static float factor = 0;
+    if (time == 0) factor = 0;
+    if (time > 30.f && time < 80.f) factor +=1.f;
+    glTranslatef(0.08 * factor, 0.f, 0.f);
+    glRotatef(0.9 * factor, 0.f, 0.f, 1.f);
+    glScalef(1.f - (0.01 * factor), 1.f - (0.01 * factor), 1.f - (0.01 *factor));
+    CuboNegro(0.5f);
+  }
+  if (level == 4){
+    glTranslatef(-2.f, 0.f, -5.f);
+    static float factor1 = 0;
+    static float factor2 = 0;
+    static float factor3 = 0;
+    if (time == 0) {
+      factor1 = 0;
+      factor2 = 0;
+      factor3 = 0;
+    }
+    if (time > 30.f && time < 80.f) factor1 += 1.f;
+    if (time > 100.f && time < 150.f) factor2 += 1.f;
+    if (time > 180.f && time < 220.f) factor3 += 1.f;
+    glTranslatef(0.08 * factor1, 0.f, 0.f);
+    glRotatef(0.9 * factor2, 0.f, 0.f, 1.f);
+    glScalef(1.f - (0.01 * factor3), 1.f - (0.01 * factor3), 1.f - (0.01 *factor3));
+    //    CuboNegro(0.5f);
+    Esfera();
+  }
+}

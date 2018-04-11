@@ -5,11 +5,8 @@
 #include <stdio.h>
 #include <math.h>
 
-
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-
 
 #include "Init.h"
 #include "Renderer.h"
@@ -17,9 +14,6 @@
 #ifdef TRGL_MODE
 #include "TRGL/TRGL.h"
 #endif /* TRGL_MODE */
-
-//#define SCREEN_WIDTH   640
-//#define SCREEN_HEIGHT  640
 
 const GLfloat FOV_Y = 60.0f;
 const GLfloat NEAR_PLANE = 1.0f;

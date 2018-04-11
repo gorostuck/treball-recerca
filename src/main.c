@@ -2,44 +2,50 @@
 
 int main(int argc, char* argv[])
 {
-  //Start up SDL and create window
+  // Iniciar SDL y crear ventana
   if (!init_window()) {
-    printf("Failed to initialize!\n");
+    printf("Fallo de inicializacion!\n");
   } else {
-    //Event handler
+    // Gestor de eventos
     SDL_Event e;
     
-    //Enable text input
+    // Permitir input de texto
     SDL_StartTextInput();
     
-    //While application is running
+    // Detener la aplicación durante la ejecución
     while (!quit) {
-      //Handle events on queue
+      // Gestionar los eventos
       while (SDL_PollEvent(&e) != 0) {
-	//User requests quit
+	// Si se intenta cerrar la aplicación
 	if (e.type == SDL_QUIT) {
 	  quit = SDL_TRUE;
 	}
-	//Handle keypress with current mouse position
+	// Gestionar los inputs de teclas y la posición del ratón
 	else if (e.type == SDL_TEXTINPUT) {
 	  int x = 0, y = 0;
 	  SDL_GetMouseState(&x, &y);
 	  handleKeys(e.text.text[0], x, y);
 	}
       }
-	
-      //Render quad
-      render();
-	
-      //Update screen
+
+      // Lógica
+      if (level == 4 && time > 300.f) time = 0;
+
+      // Renderizar 
+      render(level, time);
+
+
+      time += 1.f;
+      
+      // Actualizar ventana
       swap_window();
       SDL_Delay(20);
     }
-    //Disable text input
+    // Desactivar el input de textos
     SDL_StopTextInput();
   }
   
-  //Free resources and close SDL
+  // Liberar los recursos y cerrar SDL2
   close_window();
   return 0;
 }

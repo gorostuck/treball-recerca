@@ -1,0 +1,19 @@
+\frametitle{Proyección ortográfica II}
+La matriz GL\_PROJECTION completa para la proyección ortográfica es la siguiente.
+  \begin{figure} [h!]
+  \(
+  \begin{pmatrix}
+    \frac{2}{r-l} &&             0 && - \frac{r+l}{r-l} &&                0 \\
+                0 && \frac{2}{t-b} && - \frac{t+b}{t-b} &&                0 \\
+                0 &&             0 &&    \frac{-2}{f-n} && -\frac{f+n}{f-n} \\
+                0 &&             0 &&                  0 &&                1
+  \end{pmatrix}
+  \)
+  \caption*{Matriz de proyección ortográfica de OpenGL}
+\end{figure}
+  \begin{lstlisting}[xleftmargin=10pt]
+    glOrtho(GLdouble left, GLdouble right,
+            GLdouble bottom, GLdouble top,
+            GLdouble near, GLdouble far);
+  \end{lstlisting}
+
